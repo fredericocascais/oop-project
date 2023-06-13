@@ -49,14 +49,33 @@ public class WeightedGraph extends AbstractGraph{
             double weight = rand.nextInt(max_weight - 1) + 1;
 
             addEdgeToList( node1, node2 , weight);
+            //System.out.println(weight);
 
             i++;
         }
-    }
 
+    }
+    @Override
+    public void createGivenGraph(int tot_nodes, String[] line, WeightedGraph graph){
+
+        String[] weight;
+        for (int og_node=0; og_node<=tot_nodes-1; og_node++) {
+            //System.out.println("og node: " + og_node);
+            weight = line[og_node].split(" ");
+            for(int dest_node=0; dest_node<=weight.length-1; dest_node++) {
+                if(!weight[dest_node].equals("0")) {
+                    //System.out.println("      dest node " + dest_node + ": "+ "weight = " + Double.parseDouble(weight[dest_node]));
+                    graph.addEdgeToList(og_node,dest_node,Double.parseDouble(weight[dest_node]));
+                }
+            }
+
+        }
+
+    }
     @Override
     public void createRandomGraph(){
         throw new RuntimeException("Error createRandomGraph(): Cannot create a Random Weighted Graph without weights.\n");
     }
+
 
 }

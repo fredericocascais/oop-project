@@ -21,11 +21,13 @@ public class Node {
     }
 
     public void addEdgeToNode( int dest, double weight ){
+
         if( linked.contains( dest ) ){
             return;
         }
         linked.add(dest);
         this.edges.add( new Edge( dest, weight) );
+
     }
 
     public List<Edge> getEdges() {
@@ -41,8 +43,8 @@ public class Node {
     }
 
     public String toString(){
-        return "Node " + Integer.toString(id) + " with " +
-                Integer.toString(edges.size()) + " edges";
+
+        return "Node "+ id + " with "+ edges.size() + " edges";
     }
 }
 

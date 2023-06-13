@@ -17,7 +17,7 @@ public class Ant {
 
     private LinkedList<Edge> path_edges;
 
-    private ArrayList<Boolean> visited;
+    private ArrayList<Boolean> visited ;
 
     public Ant(){
         path = new ArrayList<>();
@@ -34,7 +34,7 @@ public class Ant {
     }
 
     public int getNestNode() {
-        return nest_node;
+        return nest_node-1;
     }
 
     public LinkedList<Edge> getPathEdges() {
@@ -50,8 +50,11 @@ public class Ant {
     }
 
     public void addToPath(int node_id){
-        path.add( node_id );
+        path.add( node_id);
     }
+    public void setVisited(int node_id){ visited.add(node_id+1,true);
+    }
+
     public void addToPathEdges(Edge edge) { path_edges.addLast(edge); }
 
     public ArrayList<Integer> getPath() {
@@ -60,6 +63,7 @@ public class Ant {
 
     public boolean isVisited(int id){
         return visited.get( id );
+
     }
 
 
@@ -93,7 +97,9 @@ public class Ant {
         List<Edge> non_visited_edges = new ArrayList<>();
 
         for ( Edge edge : getNeighEdges()){
-            if (  !visited.get( edge.getDestination() ) ) non_visited_edges.add(edge);
+            if (  !path.contains( edge.getDestination()) ) {
+                non_visited_edges.add(edge);
+            }
         }
 
         return non_visited_edges;
@@ -101,6 +107,7 @@ public class Ant {
 
     public Edge getNextChosenEdge(Pheromones pheromones, double alpha, double beta){
         List<Edge> edges = getNonVisitedNeighEdges();
+        System.out.println("Non Visited Edges: "+edges);
 
         if( edges.size() == 0) edges = getNeighEdges();
 
@@ -109,33 +116,40 @@ public class Ant {
 
 
         for (Edge edge : edges) {
+
+            //System.out.println(edge);
+
             double edge_fav_outcome = edgeFavOutcome(
                     alpha,
                     beta,
                     pheromones.getPheromone(edge),
                     edge.getWeight()
             );
+            //System.out.println(edge_fav_outcome);
             norm_const += edge_fav_outcome;
         }
 
 
 
         double p = Math.random();
+
         double cumulativeProbability = 0.0;
 
         for (Edge edge : edges) {
+
             cumulativeProbability += edgeFavOutcome(
                     alpha,
                     beta,
                     pheromones.getPheromone(edge),
                     edge.getWeight()
             ) / norm_const;
-
+            //System.out.println(edge.getWeight());
             if (p <= cumulativeProbability) {
                 next_edge = edge;
+                break;
             }
         }
-
+        System.out.println("next "+next_edge);
         return next_edge;
 
     }
@@ -145,10 +159,12 @@ public class Ant {
     }
 
     public void removeCycle(int cycle_start_index){
-        for (int i = cycle_start_index + 1; i < path.size(); i++){
+        for (int i = path.size()-1 ; i > cycle_start_index; i--){
             path.remove(i);
             path_edges.removeLast();
+            System.out.println("Removing node: "+i);
         }
+
     }
 
     public boolean pathIsHamiltonean(int tot_nodes){

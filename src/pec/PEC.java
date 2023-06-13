@@ -15,10 +15,19 @@ public class PEC {
     public Event getNextEvent(){
         return event_list.get(event_index++);
     }
-
+    public Event getCurrEvent(){
+        return event_list.get(event_index);
+    }
     public void addEvent(Event new_event){
         event_list.add(new_event);
         Collections.sort(event_list);
+
+    }
+    @Override
+    public String toString(){
+
+        return event_list.get(event_index)+"";
     }
 
 }
+

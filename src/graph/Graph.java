@@ -22,6 +22,11 @@ public class Graph extends AbstractGraph{
     }
 
     @Override
+    public void createGivenGraph(int tot_nodes, String[] line, WeightedGraph graph) {
+
+    }
+
+    @Override
     public void createRandomGraph(){
 
         Random rand = new Random();
@@ -57,7 +62,6 @@ public class Graph extends AbstractGraph{
     public void createRandomGraph(int max_weight){
         throw new RuntimeException("Error createRandomGraph(int max_weight): Cannot create a Random Unweighted Graph with weights.\n");
     }
-
 
 
 }

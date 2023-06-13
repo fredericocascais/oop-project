@@ -3,7 +3,7 @@ package aco;
 import graph.Edge;
 import pec.Event;
 
-public class EvaporationEvent extends Event {
+public abstract class EvaporationEvent extends Event {
     private final double p;
     private final double n;
 

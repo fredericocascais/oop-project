@@ -9,7 +9,7 @@ public class Pheromones {
     private ArrayList<Double> tunnels;
 
     public Pheromones(int max_edges){
-        tunnels = new ArrayList<>(Collections.nCopies( max_edges, 0.0));
+        tunnels = new ArrayList<>(Collections.nCopies( 2*max_edges, 0.0));
 
     }
 
@@ -17,7 +17,8 @@ public class Pheromones {
         tunnels.set( edge.getId() , getPheromone(edge) + add_pheromones);
     }
 
-    public double getPheromone(Edge edge){
-        return tunnels.get( edge.getId() );
+    public double getPheromone(Edge edge) {
+        //System.out.println(tunnels);
+        return tunnels.get(edge.getId());
     }
 }

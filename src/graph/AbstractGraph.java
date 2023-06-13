@@ -3,7 +3,7 @@ package graph;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class AbstractGraph implements IGraph{
+public abstract class AbstractGraph implements IGraph{
     protected int n_nodes;
     protected int max_edges;
     protected Node[] adjList;
@@ -38,8 +38,15 @@ public class AbstractGraph implements IGraph{
     }
 
 
+    //public abstract void createGivenGraph(int tot_nodes, String[] line, WeightedGraph graph);
+
     @Override
     public void createRandomGraph() {
+
+    }
+
+    @Override
+    public void createGivenGraph(int tot_nodes, String[] line, WeightedGraph graph) {
 
     }
 

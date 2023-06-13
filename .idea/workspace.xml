@@ -5,24 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="3rd commit">
-      <change afterPath="$PROJECT_DIR$/src/graph/IEdge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aco/Ant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/Ant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aco/AntMoveEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/AntMoveEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aco/Tunnel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/Pheromones.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/antcolonyoptimization/EventPlayer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/antcolonyoptimization/ExecuteAntMoveStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/antcolonyoptimization/ExecuteEvaporationStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/antcolonyoptimization/ExecuteEventStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/antcolonyoptimization/SimulationClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aco/EvaporationEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/EvaporationEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aco/Pheromones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/Pheromones.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graph/AbstractGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/AbstractGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graph/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/Edge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graph/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/HamiltoneanCycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/HamiltoneanCycle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graph/IGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/IGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graph/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graph/WeightedGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/WeightedGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/WeigthedEdge.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pec/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pec/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pec/PEC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pec/PEC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,10 +34,18 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2QCP28QVgKbVV1adcjbKUeZ1CdK" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -49,24 +53,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editing.templates",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\herri\IdeaProjects\oop-project\src" />
     </key>
+  </component>
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="poo-project" />
+      <option name="PROGRAM_PARAMETERS" value="-f file.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="poo-project" />
+      <option name="PROGRAM_PARAMETERS" value="-r 4 5 2 1.0 1.0 0.2 2.0 10.0 0.5 200 300.0" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main (1)" />
+      <item itemvalue="Application.Main" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -82,6 +115,14 @@
       <workItem from="1685708101886" duration="955000" />
       <workItem from="1685975703607" duration="9706000" />
       <workItem from="1686057192088" duration="20228000" />
+      <workItem from="1686377351432" duration="12949000" />
+      <workItem from="1686392426818" duration="61000" />
+      <workItem from="1686392507503" duration="26000" />
+      <workItem from="1686470991750" duration="27994000" />
+      <workItem from="1686559819044" duration="2718000" />
+      <workItem from="1686564051906" duration="17048000" />
+      <workItem from="1686582304654" duration="13422000" />
+      <workItem from="1686638243536" duration="18289000" />
     </task>
     <task id="LOCAL-00001" summary="1st commit">
       <created>1685443156891</created>
@@ -115,5 +156,19 @@
     <MESSAGE value="2nd commit" />
     <MESSAGE value="3rd commit" />
     <option name="LAST_COMMIT_MESSAGE" value="3rd commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" log-message="true" type="java-exception">
+          <properties class="java.lang.IndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
