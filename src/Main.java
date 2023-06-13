@@ -201,7 +201,7 @@ public class Main {
                     IEvent Event1 = pec.getNextEvent();
                     curr_time+=Event1.getEventTime();
                     Event1.executeEvent();
-                    Ant ant = Event1.
+                    Ant ant = Event1
                     //Check Hamiltonean
                     if (ant.getPathEdges().size() >= tot_nodes) {
                         if (ant.pathIsHamiltonean(tot_nodes)) {
