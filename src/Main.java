@@ -89,47 +89,44 @@ public class Main {
             Pheromones pheromones = new Pheromones(graph.getMaxEdges());
             PEC pec = new PEC();
 
-            for (int n_ant = 1; n_ant <= 1; n_ant++) {
+            ArrayList<Ant> ants = new ArrayList<>(colony_size);
+            for(int i=0; i < colony_size; i++){
                 Ant ant = new Ant(node_1);
+                ants.add(i, ant);
+                Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
+                pec.addEvent(new AntMoveEvent(curr_time,graph,ant,next_edge,delta));
+            }
+
+            System.out.println("Event added to PEC : "+pec.getCurrEvent().getEventType()+" for "+pec.getCurrEvent().getEventTime());
+
+            while (curr_time < sim_time) {
+
+                IEvent Event1 = pec.getNextEvent();
+                curr_time=Event1.getEventTime();
+                Ant ant = (Ant) Event1.executeEvent();
+
+                System.out.println("current time: "+curr_time);
+
+                //Check Hamiltonean
+                if (ant.getPathEdges().size() >= tot_nodes) {
+                    if (ant.pathIsHamiltonean(tot_nodes)) {
+                        // create evap events
+                        ArrayList<Integer> hamilt_path = new ArrayList<>(ant.getPath());
+                        hamiltoneans_found.put(ant.getId(),hamilt_path);
+                        System.out.println("HAMILTON");
+                        System.out.println(ant.getPathEdges());
+                        ant.resetPath();
+                        //break;
+                    }
+                }
 
                 Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
-
-
+                //System.out.println("next edgge before setevent: "+next_edge);
                 pec.addEvent(new AntMoveEvent(curr_time, graph, ant, next_edge, delta));
-                System.out.println("Event added to PEC : "+pec.getCurrEvent().getEventType()+" for "+pec.getCurrEvent().getEventTime());
 
-                //pec.getNextEvent().executeEvent();
-                IEvent Event1 = pec.getNextEvent();
-                curr_time+=Event1.getEventTime();
-                Event1.executeEvent();
-
-                //while (curr_time < sim_time && ants_simulated < colony_size) {
-                for (int k = 0; k <= 100; k++) {
-
-                    if (ant.getPathEdges().size() >= tot_nodes) {
-                        if (ant.pathIsHamiltonean(tot_nodes)) {
-                            // create evap events
-                            System.out.println("HAMILTON");
-                            System.out.println(ant.getPathEdges());
-                            break;
-                        }
-                    }
-
-                    next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
-                    System.out.println("next edgge before setevent: "+next_edge);
-                    pec.addEvent(new AntMoveEvent(curr_time, graph, ant, next_edge, delta));
-
-                    //pec.getNextEvent().executeEvent();
-                    IEvent Event2 = pec.getNextEvent();
-                    curr_time+=Event2.getEventTime();
-                    Event2.executeEvent();
-                    //System.out.println("Event added to PEC : "+pec.getCurrEvent().getEventType()+" for "+pec.getCurrEvent().getEventTime());
-
-
-
-                    //break;
-                }
             }
+
+            System.out.println("hamiltoneans found: "+hamiltoneans_found);
         }
         if ("-f".equals(args[0])) { //reads from file if argument '-f' is used
 
@@ -183,54 +180,38 @@ public class Main {
                 Ant ant = new Ant(node_1);
                 ants.add(i, ant);
                 Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
-                pec.addEvent(new AntMoveEvent(curr_time,graph,ant,next_edge,delta));            }
-            //for (int n_ant = 1; n_ant <= 1; n_ant++) {
+                pec.addEvent(new AntMoveEvent(curr_time,graph,ant,next_edge,delta));
+            }
 
-                //Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
-                //pec.addEvent(new AntMoveEvent(curr_time, graph, ant, next_edge, delta));
-                System.out.println("Event added to PEC : "+pec.getCurrEvent().getEventType()+" for "+pec.getCurrEvent().getEventTime());
+            System.out.println("Event added to PEC : "+pec.getCurrEvent().getEventType()+" for "+pec.getCurrEvent().getEventTime());
 
-                //pec.getNextEvent().executeEvent();
-                //IEvent Event1 = pec.getNextEvent();
-                //curr_time+=Event1.getEventTime();
-               // Event1.executeEvent();
+            while (curr_time < sim_time) {
 
-                while (curr_time < sim_time) {
-
-                    IEvent Event1 = pec.getNextEvent();
-                    curr_time=Event1.getEventTime();
-                    Ant ant = (Ant) Event1.executeEvent();
+                IEvent Event1 = pec.getNextEvent();
+                curr_time=Event1.getEventTime();
+                Ant ant = (Ant) Event1.executeEvent();
 
                     //System.out.println("current time: "+curr_time);
 
                     //Check Hamiltonean
-                    if (ant.getPathEdges().size() >= tot_nodes) {
-                        if (ant.pathIsHamiltonean(tot_nodes)) {
-                            // create evap events
-                            ArrayList<Integer> hamilt_path = new ArrayList<>(ant.getPath());
-                            hamiltoneans_found.put(ant.getId(),hamilt_path);
-                            System.out.println("HAMILTON");
-                            System.out.println(ant.getPathEdges());
-                            ant.resetPath();
+                if (ant.getPathEdges().size() >= tot_nodes) {
+                    if (ant.pathIsHamiltonean(tot_nodes)) {
+                        // create evap events
+                        ArrayList<Integer> hamilt_path = new ArrayList<>(ant.getPath());
+                        hamiltoneans_found.put(ant.getId(),hamilt_path);
+                        System.out.println("HAMILTON");
+                        System.out.println(ant.getPathEdges());
+                        ant.resetPath();
                             //break;
-                        }
                     }
-
-                    Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
-                    //System.out.println("next edgge before setevent: "+next_edge);
-                    pec.addEvent(new AntMoveEvent(curr_time, graph, ant, next_edge, delta));
-
-                    //pec.getNextEvent().executeEvent();
-                    //IEvent Event2 = pec.getNextEvent();
-                    //curr_time+=Event2.getEventTime();
-                    //Event2.executeEvent();
-                    //System.out.println("Event added to PEC : "+pec.getCurrEvent().getEventType()+" for "+pec.getCurrEvent().getEventTime());
-
-
-
-                    //break;
                 }
-            //}
+
+                Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
+                    //System.out.println("next edgge before setevent: "+next_edge);
+                pec.addEvent(new AntMoveEvent(curr_time, graph, ant, next_edge, delta));
+
+                }
+
             System.out.println("hamiltoneans found: "+hamiltoneans_found);
         }
 
