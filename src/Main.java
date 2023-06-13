@@ -198,7 +198,7 @@ public class Main {
                 while (curr_time < sim_time) {
                 //for (int k = 0; k <= 100; k++) {
                     IEvent Event1 = pec.getNextEvent();
-                    curr_time+=Event1.getEventTime();
+                    curr_time=Event1.getEventTime();
                     Ant ant = (Ant) Event1.executeEvent();
                     System.out.println("current time: "+curr_time);
 

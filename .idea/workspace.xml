@@ -7,8 +7,6 @@
     <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="3rd commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aco/AntMoveEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/AntMoveEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pec/IEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pec/IEvent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +110,7 @@
       <workItem from="1686559819044" duration="2718000" />
       <workItem from="1686564051906" duration="17048000" />
       <workItem from="1686582304654" duration="13422000" />
-      <workItem from="1686638243536" duration="20809000" />
+      <workItem from="1686638243536" duration="21127000" />
     </task>
     <task id="LOCAL-00001" summary="1st commit">
       <created>1685443156891</created>
@@ -149,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686664145449</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="3rd commit">
+      <created>1686666538640</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1686666538640</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
