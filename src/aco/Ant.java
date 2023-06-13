@@ -4,11 +4,15 @@ import graph.Edge;
 import graph.Graph;
 import graph.IGraph;
 import graph.Node;
+import graph.WeightedGraph;
+import simulation.Simulation;
 
 import javax.swing.*;
 import java.util.*;
 
 public class Ant {
+    private Simulation simulation = Simulation.getSimulation();
+
     private Node current_node;
     private int nest_node;
 
@@ -81,7 +85,8 @@ public class Ant {
         return true;
     }
 
-    public void chooseNextNode(IGraph graph, Pheromones pheromones){
+    public void chooseNextNode(){
+        WeightedGraph graph = WeightedGraph.getGraph();
         List<Edge> edges = current_node.getEdges();
         Random rand = new Random();
         int next_int = rand.nextInt( edges.size() );
@@ -105,7 +110,7 @@ public class Ant {
         return non_visited_edges;
     }
 
-    public Edge getNextChosenEdge(Pheromones pheromones, double alpha, double beta){
+    public Edge getNextChosenEdge(){
         List<Edge> edges = getNonVisitedNeighEdges();
         System.out.println("Non Visited Edges: "+edges);
 
@@ -114,14 +119,16 @@ public class Ant {
         Edge next_edge = null;
         double norm_const = 0.0;
 
+        Pheromones pheromones = Pheromones.getPheromones();
+
 
         for (Edge edge : edges) {
 
             //System.out.println(edge);
 
             double edge_fav_outcome = edgeFavOutcome(
-                    alpha,
-                    beta,
+                    simulation.getAlpha(),
+                    simulation.getBeta(),
                     pheromones.getPheromone(edge),
                     edge.getWeight()
             );
@@ -138,8 +145,8 @@ public class Ant {
         for (Edge edge : edges) {
 
             cumulativeProbability += edgeFavOutcome(
-                    alpha,
-                    beta,
+                    simulation.getAlpha(),
+                    simulation.getBeta(),
                     pheromones.getPheromone(edge),
                     edge.getWeight()
             ) / norm_const;

@@ -5,26 +5,23 @@ import graph.Graph;
 import graph.Node;
 import graph.WeightedGraph;
 import pec.Event;
+import simulation.Simulation;
 
 import java.util.List;
 
 public class AntMoveEvent extends Event{
-
+    private final Simulation simulation = Simulation.getSimulation();
     private final Ant ant;
-
     private final Edge next_edge;
+    private final WeightedGraph graph = simulation.getGraph();
 
-    private final WeightedGraph graph;
 
-
-    public AntMoveEvent( double time, WeightedGraph graph, Ant ant, Edge next_edge, double delta){
-
+    public AntMoveEvent( Ant ant, Edge next_edge){
         this.ant = ant;
         setEventType("ant_move");
         this.next_edge = next_edge;
-        this.graph = graph;
 
-        setEventTime(time, delta * next_edge.getWeight());
+        setEventTime(simulation.getDelta() * next_edge.getWeight());
     }
 
     public Ant getAnt() {

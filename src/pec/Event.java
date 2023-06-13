@@ -2,14 +2,18 @@ package pec;
 
 import java.util.Random;
 
+import simulation.Simulation;
+
 public abstract class Event implements IEvent, Comparable<Event>{
     private double event_time;
 
     private String event_type;
 
+    private Simulation simulation = Simulation.getSimulation();
+
     private Random rand = new Random();
-    public void setEventTime(double time, double mean){
-        event_time = time + expDistribution(mean);
+    public void setEventTime(double mean){
+        event_time = simulation.getCurrentTime() + expDistribution(mean);
     }
     public double getEventTime(){
         return event_time;
@@ -25,6 +29,11 @@ public abstract class Event implements IEvent, Comparable<Event>{
     private double expDistribution(double mean){
         double next = rand.nextDouble();
         return -mean * Math.log(1.0 - next);
+    }
+
+    public void addEventTimeToSimulation(){
+        Simulation simulation = Simulation.getSimulation();
+        simulation.increaseCurrentTime(event_time);
     }
 
     @Override

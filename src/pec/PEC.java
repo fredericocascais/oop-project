@@ -7,9 +7,14 @@ import java.util.List;
 public class PEC {
     List<Event> event_list;
     private int event_index = 0;
+    private static final PEC instance = new PEC();
 
-    public PEC(){
+    private PEC(){
         event_list = new ArrayList<>();
+    }
+
+    public static PEC getPEC(){
+        return instance;
     }
 
     public Event getNextEvent(){

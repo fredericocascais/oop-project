@@ -4,10 +4,21 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class WeightedGraph extends AbstractGraph{
+    private static WeightedGraph graph;
 
-
-    public WeightedGraph(int n_nodes) {
+    private WeightedGraph(int n_nodes) {
         super(n_nodes);
+    }
+
+    public static WeightedGraph getGraph(int totalNodes){
+        if (graph == null) { 
+            graph = new WeightedGraph(totalNodes);
+        }
+        return graph;
+    }
+
+    public static WeightedGraph getGraph(){
+        return graph;
     }
 
     @Override

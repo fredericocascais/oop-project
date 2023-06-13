@@ -1,3 +1,4 @@
+package simulation;
 import aco.Ant;
 import aco.AntMoveEvent;
 import aco.Pheromones;
@@ -87,7 +88,7 @@ public class Main {
             printGraph(tot_nodes, graph);
             System.out.println("Nest node: "+node_1);
             Pheromones pheromones = new Pheromones(graph.getMaxEdges());
-            PEC pec = new PEC();
+            PEC pec = PEC.getPEC();
 
             for (int n_ant = 1; n_ant <= 1; n_ant++) {
                 Ant ant = new Ant(node_1);
@@ -177,7 +178,7 @@ public class Main {
             Node node_1 = graph.getNode(nest_node-1);
             System.out.println("Nest node: "+node_1);
             Pheromones pheromones = new Pheromones(graph.getMaxEdges());
-            PEC pec = new PEC();
+            PEC pec = PEC.getPEC();
             ArrayList<Ant> ants = new ArrayList<>(colony_size);
             for(int i=0; i < colony_size; i++){
                 Ant ant = new Ant(node_1);
