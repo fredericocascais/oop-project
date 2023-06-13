@@ -11,7 +11,10 @@ import java.util.*;
 public class Ant {
     private Node current_node;
     private int nest_node;
+    private int id;
 
+
+    private static int id_increments = 0;
     private double path_cost;
     private ArrayList<Integer> path;
 
@@ -30,7 +33,13 @@ public class Ant {
         path = new ArrayList<>();
         path_edges = new LinkedList<>();
         visited = new ArrayList<>();
+        this.id=id_increments;
+        id_increments++;
 
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getNestNode() {
@@ -162,7 +171,7 @@ public class Ant {
         for (int i = path.size()-1 ; i > cycle_start_index; i--){
             path.remove(i);
             path_edges.removeLast();
-            System.out.println("Removing node: "+i);
+            System.out.println("Removing from index: "+i);
         }
 
     }
@@ -175,6 +184,12 @@ public class Ant {
         // If all elements are distinct, size of
         // HashSet should be same array.
         return (s.size() == tot_nodes);
+    }
+
+    public void resetPath(){
+        path.clear();
+        path_edges.clear();
+
     }
 
 }

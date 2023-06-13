@@ -8,10 +8,7 @@ import pec.PEC;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -56,6 +53,9 @@ public class Main {
         }
     }
     public static void main(String[] args) throws FileNotFoundException {
+
+        HashMap<Integer,ArrayList<Integer>> hamiltoneans_found = new HashMap<>();
+
 
         if(args.length<2){
             System.out.println("Arguments Error");
@@ -196,24 +196,28 @@ public class Main {
                // Event1.executeEvent();
 
                 while (curr_time < sim_time) {
-                //for (int k = 0; k <= 100; k++) {
+
                     IEvent Event1 = pec.getNextEvent();
                     curr_time=Event1.getEventTime();
                     Ant ant = (Ant) Event1.executeEvent();
-                    System.out.println("current time: "+curr_time);
+
+                    //System.out.println("current time: "+curr_time);
 
                     //Check Hamiltonean
                     if (ant.getPathEdges().size() >= tot_nodes) {
                         if (ant.pathIsHamiltonean(tot_nodes)) {
                             // create evap events
+                            ArrayList<Integer> hamilt_path = new ArrayList<>(ant.getPath());
+                            hamiltoneans_found.put(ant.getId(),hamilt_path);
                             System.out.println("HAMILTON");
                             System.out.println(ant.getPathEdges());
-                            break;
+                            ant.resetPath();
+                            //break;
                         }
                     }
 
                     Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
-                    System.out.println("next edgge before setevent: "+next_edge);
+                    //System.out.println("next edgge before setevent: "+next_edge);
                     pec.addEvent(new AntMoveEvent(curr_time, graph, ant, next_edge, delta));
 
                     //pec.getNextEvent().executeEvent();
@@ -227,7 +231,7 @@ public class Main {
                     //break;
                 }
             //}
-
+            System.out.println("hamiltoneans found: "+hamiltoneans_found);
         }
 
     }

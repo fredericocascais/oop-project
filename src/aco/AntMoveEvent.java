@@ -33,6 +33,7 @@ public class AntMoveEvent extends Event{
 
     public Object executeEvent(){
         System.out.println("\nExecuting Ant Mov Event");
+        System.out.println("ant id: " + ant.getId());
         int next_node_id = next_edge.getDestination();
         System.out.println("edge traversed: "+ next_edge);
         System.out.println("destination node id: "+ next_node_id);
@@ -41,13 +42,14 @@ public class AntMoveEvent extends Event{
         // all the neighbouring edges have all been visited so a
         // node has been randomly chosen in a uniform distribution
         if( ant.getPath().contains( next_node_id ) ){
-            System.out.println("Next node already in path");
+            //System.out.println("Next node already in path");
 
             // If the next node is the nest node and the path length is the same as the total number of node
             // we can assume that it has gone through all the nodes and a hamiltonian path has been completed,
             // so we add only the edge that leads to the nest node
             if ( next_node_id == ant.getNestNode() && ant.getPath().size() == graph.get_total_nodes()) {
                 ant.addToPathEdges(next_edge);
+                ant.setCurrentNode(graph.getNode(next_node_id));
                 System.out.println("next node id: "+  next_node_id);
                 System.out.println("nest node id: " + ant.getNestNode());
                 //System.out.println("HAMILTOJN");
@@ -57,7 +59,7 @@ public class AntMoveEvent extends Event{
             // If it's the case above means that a cycle has been created which means
             // we need to eliminate it by starting over the index/node where the cycle begins
             else {
-                System.out.println("Removing, next");
+                //System.out.println("Removing, next");
                 int start_cycle_index = ant.getPath().indexOf(next_node_id);
                 ant.removeCycle( start_cycle_index );
                 ant.setCurrentNode( graph.getNode(next_node_id) );
