@@ -31,7 +31,7 @@ public class AntMoveEvent extends Event{
         return ant;
     }
 
-    public void executeEvent(){
+    public Object executeEvent(){
         System.out.println("\nExecuting Ant Mov Event");
         int next_node_id = next_edge.getDestination();
         System.out.println("edge traversed: "+ next_edge);
@@ -75,6 +75,7 @@ public class AntMoveEvent extends Event{
         //System.out.println("Current node: "+ant.getCurrentNode());
         System.out.println("Path edges: "+ant.getPathEdges());
         System.out.println("Path nodes: "+ant.getPath());
+        return ant;
     }
 
 

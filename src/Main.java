@@ -183,8 +183,7 @@ public class Main {
                 Ant ant = new Ant(node_1);
                 ants.add(i, ant);
                 Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
-                pec.addEvent(new AntMoveEvent(curr_time,graph,ant,next_edge,delta));
-            }
+                pec.addEvent(new AntMoveEvent(curr_time,graph,ant,next_edge,delta));            }
             //for (int n_ant = 1; n_ant <= 1; n_ant++) {
 
                 //Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
@@ -196,12 +195,13 @@ public class Main {
                 //curr_time+=Event1.getEventTime();
                // Event1.executeEvent();
 
-                while (curr_time < sim_time && ants_simulated < colony_size) {
+                while (curr_time < sim_time) {
                 //for (int k = 0; k <= 100; k++) {
                     IEvent Event1 = pec.getNextEvent();
                     curr_time+=Event1.getEventTime();
-                    Event1.executeEvent();
-                    Ant ant = Event1
+                    Ant ant = (Ant) Event1.executeEvent();
+                    System.out.println("current time: "+curr_time);
+
                     //Check Hamiltonean
                     if (ant.getPathEdges().size() >= tot_nodes) {
                         if (ant.pathIsHamiltonean(tot_nodes)) {
@@ -212,14 +212,14 @@ public class Main {
                         }
                     }
 
-                    next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
+                    Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
                     System.out.println("next edgge before setevent: "+next_edge);
                     pec.addEvent(new AntMoveEvent(curr_time, graph, ant, next_edge, delta));
 
                     //pec.getNextEvent().executeEvent();
-                    IEvent Event2 = pec.getNextEvent();
-                    curr_time+=Event2.getEventTime();
-                    Event2.executeEvent();
+                    //IEvent Event2 = pec.getNextEvent();
+                    //curr_time+=Event2.getEventTime();
+                    //Event2.executeEvent();
                     //System.out.println("Event added to PEC : "+pec.getCurrEvent().getEventType()+" for "+pec.getCurrEvent().getEventTime());
 
 

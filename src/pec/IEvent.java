@@ -6,6 +6,6 @@ public interface IEvent {
     public String getEventType();
     public void setEventType(String type);
 
-    public void executeEvent();
+    public Object executeEvent();
 
 }
