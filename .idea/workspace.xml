@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="3rd commit">
+    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="-r e -f funcionar com varias formigas">
+      <change afterPath="$PROJECT_DIR$/src/aco/InputParameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -73,7 +75,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="poo-project" />
-      <option name="PROGRAM_PARAMETERS" value="-r 4 5 2 1.0 1.0 0.2 2.0 10.0 0.5 200 50.0" />
+      <option name="PROGRAM_PARAMETERS" value="-r 4 5 2 1.0 1.0 0.2 2.0 10.0 0.5 10 10.0" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -109,7 +111,7 @@
       <workItem from="1686559819044" duration="2718000" />
       <workItem from="1686564051906" duration="17048000" />
       <workItem from="1686582304654" duration="13422000" />
-      <workItem from="1686638243536" duration="24686000" />
+      <workItem from="1686638243536" duration="30694000" />
     </task>
     <task id="LOCAL-00001" summary="1st commit">
       <created>1685443156891</created>
@@ -167,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686669954860</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="-r e -f funcionar com varias formigas">
+      <created>1686670427611</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1686670427611</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,7 +197,8 @@
     <MESSAGE value="1st commit" />
     <MESSAGE value="2nd commit" />
     <MESSAGE value="3rd commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="3rd commit" />
+    <MESSAGE value="-r e -f funcionar com varias formigas" />
+    <option name="LAST_COMMIT_MESSAGE" value="-r e -f funcionar com varias formigas" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

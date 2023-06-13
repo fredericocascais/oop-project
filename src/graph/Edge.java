@@ -11,7 +11,6 @@ public class Edge implements IEdge{
         this.id = count;
         this.weight = weight;
         count++;
-        System.out.println("edge count = "+count);
     }
 
     public int getDestination() {

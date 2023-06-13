@@ -1,5 +1,6 @@
 import aco.Ant;
 import aco.AntMoveEvent;
+import aco.InputParameters;
 import aco.Pheromones;
 import graph.*;
 import pec.Event;
@@ -15,7 +16,7 @@ public class Main {
     public static double edgeFavOutcome(double alpha, double beta, double pheromone, double weight){
         return  (alpha + pheromone) / (beta + weight);
     }
-    public static void printInputParameters(int tot_nodes, int nest_node, double alpha,
+    /*public static void printInputParameters(int tot_nodes, int nest_node, double alpha,
                                             double beta, double delta, double eta, double rho,
                                             double gamma, int colony_size, double sim_time){
         System.out.println("Input Parameters:");
@@ -32,30 +33,31 @@ public class Main {
     }
     public static void printGraph(int tot_nodes, WeightedGraph graph){
         System.out.println("with graph:");
-        for(int n_nodes = 0; n_nodes <= tot_nodes-1; n_nodes++) {
-            List<Integer> arr = graph.getNode(n_nodes).getLinked();
-            List<Edge> arr2 = graph.getNode(n_nodes).getEdges();
-            double d[];
-            d = new double[tot_nodes];
+        for(int nodes = 0; nodes <= tot_nodes-1; nodes++) {
+            List<Integer> linked_nodes = graph.getNode(nodes).getLinked();
+            List<Edge> edges = graph.getNode(nodes).getEdges();
+            double node_row[];
+            node_row= new double[tot_nodes];
 
             for(int n_nodes2 = 0; n_nodes2 <= tot_nodes-1; n_nodes2++) {
                 int flag=1;
-                for(int nnodes3=0; nnodes3 <= arr.size()-1; nnodes3++){
-                    if(arr.get(nnodes3)== n_nodes2){
+                for(int nnodes3=0; nnodes3 <= linked_nodes.size()-1; nnodes3++){
+                    if(linked_nodes.get(nnodes3)== n_nodes2){
                         flag = 0;
-                        d[n_nodes2] = arr2.get(nnodes3).getWeight();
+                        node_row[n_nodes2] = edges.get(nnodes3).getWeight();
                     }
                 }
 
-                if(flag==1){d[n_nodes2] = 0.0;}
+                if(flag==1){node_row[n_nodes2] = 0.0;}
             }
-            System.out.println("                  " + Arrays.toString(d));
+            System.out.println("                  " + Arrays.toString(node_row));
         }
-    }
+    }*/
     public static void main(String[] args) throws FileNotFoundException {
 
         HashMap<Integer,ArrayList<Integer>> hamiltoneans_found = new HashMap<>();
-
+        InputParameters inputParameters = new InputParameters();
+        //inputParameters.inputs(args);
 
         if(args.length<2){
             System.out.println("Arguments Error");
@@ -82,9 +84,9 @@ public class Main {
             Node node_1 = graph.getNode(nest_node-1);
 
             //Print input parameters to terminal
-            printInputParameters(tot_nodes,nest_node,alpha,beta,delta,eta,rho,gamma,colony_size,sim_time);
+             inputParameters.printInputParameters(tot_nodes,nest_node,alpha,beta,delta,eta,rho,gamma,colony_size,sim_time);
             //Print graph to terminal
-            printGraph(tot_nodes, graph);
+            inputParameters.printGraph(tot_nodes, graph);
             System.out.println("Nest node: "+node_1);
             Pheromones pheromones = new Pheromones(graph.getMaxEdges());
             PEC pec = new PEC();
@@ -153,7 +155,7 @@ public class Main {
             WeightedGraph graph = new WeightedGraph(tot_nodes);
 
             //Print input parameters to terminal
-            printInputParameters(tot_nodes,nest_node,alpha,beta,delta,eta,rho,gamma,colony_size,sim_time);
+            inputParameters.printInputParameters(tot_nodes,nest_node,alpha,beta,delta,eta,rho,gamma,colony_size,sim_time);
 
             //Read graph
             String[] line;
@@ -168,7 +170,7 @@ public class Main {
             //Create graph
             graph.createGivenGraph(tot_nodes, line, graph);
             //Print graph
-            printGraph(tot_nodes,graph);
+            inputParameters.printGraph(tot_nodes,graph);
 
             //START
             Node node_1 = graph.getNode(nest_node-1);
