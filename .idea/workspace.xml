@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="-r e -f funcionar com varias formigas">
-      <change afterPath="$PROJECT_DIR$/src/aco/InputParameters.java" afterDir="false" />
+    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="classe InputParameters">
+      <change afterPath="$PROJECT_DIR$/src/graph/HamiltonianCycle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aco/Ant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/Ant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aco/AntMoveEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/AntMoveEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aco/InputParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/InputParameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graph/HamiltoneanCycle.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,29 +46,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editing.templates",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fred&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\herri\IdeaProjects\oop-project\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main (1)" type="Application" factoryName="Application">
+  <component name="RunManager" selected="Application.File">
+    <configuration name="File" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="poo-project" />
       <option name="PROGRAM_PARAMETERS" value="-f file.txt" />
@@ -72,21 +76,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Random" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="poo-project" />
-      <option name="PROGRAM_PARAMETERS" value="-r 4 5 2 1.0 1.0 0.2 2.0 10.0 0.5 10 10.0" />
+      <option name="PROGRAM_PARAMETERS" value="-r 10 20 2 1.0 1.0 0.2 2.0 10.0 0.5 20 50.0" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main (1)" />
-      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.File" />
+      <item itemvalue="Application.Random" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Random" />
       </list>
     </recent_temporary>
   </component>
@@ -111,7 +115,9 @@
       <workItem from="1686559819044" duration="2718000" />
       <workItem from="1686564051906" duration="17048000" />
       <workItem from="1686582304654" duration="13422000" />
-      <workItem from="1686638243536" duration="30694000" />
+      <workItem from="1686638243536" duration="40954000" />
+      <workItem from="1686734135334" duration="8168000" />
+      <workItem from="1686754828397" duration="15944000" />
     </task>
     <task id="LOCAL-00001" summary="1st commit">
       <created>1685443156891</created>
@@ -176,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686670427611</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="classe InputParameters">
+      <created>1686677113188</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1686677113188</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +211,8 @@
     <MESSAGE value="2nd commit" />
     <MESSAGE value="3rd commit" />
     <MESSAGE value="-r e -f funcionar com varias formigas" />
-    <option name="LAST_COMMIT_MESSAGE" value="-r e -f funcionar com varias formigas" />
+    <MESSAGE value="classe InputParameters" />
+    <option name="LAST_COMMIT_MESSAGE" value="classe InputParameters" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

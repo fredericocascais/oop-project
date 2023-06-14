@@ -6,73 +6,72 @@ import graph.WeightedGraph;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class InputParameters {
-    private int nest_node;
-    private WeightedGraph graph;
-    private Node node_1;
-    private int tot_nodes;
-    private double alpha ;
-    private double beta ;
-    private double delta ;
-    private double eta ; //n, evaporation event
-    private double rho; //p, evaporation event
-    private double gamma; //y, pheromone level
 
-    private double sim_time;
-    private double curr_time;
-
-    private int colony_size;
+    public static void output(String string, PrintStream ps1, PrintStream ps2){
+        ps1.println(string);
+        ps2.println(string);
+    }
+    public static void checkArgs(String[] args){
+        if(args.length<2){
+            System.out.println("Arguments Error: Not Enough Arguments");
+            System.exit(1);
+        }
+        if(!"-r".equals(args[0]) && !"-f".equals(args[0])){
+            System.out.println("Invalid Option: Must Use '-r' or '-f'");
+        }
+    }
     public static void printInputParameters(int tot_nodes, int nest_node, double alpha,
                                             double beta, double delta, double eta, double rho,
-                                            double gamma, int colony_size, double sim_time){
-        System.out.println("Input Parameters:");
-        System.out.println("                  " + tot_nodes + ": number of nodes in the graph");
-        System.out.println("                  " + nest_node + ": the nest node");
-        System.out.println("                  " + alpha + ": alpha, ant move event");
-        System.out.println("                  " + beta + ": beta, ant move event");
-        System.out.println("                  " + delta + ": delta, ant move event");
-        System.out.println("                  " + eta + ": eta, pheromone evaporation event");
-        System.out.println("                  " + rho + ": rho, pheromone evaporation event");
-        System.out.println("                  " + gamma + ": pheromone level");
-        System.out.println("                  " + colony_size + ": ant colony size");
-        System.out.println("                  " + sim_time + ": final instant");
+                                            double gamma, int colony_size, double sim_time, PrintStream ps){
+
+        output("Input Parameters:", System.out, ps);
+        output("                  " + tot_nodes + ": number of nodes in the graph", System.out, ps);
+        output("                  " + nest_node + ": the nest node", System.out, ps);
+        output("                  " + alpha + ": alpha, ant move event", System.out, ps);
+        output("                  " + beta + ": beta, ant move event", System.out, ps);
+        output("                  " + delta + ": delta, ant move event", System.out, ps);
+        output("                  " + eta + ": eta, pheromone evaporation event", System.out, ps);
+        output("                  " + rho + ": rho, pheromone evaporation event", System.out, ps);
+        output("                  " + gamma + ": pheromone level", System.out, ps);
+        output("                  " + colony_size + ": ant colony size", System.out, ps);
+        output("                  " + sim_time + ": final instant", System.out, ps);
+
     }
-    public static void printGraph(int tot_nodes, WeightedGraph graph){
-        System.out.println("with graph:");
+    public static void printGraph(int tot_nodes, WeightedGraph graph, PrintStream ps){
+
+        output("with graph: ",System.out, ps);
         for(int nodes = 0; nodes <= tot_nodes-1; nodes++) {
             List<Integer> linked_nodes = graph.getNode(nodes).getLinked();
             List<Edge> edges = graph.getNode(nodes).getEdges();
             double[] node_row;
             node_row= new double[tot_nodes];
 
-            for(int n_nodes2 = 0; n_nodes2 <= tot_nodes-1; n_nodes2++) {
+            for(int node = 0; node <= tot_nodes-1; node++) {
                 int flag=1;
-                for(int nnodes3=0; nnodes3 <= linked_nodes.size()-1; nnodes3++){
-                    if(linked_nodes.get(nnodes3)== n_nodes2){
+                for(int linked_node=0; linked_node <= linked_nodes.size()-1; linked_node++){
+                    if(linked_nodes.get(linked_node)== node){
                         flag = 0;
-                        node_row[n_nodes2] = edges.get(nnodes3).getWeight();
+                        node_row[node] = edges.get(linked_node).getWeight();
                     }
                 }
 
-                if(flag==1){node_row[n_nodes2] = 0.0;}
+                if(flag==1){node_row[node] = 0.0;}
             }
-            System.out.println("                  " + Arrays.toString(node_row));
+            output("                  " + Arrays.toString(node_row),System.out, ps);
         }
     }
-
-    public WeightedGraph getGraph(){return graph;}
-    public int getDest_node(){return nest_node-1;}
-    public int getTot_nodes(){return tot_nodes;}
-    public int getColony_size(){return colony_size;}
-    public double getAlpha(){return alpha;}
-    public double getBeta(){return beta;}
-    public double getDelta(){return delta;}
-
-    public double getCurr_time() {return curr_time;}
-    public double getSim_time(){return sim_time;}
-    public Node getNode_1(){return node_1;}
+    public static void printSteps(int observation_number, double time_interval , int number_move_events , int number_evap_events,PrintStream ps){
+        InputParameters.output("Observation " + observation_number + ":",System.out,ps);
+        InputParameters.output("                  Present instant:               " + time_interval, System.out, ps);
+        InputParameters.output("                  Number of move events:         " + number_move_events, System.out, ps);
+        InputParameters.output("                  Number of evaporation events:  " + number_evap_events, System.out, ps);
+        InputParameters.output("                  Top candidate cycles:          ", System.out, ps);
+        InputParameters.output("                  Best Hamiltonian:              ", System.out, ps);
+    }
 }

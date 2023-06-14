@@ -9,60 +9,23 @@ import pec.PEC;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.*;
 
 public class Main {
 
-    public static double edgeFavOutcome(double alpha, double beta, double pheromone, double weight){
-        return  (alpha + pheromone) / (beta + weight);
-    }
-    /*public static void printInputParameters(int tot_nodes, int nest_node, double alpha,
-                                            double beta, double delta, double eta, double rho,
-                                            double gamma, int colony_size, double sim_time){
-        System.out.println("Input Parameters:");
-        System.out.println("                  " + tot_nodes + ": number of nodes in the graph");
-        System.out.println("                  " + nest_node + ": the nest node");
-        System.out.println("                  " + alpha + ": alpha, ant move event");
-        System.out.println("                  " + beta + ": beta, ant move event");
-        System.out.println("                  " + delta + ": delta, ant move event");
-        System.out.println("                  " + eta + ": eta, pheromone evaporation event");
-        System.out.println("                  " + rho + ": rho, pheromone evaporation event");
-        System.out.println("                  " + gamma + ": pheromone level");
-        System.out.println("                  " + colony_size + ": ant colony size");
-        System.out.println("                  " + sim_time + ": final instant");
-    }
-    public static void printGraph(int tot_nodes, WeightedGraph graph){
-        System.out.println("with graph:");
-        for(int nodes = 0; nodes <= tot_nodes-1; nodes++) {
-            List<Integer> linked_nodes = graph.getNode(nodes).getLinked();
-            List<Edge> edges = graph.getNode(nodes).getEdges();
-            double node_row[];
-            node_row= new double[tot_nodes];
-
-            for(int n_nodes2 = 0; n_nodes2 <= tot_nodes-1; n_nodes2++) {
-                int flag=1;
-                for(int nnodes3=0; nnodes3 <= linked_nodes.size()-1; nnodes3++){
-                    if(linked_nodes.get(nnodes3)== n_nodes2){
-                        flag = 0;
-                        node_row[n_nodes2] = edges.get(nnodes3).getWeight();
-                    }
-                }
-
-                if(flag==1){node_row[n_nodes2] = 0.0;}
-            }
-            System.out.println("                  " + Arrays.toString(node_row));
-        }
-    }*/
     public static void main(String[] args) throws FileNotFoundException {
 
-        HashMap<Integer,ArrayList<Integer>> hamiltoneans_found = new HashMap<>();
-        InputParameters inputParameters = new InputParameters();
-        //inputParameters.inputs(args);
 
-        if(args.length<2){
-            System.out.println("Arguments Error");
-            System.exit(1);
-        }
+        ArrayList<HamiltonianCycle> hamiltonian_cycles = new ArrayList<>();
+
+        ArrayList<Integer> cycle;
+        InputParameters inputParameters = new InputParameters();
+        PrintStream ps = new PrintStream(new FileOutputStream("sim.txt"));
+
+        InputParameters.checkArgs(args);
+
         if ("-r".equals(args[0])) { //get arguments directly from command line
 
             int tot_nodes = Integer.parseInt(args[1]);
@@ -71,7 +34,6 @@ public class Main {
             graph.createRandomGraph(max_weight);
 
             double curr_time = 0.0;
-            int ants_simulated = 0;
             int nest_node = Integer.parseInt(args[3]); //nest node
             double alpha = Double.parseDouble(args[4]);
             double beta = Double.parseDouble(args[5]);
@@ -81,13 +43,15 @@ public class Main {
             double gamma = Double.parseDouble(args[9]); //y, pheromone level
             int colony_size = Integer.parseInt(args[10]);
             double sim_time = Double.parseDouble(args[11]);
+            double time_interval = sim_time/20;
             Node node_1 = graph.getNode(nest_node-1);
 
             //Print input parameters to terminal
-             inputParameters.printInputParameters(tot_nodes,nest_node,alpha,beta,delta,eta,rho,gamma,colony_size,sim_time);
+            inputParameters.printInputParameters(tot_nodes,nest_node,alpha,beta,delta,eta,rho,gamma,colony_size,sim_time,ps);
             //Print graph to terminal
-            inputParameters.printGraph(tot_nodes, graph);
-            System.out.println("Nest node: "+node_1);
+            inputParameters.printGraph(tot_nodes, graph,ps);
+
+
             Pheromones pheromones = new Pheromones(graph.getMaxEdges());
             PEC pec = new PEC();
 
@@ -98,37 +62,63 @@ public class Main {
                 Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
                 pec.addEvent(new AntMoveEvent(curr_time,graph,ant,next_edge,delta));
             }
-
-            System.out.println("Event added to PEC : "+pec.getCurrEvent().getEventType()+" for "+pec.getCurrEvent().getEventTime());
-
+            int observation_number=0;
+            int number_move_events=0;
+            int number_evap_events=0;
+            //System.out.println("Event added to PEC : "+pec.getCurrEvent().getEventType()+" for "+pec.getCurrEvent().getEventTime());
             while (curr_time < sim_time) {
+
+                if(curr_time>=time_interval ){
+                    observation_number+=1;
+                    InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,ps);
+                    time_interval+= sim_time/20;
+                }
 
                 IEvent Event1 = pec.getNextEvent();
                 curr_time=Event1.getEventTime();
                 Ant ant = (Ant) Event1.executeEvent();
 
-                System.out.println("current time: "+curr_time);
+                if(Event1.getEventType().equals("ant_move")){
+                    number_move_events+=1;
+                }
+                if(Event1.getEventType().equals("evaporation")){
+                    number_evap_events+=1;
+                }
 
-                //Check Hamiltonean
+                //Check Hamiltonian
                 if (ant.getPathEdges().size() >= tot_nodes) {
                     if (ant.pathIsHamiltonean(tot_nodes)) {
                         // create evap events
                         ArrayList<Integer> hamilt_path = new ArrayList<>(ant.getPath());
-                        hamiltoneans_found.put(ant.getId(),hamilt_path);
-                        System.out.println("HAMILTON");
-                        System.out.println(ant.getPathEdges());
+                        LinkedList<Edge> pathEdges = ant.getPathEdges();
+                        double t_weight=0.0;
+
+                        for (Edge edge : pathEdges) {
+                            t_weight += edge.getWeight();
+                        }
+                        int total_weight = (int) t_weight;
+
+                        HamiltonianCycle newHamiltonianCycle = new HamiltonianCycle(hamilt_path,total_weight);
+                        boolean contains_cycle = false;
+                        for (HamiltonianCycle hamiltonian_cycle : hamiltonian_cycles) {
+                            if (hamiltonian_cycle.equals(newHamiltonianCycle)) {
+                                contains_cycle = true;
+                                //break;
+                            }
+                        }
+                        if(!contains_cycle){
+                            hamiltonian_cycles.add(newHamiltonianCycle);
+                        }
                         ant.resetPath();
-                        //break;
                     }
                 }
-
                 Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
-                //System.out.println("next edgge before setevent: "+next_edge);
                 pec.addEvent(new AntMoveEvent(curr_time, graph, ant, next_edge, delta));
-
             }
+            observation_number+=1;
+            InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,ps);
+            InputParameters.output("\nHamiltonian cycles with weight: "+ hamiltonian_cycles.toString().replace("[","").replace("]","") , System.out,ps);
 
-            System.out.println("hamiltoneans found: "+hamiltoneans_found);
         }
         if ("-f".equals(args[0])) { //reads from file if argument '-f' is used
 
@@ -148,14 +138,12 @@ public class Main {
             double gamma = Double.parseDouble(aux[7]); //y, pheromone level
             int colony_size = Integer.parseInt(aux[8]);
             double sim_time = Double.parseDouble(aux[9]);
-
             double curr_time = 0.0;
-            int ants_simulated = 0;
-
+            double time_interval = sim_time/20;
             WeightedGraph graph = new WeightedGraph(tot_nodes);
 
             //Print input parameters to terminal
-            inputParameters.printInputParameters(tot_nodes,nest_node,alpha,beta,delta,eta,rho,gamma,colony_size,sim_time);
+            inputParameters.printInputParameters(tot_nodes,nest_node,alpha,beta,delta,eta,rho,gamma,colony_size,sim_time,ps);
 
             //Read graph
             String[] line;
@@ -170,11 +158,9 @@ public class Main {
             //Create graph
             graph.createGivenGraph(tot_nodes, line, graph);
             //Print graph
-            inputParameters.printGraph(tot_nodes,graph);
+            inputParameters.printGraph(tot_nodes,graph,ps);
 
-            //START
             Node node_1 = graph.getNode(nest_node-1);
-            System.out.println("Nest node: "+node_1);
             Pheromones pheromones = new Pheromones(graph.getMaxEdges());
             PEC pec = new PEC();
             ArrayList<Ant> ants = new ArrayList<>(colony_size);
@@ -184,38 +170,63 @@ public class Main {
                 Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
                 pec.addEvent(new AntMoveEvent(curr_time,graph,ant,next_edge,delta));
             }
-
-            System.out.println("Event added to PEC : "+pec.getCurrEvent().getEventType()+" for "+pec.getCurrEvent().getEventTime());
-
+            int observation_number=0;
+            int number_move_events=0;
+            int number_evap_events=0;
+            //System.out.println("Event added to PEC : "+pec.getCurrEvent().getEventType()+" for "+pec.getCurrEvent().getEventTime());
             while (curr_time < sim_time) {
+
+                if(curr_time>=time_interval ){
+                    observation_number+=1;
+                    InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,ps);
+                    time_interval+= sim_time/20;
+                }
 
                 IEvent Event1 = pec.getNextEvent();
                 curr_time=Event1.getEventTime();
                 Ant ant = (Ant) Event1.executeEvent();
-
-                    //System.out.println("current time: "+curr_time);
-
-                    //Check Hamiltonean
+                if(Event1.getEventType().equals("ant_move")){
+                    number_move_events+=1;
+                }
+                if(Event1.getEventType().equals("evaporation")){
+                    number_evap_events+=1;
+                }
+                //Check Hamiltonian
                 if (ant.getPathEdges().size() >= tot_nodes) {
                     if (ant.pathIsHamiltonean(tot_nodes)) {
                         // create evap events
                         ArrayList<Integer> hamilt_path = new ArrayList<>(ant.getPath());
-                        hamiltoneans_found.put(ant.getId(),hamilt_path);
-                        System.out.println("HAMILTON");
-                        System.out.println(ant.getPathEdges());
+                        LinkedList<Edge> pathEdges = ant.getPathEdges();
+                        double t_weight=0.0;
+
+                        for (Edge edge : pathEdges) {
+                            t_weight += edge.getWeight();
+                        }
+                        int total_weight = (int) t_weight;
+                        HamiltonianCycle newHamiltonianCycle = new HamiltonianCycle(hamilt_path,total_weight);
+
+                        boolean contains_cycle = false;
+                        for (HamiltonianCycle hamiltonian_cycle : hamiltonian_cycles) {
+                            if (hamiltonian_cycle.equals(newHamiltonianCycle)) {
+                                contains_cycle = true;
+                                //break;
+                            }
+                        }
+                        if(!contains_cycle){
+                            hamiltonian_cycles.add(newHamiltonianCycle);
+                        }
+
+                        //System.out.println("HAMILTON");
                         ant.resetPath();
-                            //break;
                     }
                 }
-
                 Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
-                    //System.out.println("next edgge before setevent: "+next_edge);
                 pec.addEvent(new AntMoveEvent(curr_time, graph, ant, next_edge, delta));
-
-                }
-
-            System.out.println("hamiltoneans found: "+hamiltoneans_found);
+            }
+            observation_number+=1;
+            InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,ps);
+            InputParameters.output("\nHamiltonian cycles with weight: "+ hamiltonian_cycles.toString().replace("[","").replace("]","") , System.out,ps);
         }
-
+        ps.close();
     }
 }

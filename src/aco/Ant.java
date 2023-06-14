@@ -116,7 +116,7 @@ public class Ant {
 
     public Edge getNextChosenEdge(Pheromones pheromones, double alpha, double beta){
         List<Edge> edges = getNonVisitedNeighEdges();
-        System.out.println("Non Visited Edges: "+edges);
+        //System.out.println("Non Visited Edges: "+edges);
 
         if( edges.size() == 0) edges = getNeighEdges();
 
@@ -158,7 +158,7 @@ public class Ant {
                 break;
             }
         }
-        System.out.println("next "+next_edge);
+        //System.out.println("next "+next_edge);
         return next_edge;
 
     }
@@ -171,7 +171,7 @@ public class Ant {
         for (int i = path.size()-1 ; i > cycle_start_index; i--){
             path.remove(i);
             path_edges.removeLast();
-            System.out.println("Removing from index: "+i);
+            //System.out.println("Removing from index: "+i);
         }
 
     }
