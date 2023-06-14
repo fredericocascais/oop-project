@@ -35,7 +35,7 @@ public class AntMoveEvent extends Event{
         return ant;
     }
 
-    public void executeEvent(){
+    public Object executeEvent(){
         int next_node_id = next_edge.getDestination();
 
         // If path contains the next node's id means that
@@ -67,6 +67,7 @@ public class AntMoveEvent extends Event{
             ant.addToPath( next_node_id );
             ant.setCurrentNode( getNode(next_node_id) );
         }
+        int weight= 0;
         // edge id
         // 2 edges -> A a B e B a A
         // 1a vai ter id Par, 2a vai ter id Impar
@@ -78,6 +79,8 @@ public class AntMoveEvent extends Event{
         //
         // TODO create evap Events - Joel
         // TODO add pheromones to edges - mariana
+        Pheromones pheromones = Pheromones.getPheromones();
+        pheromones.addPheromone(next_edge, weight);
 
         // Add new Move Event for this Ant
         PEC.getPEC().addEvent(new AntMoveEvent(ant, next_edge));

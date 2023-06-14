@@ -7,6 +7,6 @@ public interface IEvent {
     public void setEventType(String type);
     public void addEventTimeToSimulation();
 
-    public void executeEvent();
+    public Object executeEvent();
 
 }

@@ -34,6 +34,15 @@ public class Node {
         return edges;
     }
 
+    public Edge getEdgeById(int edgeId) {
+        for (Edge edge : edges) {
+            if (edge.getId() == edgeId) {
+                return edge;
+            }
+        }
+        return null;
+    }
+
     public List<Integer> getLinkedNodes() {
         return linkedNodes;
     }

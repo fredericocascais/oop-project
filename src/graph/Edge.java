@@ -28,6 +28,19 @@ public class Edge implements IEdge{
         return weight;
     }
 
+    public Edge getReverseEdge(){
+        int reverseEdgeId;
+        if(id%2==0){
+            reverseEdgeId = id +1;
+        }else{
+            reverseEdgeId = id -1;
+        }
+        WeightedGraph graph = WeightedGraph.getGraph();
+        Node destNode = graph.getNode(destination);
+        Edge reverseEdge = destNode.getEdgeById(reverseEdgeId);
+        return reverseEdge;
+    }
+
    /* @Override
     public String toString(){
 

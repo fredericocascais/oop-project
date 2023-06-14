@@ -15,7 +15,7 @@ public abstract class AbstractGraph implements IGraph{
         this.max_edges = (n_nodes * (n_nodes - 1)) / 2;
         this.adjList = new Node[n_nodes];
         for(int l = 0; l < n_nodes; l++){
-            this.adjList[l] = new Node(l+1);
+            this.adjList[l] = new Node(l);
         }
     }
 
