@@ -101,6 +101,10 @@ public class Simulation {
         return parameters.getRho();
     }
 
+    public double getGamma() {
+        return parameters.getGamma();
+    }
+
     public int getColonySize() {
         return parameters.getColonySize();
     }

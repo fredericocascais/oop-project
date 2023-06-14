@@ -24,15 +24,16 @@ public class Pheromones {
     }
 
     public void addPheromone(Edge edge, double add_pheromones){
-        // procurar o equivalente
-        tunnels.set( edge.getId() , getPheromone(edge) + add_pheromones);
+        double updatedPheromoneLevel = getPheromoneLevel(edge)+add_pheromones;
+        tunnels.set( edge.getId() , updatedPheromoneLevel);
+        tunnels.set(edge.getReverseEdge().getId(), updatedPheromoneLevel);
     }
 
     public void setPheromone(Edge edge, double pheromoneLevel){
         tunnels.set( edge.getId() , pheromoneLevel);
     }
 
-    public double getPheromone(Edge edge) {
+    public double getPheromoneLevel(Edge edge) {
         //System.out.println(tunnels);
         return tunnels.get(edge.getId());
     }

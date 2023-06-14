@@ -7,6 +7,7 @@ import java.util.Random;
 
 public class WeightedGraph extends AbstractGraph{
     private static WeightedGraph graph;
+    private double totalWeight = 0;
 
     private WeightedGraph(int n_nodes) {
         super(n_nodes);
@@ -23,10 +24,15 @@ public class WeightedGraph extends AbstractGraph{
         return graph;
     }
 
+    public double getTotalWeight(){
+        return totalWeight;
+    }
+
     @Override
     public void addEdgeToList(int n1, int n2, double weight) {
         this.adjList[n1].addEdgeToNode(n2, weight);
         this.adjList[n2].addEdgeToNode(n1, weight);
+        totalWeight+=weight;
     }
     @Override
     public void addEdgeToList(int n1, int n2){

@@ -13,19 +13,16 @@ import java.util.ArrayList;
 
 public class AntMoveEvent extends Event{
     private final Simulation simulation = Simulation.getSimulation();
+    private final WeightedGraph graph = WeightedGraph.getGraph();
     private final Ant ant;
     private ArrayList<Integer> current_ant_path;
     private final int nest_node;
     private final Edge next_edge;
-    private final WeightedGraph graph;
-
-
 
     public AntMoveEvent( Ant ant, Edge next_edge){
         this.ant = ant;
         this.nest_node = simulation.getNestNode();
         this.current_ant_path = ant.getPath();
-        this.graph = simulation.getGraph();
         this.next_edge = next_edge;
         setEventType("ant_move");
         setEventTime(simulation.getDelta() * next_edge.getWeight());
@@ -67,7 +64,7 @@ public class AntMoveEvent extends Event{
             ant.addToPath( next_node_id );
             ant.setCurrentNode( getNode(next_node_id) );
         }
-        int weight= 0;
+
         // edge id
         // 2 edges -> A a B e B a A
         // 1a vai ter id Par, 2a vai ter id Impar
@@ -79,11 +76,19 @@ public class AntMoveEvent extends Event{
         //
         // TODO create evap Events - Joel
         // TODO add pheromones to edges - mariana
-        Pheromones pheromones = Pheromones.getPheromones();
-        pheromones.addPheromone(next_edge, weight);
+        
 
         // Add new Move Event for this Ant
         PEC.getPEC().addEvent(new AntMoveEvent(ant, next_edge));
+    }
+
+    private void addPheromone(double cycleWeight){
+        Pheromones pheromones = Pheromones.getPheromones();
+        double totalWeight = graph.getTotalWeight();
+        double gama = simulation.getGamma();
+        double pheromoneIncrease = gama*totalWeight/cycleWeight;
+
+        pheromones.addPheromone(next_edge, pheromoneIncrease);
     }
 
     private Node getNode(int node_id){
