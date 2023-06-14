@@ -63,7 +63,7 @@
       <recent name="C:\Users\herri\IdeaProjects\oop-project\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Random">
+  <component name="RunManager" selected="Application.File">
     <configuration name="File" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="poo-project" />
@@ -113,7 +113,8 @@
       <workItem from="1686582304654" duration="13422000" />
       <workItem from="1686638243536" duration="40954000" />
       <workItem from="1686734135334" duration="8168000" />
-      <workItem from="1686754828397" duration="21568000" />
+      <workItem from="1686754828397" duration="21740000" />
+      <workItem from="1686777204228" duration="998000" />
     </task>
     <task id="LOCAL-00001" summary="1st commit">
       <created>1685443156891</created>
@@ -192,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686770945954</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="print to file and terminal">
+      <created>1686776683598</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1686776683598</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

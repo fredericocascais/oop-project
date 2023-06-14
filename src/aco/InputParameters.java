@@ -2,16 +2,12 @@ package aco;
 
 import graph.Edge;
 import graph.HamiltonianCycle;
-import graph.Node;
 import graph.WeightedGraph;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class InputParameters {
 
@@ -76,5 +72,55 @@ public class InputParameters {
         InputParameters.output("                  Number of evaporation events:  " + number_evap_events, System.out, ps);
         InputParameters.output("                  Top candidate cycles:          " + top_hamiltonian_cycles.toString().replace("[","").replace("]",""), System.out, ps);
         InputParameters.output("                  Best Hamiltonian:              " + hamiltonianCycle, System.out, ps);
+    }
+    public static HamiltonianCycle bestCycle(ArrayList<HamiltonianCycle> hamiltonianCycleArrayList, HamiltonianCycle bestHamiltonianCycle){
+        for (HamiltonianCycle hamiltonian_cycle : hamiltonianCycleArrayList){
+            if(bestHamiltonianCycle.getTotalWeight() == 0){
+                bestHamiltonianCycle = new HamiltonianCycle(hamiltonian_cycle.getPath(),hamiltonian_cycle.getTotalWeight());
+            }
+            else if(bestHamiltonianCycle.getTotalWeight()>hamiltonian_cycle.getTotalWeight()){
+                bestHamiltonianCycle = new HamiltonianCycle(hamiltonian_cycle.getPath(),hamiltonian_cycle.getTotalWeight());
+            }
+        }
+        return bestHamiltonianCycle;
+    }
+    public static void topCycles(ArrayList<HamiltonianCycle> hamiltonian_cycles, ArrayList<HamiltonianCycle> top_hamiltonian_cycles, HamiltonianCycle bestHamiltonianCycle){
+        for (HamiltonianCycle hamiltonian_cycle : hamiltonian_cycles){
+            boolean add = true;
+            if(top_hamiltonian_cycles.size()<5){
+                for (HamiltonianCycle topHamiltonianCycle : top_hamiltonian_cycles) {
+                    //check if the cycle we want to add is already a top cycle
+                    if (hamiltonian_cycle.equals(topHamiltonianCycle)) {
+                        add = false;
+                        break;
+                    }
+                }
+                //if its not, add it
+                if(add) {
+                    if (!hamiltonian_cycle.equals(bestHamiltonianCycle)) {
+                        top_hamiltonian_cycles.add(hamiltonian_cycle);
+                    }
+                }
+            }
+            else for (int i=0; i<top_hamiltonian_cycles.size(); i++){
+                if (hamiltonian_cycle.getTotalWeight()<top_hamiltonian_cycles.get(i).getTotalWeight()){
+                    for (HamiltonianCycle topHamiltonianCycle : top_hamiltonian_cycles) {
+                        //check if the cycle we want to add is already a top cycle
+                        if (hamiltonian_cycle.equals(topHamiltonianCycle)) {
+                            add = false;
+                            break;
+                        }
+                    }
+                    //if its not, add it
+                    if(add) {
+                        if (!hamiltonian_cycle.equals(bestHamiltonianCycle)) {
+                            top_hamiltonian_cycles.remove(top_hamiltonian_cycles.get(i));
+                            top_hamiltonian_cycles.add(hamiltonian_cycle);
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }
