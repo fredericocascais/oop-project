@@ -19,11 +19,10 @@ public class Main {
 
 
         ArrayList<HamiltonianCycle> hamiltonian_cycles = new ArrayList<>();
-
-        ArrayList<Integer> cycle;
-        InputParameters inputParameters = new InputParameters();
+        HamiltonianCycle bestHamiltonianCycle = new HamiltonianCycle(new ArrayList<>(),0);
+        ArrayList<HamiltonianCycle> top_hamiltonian_cycles = new ArrayList<>(5);
         PrintStream ps = new PrintStream(new FileOutputStream("sim.txt"));
-
+        //Check input aguments
         InputParameters.checkArgs(args);
 
         if ("-r".equals(args[0])) { //get arguments directly from command line
@@ -47,9 +46,9 @@ public class Main {
             Node node_1 = graph.getNode(nest_node-1);
 
             //Print input parameters to terminal
-            inputParameters.printInputParameters(tot_nodes,nest_node,alpha,beta,delta,eta,rho,gamma,colony_size,sim_time,ps);
+            InputParameters.printInputParameters(tot_nodes,nest_node,alpha,beta,delta,eta,rho,gamma,colony_size,sim_time,ps);
             //Print graph to terminal
-            inputParameters.printGraph(tot_nodes, graph,ps);
+            InputParameters.printGraph(tot_nodes, graph,ps);
 
 
             Pheromones pheromones = new Pheromones(graph.getMaxEdges());
@@ -70,7 +69,54 @@ public class Main {
 
                 if(curr_time>=time_interval ){
                     observation_number+=1;
-                    InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,ps);
+                    //Choosing best hamiltonian cycle
+                    for (HamiltonianCycle hamiltonian_cycle : hamiltonian_cycles){
+                        if(bestHamiltonianCycle.getTotalWeight() == 0){
+                            bestHamiltonianCycle = new HamiltonianCycle(hamiltonian_cycle.getPath(),hamiltonian_cycle.getTotalWeight());
+                        }
+                        else if(bestHamiltonianCycle.getTotalWeight()>hamiltonian_cycle.getTotalWeight()){
+                            bestHamiltonianCycle = new HamiltonianCycle(hamiltonian_cycle.getPath(),hamiltonian_cycle.getTotalWeight());
+                        }
+                    }
+                    //top 5 cycles
+                    for (HamiltonianCycle hamiltonian_cycle : hamiltonian_cycles){
+                        boolean add = true;
+                        if(top_hamiltonian_cycles.size()<5){
+                            for (HamiltonianCycle topHamiltonianCycle : top_hamiltonian_cycles) {
+                                //check if the cycle we want to add is already a top cycle
+                                if (hamiltonian_cycle.equals(topHamiltonianCycle)) {
+                                    add = false;
+                                    break;
+                                }
+                            }
+                            //if its not, add it
+                            if(add) {
+                                if (!hamiltonian_cycle.equals(bestHamiltonianCycle)) {
+                                    top_hamiltonian_cycles.add(hamiltonian_cycle);
+                                }
+                            }
+                        }
+                        else for (int i=0; i<top_hamiltonian_cycles.size(); i++){
+                            if (hamiltonian_cycle.getTotalWeight()<top_hamiltonian_cycles.get(i).getTotalWeight()){
+                                for (HamiltonianCycle topHamiltonianCycle : top_hamiltonian_cycles) {
+                                    //check if the cycle we want to add is already a top cycle
+                                    if (hamiltonian_cycle.equals(topHamiltonianCycle)) {
+                                        add = false;
+                                        break;
+                                    }
+                                }
+                                //if its not, add it
+                                if(add) {
+                                    if (!hamiltonian_cycle.equals(bestHamiltonianCycle)) {
+                                        top_hamiltonian_cycles.remove(top_hamiltonian_cycles.get(i));
+                                        top_hamiltonian_cycles.add(hamiltonian_cycle);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,bestHamiltonianCycle,top_hamiltonian_cycles,ps);
                     time_interval+= sim_time/20;
                 }
 
@@ -103,7 +149,7 @@ public class Main {
                         for (HamiltonianCycle hamiltonian_cycle : hamiltonian_cycles) {
                             if (hamiltonian_cycle.equals(newHamiltonianCycle)) {
                                 contains_cycle = true;
-                                //break;
+                                break;
                             }
                         }
                         if(!contains_cycle){
@@ -116,8 +162,8 @@ public class Main {
                 pec.addEvent(new AntMoveEvent(curr_time, graph, ant, next_edge, delta));
             }
             observation_number+=1;
-            InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,ps);
-            InputParameters.output("\nHamiltonian cycles with weight: "+ hamiltonian_cycles.toString().replace("[","").replace("]","") , System.out,ps);
+            InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,bestHamiltonianCycle,top_hamiltonian_cycles,ps);
+            //InputParameters.output("\nHamiltonian cycles with weight: "+ hamiltonian_cycles.toString().replace("[","").replace("]","") , System.out,ps);
 
         }
         if ("-f".equals(args[0])) { //reads from file if argument '-f' is used
@@ -143,7 +189,7 @@ public class Main {
             WeightedGraph graph = new WeightedGraph(tot_nodes);
 
             //Print input parameters to terminal
-            inputParameters.printInputParameters(tot_nodes,nest_node,alpha,beta,delta,eta,rho,gamma,colony_size,sim_time,ps);
+            InputParameters.printInputParameters(tot_nodes,nest_node,alpha,beta,delta,eta,rho,gamma,colony_size,sim_time,ps);
 
             //Read graph
             String[] line;
@@ -158,7 +204,7 @@ public class Main {
             //Create graph
             graph.createGivenGraph(tot_nodes, line, graph);
             //Print graph
-            inputParameters.printGraph(tot_nodes,graph,ps);
+            InputParameters.printGraph(tot_nodes,graph,ps);
 
             Node node_1 = graph.getNode(nest_node-1);
             Pheromones pheromones = new Pheromones(graph.getMaxEdges());
@@ -178,7 +224,54 @@ public class Main {
 
                 if(curr_time>=time_interval ){
                     observation_number+=1;
-                    InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,ps);
+                    //Choosing best hamiltonian cycle
+                    for (HamiltonianCycle hamiltonian_cycle : hamiltonian_cycles){
+                        if(bestHamiltonianCycle.getTotalWeight() == 0){
+                            bestHamiltonianCycle = new HamiltonianCycle(hamiltonian_cycle.getPath(),hamiltonian_cycle.getTotalWeight());
+                        }
+                        else if(bestHamiltonianCycle.getTotalWeight()>hamiltonian_cycle.getTotalWeight()){
+                            bestHamiltonianCycle = new HamiltonianCycle(hamiltonian_cycle.getPath(),hamiltonian_cycle.getTotalWeight());
+                        }
+                    }
+                    //top 5 cycles
+                    for (HamiltonianCycle hamiltonian_cycle : hamiltonian_cycles){
+                        boolean add = true;
+                        if(top_hamiltonian_cycles.size()<5){
+                            for (HamiltonianCycle topHamiltonianCycle : top_hamiltonian_cycles) {
+                                //check if the cycle we want to add is already a top cycle
+                                if (hamiltonian_cycle.equals(topHamiltonianCycle)) {
+                                    add = false;
+                                    break;
+                                }
+                            }
+                            //if its not, add it
+                            if(add) {
+                                if (!hamiltonian_cycle.equals(bestHamiltonianCycle)) {
+                                    top_hamiltonian_cycles.add(hamiltonian_cycle);
+                                }
+                            }
+                        }
+                        else for (int i=0; i<top_hamiltonian_cycles.size(); i++){
+                            if (hamiltonian_cycle.getTotalWeight()<top_hamiltonian_cycles.get(i).getTotalWeight()){
+                                for (HamiltonianCycle topHamiltonianCycle : top_hamiltonian_cycles) {
+                                    //check if the cycle we want to add is already a top cycle
+                                    if (hamiltonian_cycle.equals(topHamiltonianCycle)) {
+                                        add = false;
+                                        break;
+                                    }
+                                }
+                                //if its not, add it
+                                if(add) {
+                                    if (!hamiltonian_cycle.equals(bestHamiltonianCycle)) {
+                                        top_hamiltonian_cycles.remove(top_hamiltonian_cycles.get(i));
+                                        top_hamiltonian_cycles.add(hamiltonian_cycle);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,bestHamiltonianCycle,top_hamiltonian_cycles,ps);
                     time_interval+= sim_time/20;
                 }
 
@@ -209,7 +302,7 @@ public class Main {
                         for (HamiltonianCycle hamiltonian_cycle : hamiltonian_cycles) {
                             if (hamiltonian_cycle.equals(newHamiltonianCycle)) {
                                 contains_cycle = true;
-                                //break;
+                                break;
                             }
                         }
                         if(!contains_cycle){
@@ -224,8 +317,8 @@ public class Main {
                 pec.addEvent(new AntMoveEvent(curr_time, graph, ant, next_edge, delta));
             }
             observation_number+=1;
-            InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,ps);
-            InputParameters.output("\nHamiltonian cycles with weight: "+ hamiltonian_cycles.toString().replace("[","").replace("]","") , System.out,ps);
+            InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,bestHamiltonianCycle,top_hamiltonian_cycles,ps);
+            //InputParameters.output("\nHamiltonian cycles with weight: "+ hamiltonian_cycles.toString().replace("[","").replace("]","") , System.out,ps);
         }
         ps.close();
     }

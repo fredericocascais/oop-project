@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="classe InputParameters">
-      <change afterPath="$PROJECT_DIR$/src/graph/HamiltonianCycle.java" afterDir="false" />
+    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="print to file and terminal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aco/Ant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/Ant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aco/AntMoveEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/AntMoveEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aco/InputParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/InputParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/HamiltoneanCycle.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +63,7 @@
       <recent name="C:\Users\herri\IdeaProjects\oop-project\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.File">
+  <component name="RunManager" selected="Application.Random">
     <configuration name="File" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="poo-project" />
@@ -117,7 +113,7 @@
       <workItem from="1686582304654" duration="13422000" />
       <workItem from="1686638243536" duration="40954000" />
       <workItem from="1686734135334" duration="8168000" />
-      <workItem from="1686754828397" duration="15944000" />
+      <workItem from="1686754828397" duration="21568000" />
     </task>
     <task id="LOCAL-00001" summary="1st commit">
       <created>1685443156891</created>
@@ -189,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686677113188</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="print to file and terminal">
+      <created>1686770945954</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1686770945954</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +215,8 @@
     <MESSAGE value="3rd commit" />
     <MESSAGE value="-r e -f funcionar com varias formigas" />
     <MESSAGE value="classe InputParameters" />
-    <option name="LAST_COMMIT_MESSAGE" value="classe InputParameters" />
+    <MESSAGE value="print to file and terminal" />
+    <option name="LAST_COMMIT_MESSAGE" value="print to file and terminal" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

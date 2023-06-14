@@ -1,12 +1,14 @@
 package aco;
 
 import graph.Edge;
+import graph.HamiltonianCycle;
 import graph.Node;
 import graph.WeightedGraph;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -66,12 +68,13 @@ public class InputParameters {
             output("                  " + Arrays.toString(node_row),System.out, ps);
         }
     }
-    public static void printSteps(int observation_number, double time_interval , int number_move_events , int number_evap_events,PrintStream ps){
+    public static void printSteps(int observation_number, double time_interval , int number_move_events , int number_evap_events, HamiltonianCycle hamiltonianCycle,
+                                  ArrayList<HamiltonianCycle> top_hamiltonian_cycles, PrintStream ps){
         InputParameters.output("Observation " + observation_number + ":",System.out,ps);
         InputParameters.output("                  Present instant:               " + time_interval, System.out, ps);
         InputParameters.output("                  Number of move events:         " + number_move_events, System.out, ps);
         InputParameters.output("                  Number of evaporation events:  " + number_evap_events, System.out, ps);
-        InputParameters.output("                  Top candidate cycles:          ", System.out, ps);
-        InputParameters.output("                  Best Hamiltonian:              ", System.out, ps);
+        InputParameters.output("                  Top candidate cycles:          " + top_hamiltonian_cycles.toString().replace("[","").replace("]",""), System.out, ps);
+        InputParameters.output("                  Best Hamiltonian:              " + hamiltonianCycle, System.out, ps);
     }
 }
