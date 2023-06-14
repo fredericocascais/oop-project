@@ -3,114 +3,110 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aco.Ant;
+import aco.AntMoveEvent;
+import aco.Pheromones;
+import graph.Edge;
 import graph.HamiltoneanCycle;
 import graph.WeightedGraph;
+import pec.Event;
+import pec.PEC;
 
 public class Simulation {
     static private Simulation simulation;
-    
-    final int totalNodes;
-    final int nestNode;
-    final double alpha;
-    final double beta;
-    final double delta;
-    final double eta;
-    final double rho;
-    final int colonySize;
-    final double simulationTime;
 
-    final WeightedGraph graph;
+    private final InputParameters parameters;
 
-    List<Ant> antColony = new ArrayList<>();
+    private final WeightedGraph graph;
+
+    private Pheromones pheromones;
+
+    List<Ant> antColony;
     
     int totalMoves = 0;
     int totalEvaporations = 0;
-    int currentTime = 0;
+    double currentTime = 0;
     List<HamiltoneanCycle> hamiltoneanCycleFound = new ArrayList<>();
 
     public Simulation(
-        int totalNodes,
-        int nestNode, 
-        double alpha, 
-        double beta, 
-        double delta, 
-        double eta, 
-        double rho, 
-        int colonySize, 
-        double simulationTime,
+        InputParameters parameters,
         WeightedGraph graph
     ){
-        this.totalNodes = totalNodes;
-        this.nestNode = nestNode;
-        this.alpha = alpha;
-        this.beta = beta;
-        this.delta = delta;
-        this.eta = eta;
-        this.rho = rho;
-        this.colonySize = colonySize;
-        this.simulationTime = simulationTime;
+        this.parameters = parameters;
         this.graph = graph;
+        this.antColony = new ArrayList<>();
+        this.pheromones = Pheromones.getPheromones(graph.getMaxEdges());
+
+        for( int i = 0; i < parameters.getColonySize(); i++){
+            Ant ant = new Ant( graph.getNode( getNestNode() ));
+            antColony.add( new Ant( graph.getNode( getNestNode() )));
+            Edge next_edge = ant.getNextChosenEdge();
+            PEC.getPEC().addEvent(new AntMoveEvent(ant, next_edge));
+        }
     }
+
 
     public static Simulation getSimulation(){
         return simulation;
     }
 
     public static Simulation getSimulation(
-        int totalNodes, 
-        int nestNode, 
-        double alpha, 
-        double beta, 
-        double delta, 
-        double eta, 
-        double rho, 
-        int colonySize, 
-        double simulationTime,
+        InputParameters parameters,
         WeightedGraph graph
     ){
         if (simulation == null) { 
-            simulation = new Simulation(totalNodes, nestNode, alpha, beta, delta, eta, rho, colonySize, simulationTime, graph);
+            simulation = new Simulation(parameters, graph);
         } return simulation;
     }
 
-    public int getCurrentTime() {
+    public void runSimulation(){
+        PEC pec = PEC.getPEC();
+        while (currentTime < getSimulationTime() ){
+            Event next_event = pec.getNextEvent();
+            currentTime = next_event.getEventTime();
+            next_event.executeEvent();
+
+            checkHamiltonean()
+        }
+    }
+
+    public double getCurrentTime() {
       return currentTime;
     }
 
     public int getTotalNodes() {
-        return totalNodes;
+        return parameters.getTotalNodes();
     }
 
     public int getNestNode() {
-        return nestNode;
+        return parameters.getNestNode();
     }
 
     public double getAlpha() {
-        return alpha;
+        return parameters.getAlpha();
     }
 
     public double getBeta() {
-        return beta;
+        return parameters.getBeta();
     }
 
     public double getDelta() {
-        return delta;
+        return parameters.getDelta();
     }
 
     public double getEta() {
-        return eta;
+        return parameters.getEta();
     }
 
     public double getRho() {
-        return rho;
+        return parameters.getRho();
     }
 
     public int getColonySize() {
-        return colonySize;
+        return parameters.getColonySize();
     }
 
     public double getSimulationTime() {
-        return simulationTime;
+        return parameters.getSimulationTime();
     }
 
     public WeightedGraph getGraph() {

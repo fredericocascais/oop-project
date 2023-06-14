@@ -6,26 +6,26 @@ import java.util.List;
 public class Node {
     private final int id;
     private List<Edge> edges = new ArrayList<>();
-    private List<Integer> linked = new ArrayList<>();
+    private List<Integer> linkedNodes = new ArrayList<>();
 
     public Node(int id){
         this.id = id;
     }
 
     public void addEdgeToNode( int dest ){
-        if( linked.contains( dest ) ){
+        if( linkedNodes.contains( dest ) ){
             return;
         }
-        linked.add(dest);
+        linkedNodes.add(dest);
         this.edges.add( new Edge( dest , 0) );
     }
 
     public void addEdgeToNode( int dest, double weight ){
 
-        if( linked.contains( dest ) ){
+        if( linkedNodes.contains( dest ) ){
             return;
         }
-        linked.add(dest);
+        linkedNodes.add(dest);
         this.edges.add( new Edge( dest, weight) );
 
     }
@@ -34,8 +34,8 @@ public class Node {
         return edges;
     }
 
-    public List<Integer> getLinked() {
-        return linked;
+    public List<Integer> getLinkedNodes() {
+        return linkedNodes;
     }
 
     public int getId() {

@@ -24,6 +24,7 @@ public class Pheromones {
     }
 
     public void addPheromone(Edge edge, double add_pheromones){
+        // procurar o equivalente
         tunnels.set( edge.getId() , getPheromone(edge) + add_pheromones);
     }
 

@@ -1,5 +1,7 @@
 package graph;
 
+import simulation.InputParameters;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -55,7 +57,7 @@ public class WeightedGraph extends AbstractGraph{
             int node2 = rand.nextInt(n_nodes);
 
             if( node1 == node2 ) continue;
-            if( adjList[node1].getLinked().contains(node2) ) continue;
+            if( adjList[node1].getLinkedNodes().contains(node2) ) continue;
 
             double weight = rand.nextInt(max_weight - 1) + 1;
 
@@ -67,13 +69,14 @@ public class WeightedGraph extends AbstractGraph{
 
     }
     @Override
-    public void createGivenGraph(int tot_nodes, String[] line, WeightedGraph graph){
+    public void createGivenGraph(InputParameters parameters){
 
         String[] weight;
-        for (int og_node=0; og_node<=tot_nodes-1; og_node++) {
+        String[] line = parameters.getFileMatrix();
+        for (int og_node=0; og_node<= parameters.getTotalNodes() - 1; og_node++) {
             //System.out.println("og node: " + og_node);
             weight = line[og_node].split(" ");
-            for(int dest_node=0; dest_node<=weight.length-1; dest_node++) {
+            for(int dest_node=0; dest_node <= weight.length - 1; dest_node++) {
                 if(!weight[dest_node].equals("0")) {
                     //System.out.println("      dest node " + dest_node + ": "+ "weight = " + Double.parseDouble(weight[dest_node]));
                     graph.addEdgeToList(og_node,dest_node,Double.parseDouble(weight[dest_node]));

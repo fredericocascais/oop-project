@@ -1,5 +1,7 @@
 package graph;
 
+import simulation.InputParameters;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -46,7 +48,7 @@ public abstract class AbstractGraph implements IGraph{
     }
 
     @Override
-    public void createGivenGraph(int tot_nodes, String[] line, WeightedGraph graph) {
+    public void createGivenGraph(InputParameters parameters) {
 
     }
 
@@ -72,7 +74,7 @@ public abstract class AbstractGraph implements IGraph{
         return max_edges;
     }
 
-    public int get_total_nodes() {
+    public int getTotalNodes() {
         return n_nodes;
     }
 }

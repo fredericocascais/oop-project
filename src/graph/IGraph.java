@@ -1,5 +1,7 @@
 package graph;
 
+import simulation.InputParameters;
+
 import java.util.ArrayList;
 
 public interface IGraph {
@@ -10,7 +12,7 @@ public interface IGraph {
     public void addEdgeToList(int n1, int n2 , double weight);
     public void createRandomGraph();
     public void createRandomGraph(int max_weight);
-    public void createGivenGraph(int tot_nodes, String[] line, WeightedGraph graph);
+    public void createGivenGraph(InputParameters parameters);
 
     ArrayList<Integer> generateRandomHamiltoneanPath();
 

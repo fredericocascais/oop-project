@@ -1,8 +1,6 @@
 package graph;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 public class Graph extends AbstractGraph{
@@ -49,7 +47,7 @@ public class Graph extends AbstractGraph{
             int node2 = rand.nextInt(n_nodes);
 
             if( node1 == node2 ) continue;
-            if( adjList[node1].getLinked().contains(node2) ) continue;
+            if( adjList[node1].getLinkedNodes().contains(node2) ) continue;
 
 
             addEdgeToList( node1, node2 );
