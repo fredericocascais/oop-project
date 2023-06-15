@@ -2,6 +2,9 @@ package simulation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -51,7 +54,19 @@ public class InputParameters {
         Scanner scanner = new Scanner(input_file);
 
         String firstLine = scanner.nextLine();
-        String[] aux = firstLine.split(" ");
+        String[] aux = firstLine.trim().split("\\s+");
+        List<Integer> strictlyPositiveParameterIds = Arrays.asList(1, 9, 10);
+
+        for (int i=0; i<aux.length; i++){
+            int paramIndex = i;
+            if(Integer.parseInt(aux[i])<0){
+                throw new RuntimeException("Invalid input: parameters can't be negative");
+            }else if(strictlyPositiveParameterIds.stream().anyMatch(num -> num == paramIndex) && Integer.parseInt(aux[i])<1){
+                throw new RuntimeException("Invalid input: nest node, ant colony size and final instant must be positive numbers");
+            }else if(paramIndex==2 && Integer.parseInt(aux[i])<2){
+                throw new RuntimeException("Invalid input: the number of nodes must be >= 2");
+            }
+        }
 
         // Set properties according to the arguments
         totalNodes = Integer.parseInt(aux[0]);
@@ -72,9 +87,11 @@ public class InputParameters {
 
         while (scanner.hasNextLine()) {
             String fileLine = scanner.nextLine();
-            fileMatrix[nbrLines] = fileLine;
+            fileMatrix[nbrLines] = fileLine.replaceAll("\\s", "");
             nbrLines += 1;
         }
+
+        scanner.close();
     }
 
     /**

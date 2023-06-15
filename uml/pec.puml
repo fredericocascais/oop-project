@@ -24,16 +24,12 @@ package pec {
     }
 
     class PEC {
-        -eventList: List<Event>
-        -eventIndex: int
+        -eventList: LinkedList<Event>
         {static} -instance: PEC
         - PEC()
         {static} + getPEC(): PEC
         + getNextEvent(): Event
-        + getCurrEvent(): Event
         + addEvent(newEvent: Event): void
-        + hasEvent(edge: Edge): boolean
-        + toString(): String
     }
 }
 
