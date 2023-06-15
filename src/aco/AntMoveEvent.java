@@ -57,8 +57,8 @@ public class AntMoveEvent extends Event{
                 ant.addToPathEdges(next_edge);
                 ant.setCurrentNode( graph.getNode(next_node_id) );
 
-                // Add pheromones to the edges that were traversed to perform a Hamiltonian Cycle
                 // Create Evaporation Events for each edge that were traversed to perform a Hamiltonian Cycle
+                // Add pheromones to the edges that were traversed to perform a Hamiltonian Cycle
                 // Add the Hamiltonian Cycle to the list of Hamiltonian Cycles found
                 createEvaporationEvents();
                 addPheromonesToPathEdges();
