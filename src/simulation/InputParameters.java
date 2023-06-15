@@ -42,8 +42,13 @@ public class InputParameters {
      * @throws FileNotFoundException if the input file specified in the arguments is not found
      */
     public void addParametersFromFile(String[] args) throws FileNotFoundException {
-        File inputFile = new File(args[1]);
-        Scanner scanner = new Scanner(inputFile);
+        String current_directory = System.getProperty("user.dir") + "/";
+        File input_file;
+
+        if (args[1].startsWith("./")) input_file = new File(current_directory + args[1].substring(2));
+        else input_file = new File(current_directory + args[1]);
+
+        Scanner scanner = new Scanner(input_file);
 
         String firstLine = scanner.nextLine();
         String[] aux = firstLine.split(" ");
@@ -95,7 +100,7 @@ public class InputParameters {
      * Prints the input parameters.
      */
     public void printInputParameters() {
-        System.out.println("Input Parameters:\n");
+        System.out.println("Input Parameters:");
         System.out.println("\t\t\t\t" + totalNodes + ": number of nodes in the graph");
         System.out.println("\t\t\t\t" + nestNode + ": the nest node");
         System.out.println("\t\t\t\t" + alpha + ": alpha, ant move event");

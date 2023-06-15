@@ -5,10 +5,10 @@ import graph.HamiltonianCycle;
 import graph.Node;
 import graph.WeightedGraph;
 import pec.Event;
-import pec.PEC;
 import simulation.Simulation;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * The AntMoveEvent class represents an event where an ant moves along an edge in the graph.
@@ -37,14 +37,6 @@ public class AntMoveEvent extends Event{
         setEventTime(simulation.getDelta() * next_edge.getWeight());
     }
 
-    /**
-     * Gets the ant associated with this event.
-     *
-     * @return The ant associated with this event.
-     */
-    public Ant getAnt() {
-        return ant;
-    }
 
     /**
      * Executes the ant move event by updating the ant's path, checking for cycles or completion of Hamiltonian path,
@@ -63,13 +55,13 @@ public class AntMoveEvent extends Event{
             // so we add only the edge that leads to the nest node
             if ( next_node_id == nest_node_id && current_ant_path.size() == graph.getTotalNodes()) {
                 ant.addToPathEdges(next_edge);
-                ant.setCurrentNode( graph.getNode(next_node_id) );
+                ant.setCurrentNode( graph.getNode(nest_node_id) );
 
-                // Add pheromones to the edges that were traversed to perform a Hamiltonian Cycle
                 // Create Evaporation Events for each edge that were traversed to perform a Hamiltonian Cycle
+                // Add pheromones to the edges that were traversed to perform a Hamiltonian Cycle
                 // Add the Hamiltonian Cycle to the list of Hamiltonian Cycles found
-                addPheromonesToPathEdges();
                 createEvaporationEvents();
+                addPheromonesToPathEdges();
                 addNewHamiltonianCycle();
 
                 // Reset the Ant's path to the initial state
@@ -138,9 +130,11 @@ public class AntMoveEvent extends Event{
      * Evaporation events are responsible for reducing the pheromone level of the edges over time.
      */
     public void createEvaporationEvents(){
-        PEC pec = PEC.getPEC();
-        for ( Edge edge : ant.getPathEdges()){
-            if(!pec.hasEvent(edge)){
+        Pheromones pheromones = simulation.getPheromones();
+        LinkedList<Edge> path_edges = new LinkedList<>( ant.getPathEdges() );
+
+        for ( Edge edge : path_edges ){
+            if(pheromones.getPheromoneLevel(edge) <= 0){
                 simulation.addNewEvent( new EvaporationEvent(edge));
             }
         }

@@ -24,7 +24,7 @@ public class Simulation {
 
     private final WeightedGraph graph;
 
-    private Pheromones pheromones;
+    private final Pheromones pheromones;
 
     List<Ant> antColony;
 
@@ -76,11 +76,11 @@ public class Simulation {
      */
     public void initSimulation() {
         // Create Ants according to the colony size
-        for (int i = 0; i < parameters.getColonySize(); i++) {
+        for (int i = 0; i < getColonySize(); i++) {
             // For each new Ant choose a non-visited Node to visit and create an AntMoveEvent corresponding
             // to the Ant and the next Edge to traverse to reach the chosen non-visited Node
             Ant ant = new Ant(graph.getNode(getNestNode() - 1));
-            antColony.add(ant);
+            addNewAnt(ant);
             Edge nextEdge = ant.getNextChosenEdge();
             pec.addEvent(new AntMoveEvent(ant, nextEdge));
         }
@@ -113,6 +113,11 @@ public class Simulation {
             Event next_event = pec.getNextEvent();
             next_event.executeEvent();
         }
+    }
+
+
+    public Pheromones getPheromones() {
+        return pheromones;
     }
 
     /**
@@ -294,7 +299,7 @@ public class Simulation {
      *
      * @param ant The Ant to add.
      */
-    public void addAnt(Ant ant){
+    public void addNewAnt(Ant ant){
         antColony.add(ant);
     }
 
@@ -350,5 +355,6 @@ public class Simulation {
         }
         return hamiltonianCycleFound.subList(1,5);
     }
-    
+
+
 }

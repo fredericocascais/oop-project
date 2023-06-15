@@ -1,12 +1,12 @@
 package simulation;
+
 import graph.WeightedGraph;
 import logger.Logger;
-
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 /**
- * The Main class is the entry point of the program.
+ * The simulation.Main class is the entry point of the program.
  * It parses command line arguments, initializes objects, and runs the simulation.
  */
 public class Main {
@@ -26,7 +26,7 @@ public class Main {
         }
 
         // Prepare logger to output an output file of what was printed in the terminal
-        FileOutputStream file = new FileOutputStream("test.txt");
+        FileOutputStream file = new FileOutputStream("output.txt");
         Logger logger = new Logger(file, System.out);
         System.setOut(logger);
 

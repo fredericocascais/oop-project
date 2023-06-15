@@ -55,10 +55,15 @@ public abstract class AbstractGraph implements IGraph{
     public ArrayList<Integer> generateRandomHamiltonianPath() {
         ArrayList<Integer> hamiltonian_path = new ArrayList<>(n_nodes);
 
+        // Add every node possible
         for (int i = 0; i < n_nodes; i++)
             hamiltonian_path.add(i);
 
+        // Shuffle to randomize path
         Collections.shuffle(hamiltonian_path);
+
+        // Create cycle by adding a clone of the starting node at the end
+        hamiltonian_path.add( hamiltonian_path.get(0) );
 
         return hamiltonian_path;
     }
