@@ -11,7 +11,7 @@ public abstract class Event implements IEvent, Comparable<Event>{
 
     private final Simulation simulation = Simulation.getSimulation();
 
-    private Random rand = new Random();
+    private final Random rand = new Random();
     public void setEventTime(double mean){
         event_time = simulation.getCurrentSimulationTime() + expDistribution(mean);
     }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SimulationReportEvent extends Event {
     private final Simulation simulation = Simulation.getSimulation();
-    private List<HamiltoneanCycle> hamiltoneanCycles;
+    private final List<HamiltoneanCycle> hamiltoneanCycles;
 
     public SimulationReportEvent(List<HamiltoneanCycle> hamiltoneanCycles, double eventTime) {
         this.hamiltoneanCycles = hamiltoneanCycles;

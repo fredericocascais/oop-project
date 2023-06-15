@@ -14,7 +14,7 @@ public class AntMoveEvent extends Event{
     private final Simulation simulation = Simulation.getSimulation();
     private final WeightedGraph graph = WeightedGraph.getGraph();
     private final Ant ant;
-    private ArrayList<Integer> current_ant_path;
+    private final ArrayList<Integer> current_ant_path;
     private final int nest_node_id;
     private final Edge next_edge;
 
@@ -114,10 +114,6 @@ public class AntMoveEvent extends Event{
 
     }
 
-    private Boolean checkIfHamiltoneanCycle(){
-        int tot_nodes = graph.getTotalNodes();
-        return (ant.getPathEdges().size() >= tot_nodes && ant.pathIsHamiltonean(tot_nodes));
-    }
 
     public void createEvaporationEvents(){
         for ( Edge edge : ant.getPathEdges()){

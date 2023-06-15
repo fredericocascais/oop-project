@@ -30,6 +30,7 @@ public class EvaporationEvent extends Event{
         pheromones.setPheromone(edge, edgePheromone);
         pheromones.setPheromone(edge.getReverseEdge(), edgePheromone);
         simulation.addNewEvent(  new EvaporationEvent(edge) );
+        simulation.increaseTotalEvaporations();
         addEventTimeToSimulation();     
     }
 
