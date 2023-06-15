@@ -9,7 +9,7 @@ public abstract class Event implements IEvent, Comparable<Event>{
 
     private String event_type;
 
-    private Simulation simulation = Simulation.getSimulation();
+    private final Simulation simulation = Simulation.getSimulation();
 
     private Random rand = new Random();
     public void setEventTime(double mean){

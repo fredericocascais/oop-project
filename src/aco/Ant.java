@@ -9,11 +9,11 @@ import java.util.*;
 public class Ant {
     private final Simulation simulation = Simulation.getSimulation();
 
-    private int id;
+    private final int id;
     private static int id_increments = 0;
     private Node current_node;
     private final ArrayList<Integer> path;
-    private LinkedList<Edge> path_edges;
+    private final LinkedList<Edge> path_edges;
 
 
     public Ant(Node node){
@@ -138,7 +138,7 @@ public class Ant {
     public boolean pathIsHamiltonean(int tot_nodes){
         // Put all array elements in a HashSet
         Set<Integer> s =
-                new HashSet<Integer>(path);
+                new HashSet<>(path);
 
         // If all elements are distinct, size of
         // HashSet should be same array.

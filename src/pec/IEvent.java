@@ -1,12 +1,11 @@
 package pec;
 
 public interface IEvent {
-    public void setEventTime(double mean);
-    public double getEventTime();
-    public String getEventType();
-    public void setEventType(String type);
-    public void addEventTimeToSimulation();
-
-    public void executeEvent();
+    void setEventTime(double mean);
+    double getEventTime();
+    String getEventType();
+    void setEventType(String type);
+    void addEventTimeToSimulation();
+    void executeEvent();
 
 }

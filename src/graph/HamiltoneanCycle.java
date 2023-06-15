@@ -7,7 +7,6 @@ public class HamiltoneanCycle {
     private final int totalWeight;
     private final ArrayList<Integer> path;
 
-    private ArrayList<Edge> edges;
 
     public HamiltoneanCycle(int totalWeight, ArrayList<Integer> path){
         this.path = path;

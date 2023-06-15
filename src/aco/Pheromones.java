@@ -1,17 +1,12 @@
 package aco;
 
 import graph.Edge;
-import graph.WeightedGraph;
-import simulation.InputParameters;
-import simulation.Simulation;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Pheromones {
-    private ArrayList<Double> tunnels;
+    private final ArrayList<Double> tunnels;
     private static Pheromones pheromones;
-    private final WeightedGraph graph = WeightedGraph.getGraph();
 
     private Pheromones(int max_edges){
         System.out.println("max edges: " + max_edges);

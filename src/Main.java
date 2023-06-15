@@ -1,18 +1,8 @@
-import aco.Ant;
-import aco.AntMoveEvent;
-import aco.Pheromones;
-import graph.*;
-import pec.IEvent;
-import pec.PEC;
+import graph.WeightedGraph;
 import simulation.InputParameters;
 import simulation.Simulation;
-
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+
 
 public class Main {
 
