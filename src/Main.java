@@ -70,9 +70,9 @@ public class Main {
                 if(curr_time>=time_interval ){
                     observation_number+=1;
                     //Choosing best hamiltonian cycle
-                    bestHamiltonianCycle = InputParameters.bestCycle(hamiltonian_cycles, bestHamiltonianCycle);
+                    bestHamiltonianCycle = HamiltonianCycle.bestCycle(hamiltonian_cycles, bestHamiltonianCycle);
                     //top 5 cycles
-                    InputParameters.topCycles(hamiltonian_cycles, top_hamiltonian_cycles, bestHamiltonianCycle);
+                    HamiltonianCycle.topCycles(hamiltonian_cycles, top_hamiltonian_cycles, bestHamiltonianCycle);
                     //Print
                     InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,bestHamiltonianCycle,top_hamiltonian_cycles,ps);
                     time_interval+= sim_time/20;
@@ -183,9 +183,9 @@ public class Main {
                 if(curr_time>=time_interval ){
                     observation_number+=1;
                     //Choosing best hamiltonian cycle
-                    bestHamiltonianCycle = InputParameters.bestCycle(hamiltonian_cycles, bestHamiltonianCycle);
+                    bestHamiltonianCycle = HamiltonianCycle.bestCycle(hamiltonian_cycles, bestHamiltonianCycle);
                     //top 5 cycles
-                    InputParameters.topCycles(hamiltonian_cycles, top_hamiltonian_cycles, bestHamiltonianCycle);
+                    HamiltonianCycle.topCycles(hamiltonian_cycles, top_hamiltonian_cycles, bestHamiltonianCycle);
                     //Print
                     InputParameters.printSteps(observation_number,time_interval,number_move_events,number_evap_events,bestHamiltonianCycle,top_hamiltonian_cycles,ps);
                     time_interval+= sim_time/20;
