@@ -73,7 +73,7 @@ package "aco"{
     + executeEvent(): void
   }
 
-  Ant "1" *-- "1" Simulation
+  Ant "1..*" *-- "1" Simulation
   AntMoveEvent "1" *-- "1" Ant
   AntMoveEvent "1" *-- "1" WeightedGraph
   AntMoveEvent "1" *-- "1" Simulation
