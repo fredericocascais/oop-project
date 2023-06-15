@@ -7,7 +7,7 @@ import simulation.Simulation;
 import java.util.List;
 
 /**
- * The SimulationReportEvent class represents an event that generates a simulation report.
+ * The SimulationReportEvent class represents a report of the simulation at a specific time.
  * It prints various statistics and information about the current state of the simulation.
  */
 public class SimulationReportEvent extends Event {

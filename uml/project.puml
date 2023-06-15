@@ -1,0 +1,335 @@
+@startuml POO Project
+skinparam classAttributeIconSize 0
+
+package "aco"{
+  class Ant {
+    - simulation: Simulation
+    - id: int
+    {static} - id_increments: int
+    - current_node: Node
+    - path: ArrayList<Integer>
+    - path_edges: LinkedList<Edge>
+
+    + Ant(node: Node)
+    + getId(): int
+    + getPathEdges(): LinkedList<Edge>
+    + setCurrentNode(node: Node): void
+    + getCurrentNode(): Node
+    + addToPath(node_id: int): void
+    + addToPathEdges(edge: Edge): void
+    + getPath(): ArrayList<Integer>
+    + getNeighEdges(): List<Edge>
+    + getTotalPathWeight(): int
+    + getNonVisitedNeighEdges(): List<Edge>
+    + getNextChosenEdge(): Edge
+    + edgeFavorableOutcomeProbability(alpha: double, beta: double, pheromone: double, weight: double): double
+    + removeCycle(cycle_start_index: int): void
+    + pathIsHamiltonian(tot_nodes: int): boolean
+    + resetPath(): void
+  }
+
+  class AntMoveEvent {
+    - simulation: Simulation
+    - graph: WeightedGraph
+    - ant: Ant
+    - current_ant_path: ArrayList<Integer>
+    - nest_node_id: int
+    - next_edge: Edge
+
+    + AntMoveEvent(ant: Ant, next_edge: Edge)
+    + getAnt(): Ant
+    + executeEvent(): void
+    + addPheromonesToPathEdges(): void
+    + createEvaporationEvents(): void
+    - getNode(node_id: int): Node
+    + addNewHamiltonianCycle(): void
+  }
+
+  class EvaporationEvent {
+    - edge: Edge
+    - simulation: Simulation
+
+    + EvaporationEvent(edge: Edge)
+    + executeEvent(): void
+    + getEdge(): Edge
+  }
+
+  class Pheromones {
+    - tunnels: ArrayList<Double>
+    {static} - pheromones: Pheromones
+
+    {static} + Pheromones(max_edges: int)
+    {static} + getPheromones(): Pheromones
+    + getPheromones(max_edges: int): Pheromones
+    + addPheromone(edge: Edge, add_pheromones: double): void
+    + setPheromone(edge: Edge, pheromoneLevel: double): void
+    + getPheromoneLevel(edge: Edge): double
+  }
+
+  class SimulationReportEvent {
+    - simulation: Simulation
+    - iteration: int
+    - increment: int
+
+    + SimulationReportEvent(eventTime: double)
+    + executeEvent(): void
+  }
+
+  Ant "1..*" *-- "1" Simulation
+  Ant "0..*" --> "0..*" Edge: Path 
+  Ant "0..*" --> "1" Node: Path 
+  Ant "0..*" --> "1" Node: Location 
+  AntMoveEvent "0..*" -- "1" Ant
+  AntMoveEvent "0..*" -- "1" WeightedGraph
+  AntMoveEvent "0..*" *-- "1" Simulation
+  AntMoveEvent "0..*" --> "1" Node: Nest
+  AntMoveEvent "0..*" -- "1" Edge
+  EvaporationEvent "0..*" *-- "1" Edge
+  EvaporationEvent "0..*" *-- "1" Simulation
+  SimulationReportEvent "0..*" *-- "1" Simulation
+  Pheromones "1" -- "1..*" Edge
+}
+
+package graph {
+  interface IGraph {
+    + getNode(int) : Node
+    + getNodeList() : Node[]
+    + addEdgeToList(int, int) : void
+    + addEdgeToList(int, int, double) : void
+    + createRandomGraph() : void
+    + createRandomGraph(int) : void
+    + createGivenGraph(InputParameters) : void
+    + generateRandomHamiltonianPath() : ArrayList<Integer>
+  }
+
+  abstract class AbstractGraph implements IGraph{
+    -n_nodes: int
+    -max_edges: int
+    -adjList: Node[]
+
+    + AbstractGraph(n_nodes: int)
+    + getNode(id: int): Node
+    + getNodeList(): Node[]
+    + addEdgeToList(n1: int, n2: int)
+    + addEdgeToList(n1: int, n2: int, weight: double)
+    + generateRandomHamiltonianPath(): ArrayList<Integer>
+    + getMaxEdges(): int
+    + getTotalNodes(): int
+  }
+
+  interface IEdge {
+    +getDestination(): int
+    +getId(): int
+  }
+
+  class Edge implements IEdge {
+    -destination: int
+    -weight: double
+    -id: int
+    {static} - count: int
+
+    +Edge(dest: int, weight: double)
+    +getDestination(): int
+    +getId(): int
+    +getWeight(): double
+    +getReverseEdge(): Edge
+    +toString(): String
+  }
+
+  class Node {
+    -id: int
+    -edges: List<Edge>
+    -linkedNodes: List<Integer>
+
+    + Node(id: int)
+    + addEdgeToNode(dest: int): void
+    + addEdgeToNode(dest: int, weight: double): void
+    + getEdges(): List<Edge>
+    + getEdgeById(edgeId: int): Edge
+    + getLinkedNodes(): List<Integer>
+    + getId(): int
+    + toString(): String
+  }
+
+  class HamiltonianCycle {
+    -totalWeight: int
+    -path: ArrayList<Integer>
+
+    +HamiltonianCycle(totalWeight: int, path: ArrayList<Integer>)
+    +getPath(): ArrayList<Integer>
+    +getTotalWeight(): int
+    +toString(): String
+    +equals(obj: Object): boolean
+    +compareTo(o: HamiltonianCycle): int
+  }
+
+  class WeightedGraph extends AbstractGraph {
+    - graph: WeightedGraph
+    {static} - totalWeight: double
+
+    -WeightedGraph(totalNodes: int)
+    {static} + getGraph(int): WeightedGraph
+    {static} + getGraph(): WeightedGraph
+    + getTotalWeight(): double
+    + addEdgeToList(int, int, double): void
+    + addEdgeToList(int, int): void
+    + createRandomGraph(int): void
+    + createGivenGraph(InputParameters): void
+    + printGraph(): void
+    + createRandomGraph(): void
+  }
+
+  class Graph extends AbstractGraph {
+    + Graph(n_nodes: int)
+    + addEdgeToList(n1: int, n2: int)
+    + addEdgeToList(n1: int, n2: int, weight: double)
+    + createGivenGraph(parameters: InputParameters)
+    + createRandomGraph()
+    + createRandomGraph(max_weight: int)
+  }
+
+  AbstractGraph "1" --* "1..*" Node
+  AbstractGraph "1" --* "1..*" Edge
+  Edge "1..*" --> "1" Node : Destination
+  HamiltonianCycle "1..*" --o "1..*" Node: Path
+  Node "1..*" -- "1..*" Edge: Linked
+  Node "1..*" -- "1..*" Node: Adjacent
+}
+
+package logger {
+  class Logger {
+    - second: PrintStream
+    + Logger(main: OutputStream, second: PrintStream)
+    + close(): void
+    + flush(): void
+    + write(buf: byte[], off: int, len: int): void
+    + write(b: int): void
+    + write(b: byte[]): void
+  }
+}
+
+package pec {
+  class Event {
+      -event_time: double
+      -event_type: String
+      +setEventTime(mean: double): void
+      +setEventTime(time: double, manual: String): void
+      +getEventTime(): double
+      +getEventType(): String
+      +setEventType(type: String): void
+      -expDistribution(mean: double): double
+      +addEventTimeToSimulation(): void
+      +compareTo(o: Event): int
+  }
+
+  interface IEvent {
+      +setEventTime(mean: double): void
+      +getEventTime(): double
+      +getEventType(): String
+      +setEventType(type: String): void
+      +addEventTimeToSimulation(): void
+      +executeEvent(): void
+  }
+
+  class PEC {
+      -eventList: List<Event>
+      -eventIndex: int
+      {static} -instance: PEC
+      - PEC()
+      {static} + getPEC(): PEC
+      + getNextEvent(): Event
+      + getCurrEvent(): Event
+      + addEvent(newEvent: Event): void
+      + hasEvent(edge: Edge): boolean
+      + toString(): String
+  }
+
+  Event <|.. IEvent
+  PEC --* "1" Event
+}
+
+package simulation {
+  class InputParameters {
+      + InputParameters(String[]) throws FileNotFoundException
+      + addParametersFromFile(String[]) throws FileNotFoundException
+      + addParametersFromArguments(String[])
+      + printInputParameters() : void
+      + getAlpha() : double
+      + getTotalNodes() : int
+      + getMaxWeight() : int
+      + getNestNode() : int
+      + getBeta() : double
+      + getDelta() : double
+      + getEta() : double
+      + getRho() : double
+      + getGamma() : double
+      + getColonySize() : int
+      + getMaxSimulationTime() : double
+      + getFileMatrix() : String[]
+      - totalNodes : int
+      - maxWeight : int
+      - nestNode : int
+      - alpha : double
+      - beta : double
+      - delta : double
+      - eta : double
+      - rho : double
+      - gamma : double
+      - colonySize : int
+      - simulationMaxTime : double
+      - fileMatrix : String[]
+  }
+
+  class Simulation {
+      - parameters : InputParameters
+      - graph : WeightedGraph
+      - pheromones : Pheromones
+      - antColony : List<Ant>
+      - totalMoves : int
+      - totalEvaporations : int
+      - currentSimulationTime : double
+      - hamiltonianCycleFound : List<HamiltonianCycle>
+      - pec : PEC
+      {static} - simulation: Simulation
+      - Simulation(InputParameters, WeightedGraph)
+
+      {static} + getSimulation() : Simulation
+      {static} + getSimulation(InputParameters, WeightedGraph) : Simulation
+      + initSimulation() : void
+      + runSimulation() : void
+      + getCurrentSimulationTime() : double
+      + getTotalNodes() : int
+      + getNestNode() : int
+      + getAlpha() : double
+      + getBeta() : double
+      + getDelta() : double
+      + getEta() : double
+      + getRho() : double
+      + getGamma() : double
+      + getMaxWeight() : double
+      + getColonySize() : int
+      + getMaxSimulationTime() : double
+      + getGraph() : WeightedGraph
+      + getAntColony() : List<Ant>
+      + getTotalMoves() : int
+      + getTotalEvaporations() : int
+      + getHamiltonianCycles() : List<HamiltonianCycle>
+      + addHamiltonianCycle(HamiltonianCycle) : void
+      + addAnt(Ant) : void
+      + increaseCurrentTime(double) : void
+      + increaseTotalMoves() : void
+      + increaseTotalEvaporations() : void
+      + addNewEvent(Event) : void
+      + getBestCycle() : HamiltonianCycle
+      + getTopCandidateCycles() : List<HamiltonianCycle>
+    }
+
+    Simulation "1" --* "1" InputParameters
+    Simulation "1" --* "1" WeightedGraph
+    Simulation "1" --* "1" Pheromones
+    Simulation "1" --* "1..*" Ant
+    Simulation "1" --* "0..*" HamiltonianCycle
+    Simulation "1" --* "1" PEC
+}
+
+@enduml

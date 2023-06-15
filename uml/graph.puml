@@ -1,19 +1,31 @@
 @startuml
+skinparam classAttributeIconSize 0
 
 package graph {
-  class AbstractGraph {
+  interface IGraph {
+    + getNode(int) : Node
+    + getNodeList() : Node[]
+    + addEdgeToList(int, int) : void
+    + addEdgeToList(int, int, double) : void
+    + createRandomGraph() : void
+    + createRandomGraph(int) : void
+    + createGivenGraph(InputParameters) : void
+    + generateRandomHamiltonianPath() : ArrayList<Integer>
+  }
+
+  abstract class AbstractGraph implements IGraph{
     -n_nodes: int
     -max_edges: int
     -adjList: Node[]
 
-    +AbstractGraph(n_nodes: int)
-    +getNode(id: int): Node
-    +getNodeList(): Node[]
-    +addEdgeToList(n1: int, n2: int)
-    +addEdgeToList(n1: int, n2: int, weight: double)
-    +generateRandomHamiltonianPath(): ArrayList<Integer>
-    +getMaxEdges(): int
-    +getTotalNodes(): int
+    + AbstractGraph(n_nodes: int)
+    + getNode(id: int): Node
+    + getNodeList(): Node[]
+    + addEdgeToList(n1: int, n2: int)
+    + addEdgeToList(n1: int, n2: int, weight: double)
+    + generateRandomHamiltonianPath(): ArrayList<Integer>
+    + getMaxEdges(): int
+    + getTotalNodes(): int
   }
 
   interface IEdge {
@@ -21,11 +33,11 @@ package graph {
     +getId(): int
   }
 
-  class Edge {
+  class Edge implements IEdge {
     -destination: int
     -weight: double
     -id: int
-    -count: int
+    {static} - count: int
 
     +Edge(dest: int, weight: double)
     +getDestination(): int
@@ -40,17 +52,17 @@ package graph {
     -edges: List<Edge>
     -linkedNodes: List<Integer>
 
-    +Node(id: int)
-    +addEdgeToNode(dest: int)
-    +addEdgeToNode(dest: int, weight: double)
-    +getEdges(): List<Edge>
-    +getEdgeById(edgeId: int): Edge
-    +getLinkedNodes(): List<Integer>
-    +getId(): int
-    +toString(): String
+    + Node(id: int)
+    + addEdgeToNode(dest: int): void
+    + addEdgeToNode(dest: int, weight: double): void
+    + getEdges(): List<Edge>
+    + getEdgeById(edgeId: int): Edge
+    + getLinkedNodes(): List<Integer>
+    + getId(): int
+    + toString(): String
   }
 
-  class HamiltonianCycle implements Comparable<HamiltonianCycle> {
+  class HamiltonianCycle {
     -totalWeight: int
     -path: ArrayList<Integer>
 
@@ -63,23 +75,36 @@ package graph {
   }
 
   class WeightedGraph extends AbstractGraph {
-    -totalWeight: double
+    - graph: WeightedGraph
+    {static} - totalWeight: double
 
-    +WeightedGraph(totalNodes: int)
-    +getTotalWeight(): double
-    +addEdgeToList(n1: int, n2: int, weight: double)
-    +createRandomGraph(max_weight: int)
-    +printGraph(): void
-    +createGivenGraph(parameters: InputParameters)
+    -WeightedGraph(totalNodes: int)
+    {static} + getGraph(int): WeightedGraph
+    {static} + getGraph(): WeightedGraph
+    + getTotalWeight(): double
+    + addEdgeToList(int, int, double): void
+    + addEdgeToList(int, int): void
+    + createRandomGraph(int): void
+    + createGivenGraph(InputParameters): void
+    + printGraph(): void
+    + createRandomGraph(): void
   }
 
   class Graph extends AbstractGraph {
-    +Graph(n_nodes: int)
-    +addEdgeToList(n1: int, n2: int)
-    +createRandomGraph(): void
-    +createGivenGraph(parameters: InputParameters)
+    + Graph(n_nodes: int)
+    + addEdgeToList(n1: int, n2: int)
+    + addEdgeToList(n1: int, n2: int, weight: double)
+    + createGivenGraph(parameters: InputParameters)
+    + createRandomGraph()
+    + createRandomGraph(max_weight: int)
   }
 
+  AbstractGraph "1" --* "1..*" Node
+  AbstractGraph "1" --* "1..*" Edge
+  Edge "1..*" --> "1" Node : Destination
+  HamiltonianCycle "1..*" --o "1..*" Node: Path
+  Node "1..*" -- "1..*" Edge: Linked
+  Node "1..*" -- "1..*" Node: Adjacent
 }
 
 @enduml

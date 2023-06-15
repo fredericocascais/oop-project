@@ -26,21 +26,18 @@ package pec {
     class PEC {
         -eventList: List<Event>
         -eventIndex: int
-        -instance: PEC
-        +getPEC(): PEC
-        +getNextEvent(): Event
-        +getCurrEvent(): Event
-        +addEvent(newEvent: Event): void
-        +hasEvent(edge: Edge): boolean
-        +toString(): String
+        {static} -instance: PEC
+        - PEC()
+        {static} + getPEC(): PEC
+        + getNextEvent(): Event
+        + getCurrEvent(): Event
+        + addEvent(newEvent: Event): void
+        + hasEvent(edge: Edge): boolean
+        + toString(): String
     }
 }
 
 Event <|.. IEvent
-PEC --> "1" Event: Manages
-PEC --> Edge: Uses
-PEC --> Simulation: Uses
-PEC --> Logger: Uses
-PEC --> WeightedGraph: Uses
+PEC --* "1" Event
 
 @enduml

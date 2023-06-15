@@ -1,10 +1,11 @@
 @startuml
+skinparam classAttributeIconSize 0
 
 package "aco"{
   class Ant {
     - simulation: Simulation
     - id: int
-    - id_increments: int
+    {static} - id_increments: int
     - current_node: Node
     - path: ArrayList<Integer>
     - path_edges: LinkedList<Edge>
@@ -21,6 +22,7 @@ package "aco"{
     + getTotalPathWeight(): int
     + getNonVisitedNeighEdges(): List<Edge>
     + getNextChosenEdge(): Edge
+    + edgeFavorableOutcomeProbability(alpha: double, beta: double, pheromone: double, weight: double): double
     + removeCycle(cycle_start_index: int): void
     + pathIsHamiltonian(tot_nodes: int): boolean
     + resetPath(): void
@@ -54,10 +56,10 @@ package "aco"{
 
   class Pheromones {
     - tunnels: ArrayList<Double>
-    - pheromones: Pheromones
+    {static} - pheromones: Pheromones
 
-    + Pheromones(max_edges: int)
-    + getPheromones(): Pheromones
+    {static} + Pheromones(max_edges: int)
+    {static} + getPheromones(): Pheromones
     + getPheromones(max_edges: int): Pheromones
     + addPheromone(edge: Edge, add_pheromones: double): void
     + setPheromone(edge: Edge, pheromoneLevel: double): void
@@ -74,13 +76,17 @@ package "aco"{
   }
 
   Ant "1..*" *-- "1" Simulation
-  AntMoveEvent "1" *-- "1" Ant
-  AntMoveEvent "1" *-- "1" WeightedGraph
-  AntMoveEvent "1" *-- "1" Simulation
-  AntMoveEvent "1" *-- "1" Edge
-  EvaporationEvent "1" *-- "1" Edge
-  EvaporationEvent "1" *-- "1" Simulation
-  Pheromones "1" --* "n" Edge
-  SimulationReportEvent "1" *-- "1" Simulation
+  Ant "0..*" -- "0..*" Edge: Path >
+  Ant "0..*" -- "1" Node: Path >
+  Ant "0..*" -- "1" Node: Location >
+  AntMoveEvent "0..*" -- "1" Ant
+  AntMoveEvent "0..*" -- "1" WeightedGraph
+  AntMoveEvent "0..*" *-- "1" Simulation
+  AntMoveEvent "0..*" -- "1" Node: Nest >
+  AntMoveEvent "0..*" -- "1" Edge
+  EvaporationEvent "0..*" *-- "1" Edge
+  EvaporationEvent "0..*" *-- "1" Simulation
+  SimulationReportEvent "0..*" *-- "1" Simulation
+  Pheromones "1" -- "1..*" Edge
 }
 @enduml

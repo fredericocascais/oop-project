@@ -33,8 +33,20 @@ package simulation {
     }
 
     class Simulation {
-        + getSimulation() : Simulation
-        + getSimulation(InputParameters, WeightedGraph) : Simulation
+        - parameters : InputParameters
+        - graph : WeightedGraph
+        - pheromones : Pheromones
+        - antColony : List<Ant>
+        - totalMoves : int
+        - totalEvaporations : int
+        - currentSimulationTime : double
+        - hamiltonianCycleFound : List<HamiltonianCycle>
+        - pec : PEC
+        {static} - simulation: Simulation
+        - Simulation(InputParameters, WeightedGraph)
+
+        {static} + getSimulation() : Simulation
+        {static} + getSimulation(InputParameters, WeightedGraph) : Simulation
         + initSimulation() : void
         + runSimulation() : void
         + getCurrentSimulationTime() : double
@@ -62,26 +74,14 @@ package simulation {
         + addNewEvent(Event) : void
         + getBestCycle() : HamiltonianCycle
         + getTopCandidateCycles() : List<HamiltonianCycle>
-        - parameters : InputParameters
-        - graph : WeightedGraph
-        - pheromones : Pheromones
-        - antColony : List<Ant>
-        - totalMoves : int
-        - totalEvaporations : int
-        - currentSimulationTime : double
-        - hamiltonianCycleFound : List<HamiltonianCycle>
-        - pec : PEC
-        + Simulation(InputParameters, WeightedGraph)
     }
-
-    InputParameters --> FileNotFoundException: Throws
-    InputParameters --> Simulation: Uses    
-    Simulation --> InputParameters: Uses
-    Simulation --> WeightedGraph: Uses
-    Simulation --> Pheromones: Uses
-    Simulation --> Ant: Association
-    Simulation --> HamiltonianCycle: Association
-    Simulation --> PEC: Uses
+  
+    Simulation "1" --* "1" InputParameters
+    Simulation "1" --* "1" WeightedGraph
+    Simulation "1" --* "1" Pheromones
+    Simulation "1" --* "1..*" Ant
+    Simulation "1" --* "0..*" HamiltonianCycle
+    Simulation "1" --* "1" PEC
 }
 
 @enduml

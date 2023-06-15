@@ -193,7 +193,7 @@ public class Ant {
      * @param weight The weight of the edge.
      * @return The probability of choosing the specific edge.
      */
-    private static double edgeFavorableOutcomeProbability(double alpha, double beta, double pheromone, double weight){
+    private double edgeFavorableOutcomeProbability(double alpha, double beta, double pheromone, double weight){
         // Calculate the probability of choosing a specific edge
         return  (alpha + pheromone) / (beta + weight);
     }

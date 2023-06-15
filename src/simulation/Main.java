@@ -1,7 +1,6 @@
+package simulation;
 import graph.WeightedGraph;
 import logger.Logger;
-import simulation.InputParameters;
-import simulation.Simulation;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

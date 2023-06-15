@@ -98,9 +98,8 @@ public class AntMoveEvent extends Event{
         simulation.addNewEvent( new AntMoveEvent(ant, next_chosen_edge) );
     }
 
-        /**
+    /**
      * Adds pheromones to the edges in the ant's path.
-     * The pheromone level is incremented based on a mathematical formula.
      */
     private void addPheromonesToPathEdges(){
         Pheromones pheromones = Pheromones.getPheromones();

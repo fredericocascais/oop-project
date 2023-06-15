@@ -27,7 +27,7 @@ public class EvaporationEvent extends Event{
 
     /**
      * Executes the evaporation event by reducing the pheromone level on the edge,
-     * scheduling a new evaporation event, and updating the simulation statistics.
+     * scheduling a new evaporation event, and updating the simulation.
      */
     public void executeEvent(){
         Pheromones pheromones = Pheromones.getPheromones();

@@ -41,7 +41,7 @@ public class Simulation {
      * @param parameters The input parameters for the simulation.
      * @param graph The weighted graph representing the problem.
      */
-    public Simulation(InputParameters parameters, WeightedGraph graph) {
+    private Simulation(InputParameters parameters, WeightedGraph graph) {
         this.parameters = parameters;
         this.graph = graph;
         this.antColony = new ArrayList<>();
