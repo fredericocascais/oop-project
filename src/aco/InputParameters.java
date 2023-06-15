@@ -48,19 +48,27 @@ public class InputParameters {
         for(int nodes = 0; nodes <= tot_nodes-1; nodes++) {
             List<Integer> linked_nodes = graph.getNode(nodes).getLinked();
             List<Edge> edges = graph.getNode(nodes).getEdges();
-            double[] node_row;
-            node_row= new double[tot_nodes];
+            //double[] node_row;
+            //node_row= new double[tot_nodes];
+            int[] node_row;
+            node_row= new int[tot_nodes];
+
 
             for(int node = 0; node <= tot_nodes-1; node++) {
                 int flag=1;
                 for(int linked_node=0; linked_node <= linked_nodes.size()-1; linked_node++){
                     if(linked_nodes.get(linked_node)== node){
                         flag = 0;
-                        node_row[node] = edges.get(linked_node).getWeight();
+                        int weight_int = (int) edges.get(linked_node).getWeight();
+                        node_row[node] = weight_int;
+                        //node_row[node] = edges.get(linked_node).getWeight();
                     }
                 }
 
-                if(flag==1){node_row[node] = 0.0;}
+                if(flag==1){
+                    //node_row[node] = 0.0;
+                    node_row[node] = 0;
+                }
             }
             output("                  " + Arrays.toString(node_row),System.out, ps);
         }
