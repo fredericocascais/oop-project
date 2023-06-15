@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="print graph as int">
-      <change afterPath="$PROJECT_DIR$/file2.txt" afterDir="false" />
+    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="changed createGivenGraph">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aco/InputParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/InputParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/WeightedGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/WeightedGraph.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +63,7 @@
       <recent name="C:\Users\herri\IdeaProjects\oop-project\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.File">
+  <component name="RunManager" selected="Application.Random">
     <configuration name="File" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="poo-project" />
@@ -120,6 +118,7 @@
       <workItem from="1686814299729" duration="2738000" />
       <workItem from="1686827914460" duration="2527000" />
       <workItem from="1686830448493" duration="1992000" />
+      <workItem from="1686832516793" duration="1113000" />
     </task>
     <task id="LOCAL-00001" summary="1st commit">
       <created>1685443156891</created>
@@ -233,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686816911272</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="changed createGivenGraph">
+      <created>1686832691036</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1686832691036</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +264,8 @@
     <MESSAGE value="classe InputParameters" />
     <MESSAGE value="print to file and terminal" />
     <MESSAGE value="print graph as int" />
-    <option name="LAST_COMMIT_MESSAGE" value="print graph as int" />
+    <MESSAGE value="changed createGivenGraph" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed createGivenGraph" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

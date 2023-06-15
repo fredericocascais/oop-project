@@ -47,7 +47,9 @@ public class InputParameters {
         output("with graph: ",System.out, ps);
         for(int nodes = 0; nodes <= tot_nodes-1; nodes++) {
             List<Integer> linked_nodes = graph.getNode(nodes).getLinked();
+
             List<Edge> edges = graph.getNode(nodes).getEdges();
+
             //double[] node_row;
             //node_row= new double[tot_nodes];
             int[] node_row;
@@ -85,10 +87,18 @@ public class InputParameters {
         InputParameters.output("                  Top candidate cycles:" , System.out, ps);
         //System.out.print("                  Top candidate cycles:");
         //ps.print("                  Top candidate cycles:");
-        for (HamiltonianCycle top_hamiltonian_cycle : top_hamiltonian_cycles){
+        if(top_hamiltonian_cycles.size()!=0){
+            for (HamiltonianCycle top_hamiltonian_cycle : top_hamiltonian_cycles){
             InputParameters.output("                                                 "+top_hamiltonian_cycle, System.out,ps);
+            }
+        }else{
+            InputParameters.output("                                                 {}", System.out, ps);
         }
-        InputParameters.output("\n                  Best Hamiltonian:              " + hamiltonianCycle, System.out, ps);
+        if(hamiltonianCycle.getTotalWeight()!=0) {
+            InputParameters.output("\n                  Best Hamiltonian:              " + hamiltonianCycle, System.out, ps);
+        }else{
+            InputParameters.output("\n                  Best Hamiltonian:              {}", System.out, ps);
+        }
     }
 
 

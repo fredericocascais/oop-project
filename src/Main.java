@@ -54,10 +54,10 @@ public class Main {
             Pheromones pheromones = new Pheromones(graph.getMaxEdges());
             PEC pec = new PEC();
 
-            ArrayList<Ant> ants = new ArrayList<>(colony_size);
+            //ArrayList<Ant> ants = new ArrayList<>(colony_size);
             for(int i=0; i < colony_size; i++){
                 Ant ant = new Ant(node_1);
-                ants.add(i, ant);
+                //ants.add(i, ant);
                 Edge next_edge = ant.getNextChosenEdge(pheromones, alpha, beta);
                 pec.addEvent(new AntMoveEvent(curr_time,graph,ant,next_edge,delta));
             }
