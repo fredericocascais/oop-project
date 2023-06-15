@@ -8,13 +8,11 @@ import java.util.List;
 
 public class SimulationReportEvent extends Event {
     private final Simulation simulation = Simulation.getSimulation();
-    private final List<HamiltoneanCycle> hamiltoneanCycles;
 
     private final int iteration;
     private static int increment = 1;
 
-    public SimulationReportEvent(List<HamiltoneanCycle> hamiltoneanCycles, double eventTime) {
-        this.hamiltoneanCycles = hamiltoneanCycles;
+    public SimulationReportEvent(double eventTime) {
         setEventTime(eventTime, "true");
         setEventType("simulation-report");
         iteration = increment;

@@ -73,10 +73,10 @@ public class Simulation {
         // Create 20 Simulation Reporting events
         // Each splitted in equal intervals between each other
         while (report_iteration_time * iter < getMaxSimulationTime()) {
-            pec.addEvent( new SimulationReportEvent( hamiltoneanCycleFound, report_iteration_time * iter ));
+            pec.addEvent( new SimulationReportEvent( report_iteration_time * iter ));
             iter++;
         }
-        pec.addEvent( new SimulationReportEvent( hamiltoneanCycleFound, getMaxSimulationTime() ));
+        pec.addEvent( new SimulationReportEvent( getMaxSimulationTime() ));
     }
 
     public void runSimulation(){
