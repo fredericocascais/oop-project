@@ -34,11 +34,6 @@ public class AntMoveEvent extends Event{
     public void executeEvent(){
         int next_node_id = next_edge.getDestination();
 
-        System.out.println("\tant id: " + ant.getId());
-        System.out.println("\tnest node id: " + (nest_node_id));
-        System.out.println("\tcurrent node id: " + ant.getCurrentNode().getId());
-        System.out.println("\tedge traversed: "+ next_edge);
-        System.out.println("\tdestination node id: "+ next_node_id);
         // If path contains the next node's id means that
         // all the neighbouring edges have all been visited so a
         // node has been randomly chosen in a uniform distribution
@@ -51,17 +46,16 @@ public class AntMoveEvent extends Event{
                 ant.addToPathEdges(next_edge);
                 ant.setCurrentNode( graph.getNode(next_node_id) );
 
-
+                // Add pheromones to the edges that were transversed to perform a Hamiltonean Cycle
+                // Create Evaporation Events for each edge that were transversed to perform a hamiltonean cycle
+                // Add the Hamiltonean Cycle to the list of Halmiltonean Cycles found
                 addPheromonesToPathEdges();
                 createEvaporationEvents();
                 addNewHamiltoneanCycle();
 
+                // Reset the Ant's path to initial state
                 ant.resetPath();
                 ant.addToPath(nest_node_id);
-
-                System.out.println("\n\t\t\tHAMILTONEAN FOUND");
-                System.out.println("\t\t\tnext node id: "+  next_node_id);
-                System.out.println("\t\t\tCurrent Hamiltonean Cycle: " + ant.getPath());
             }
             // If it's the case above means that a cycle has been created which means
             // we need to eliminate it by starting over the index/node where the cycle begins
@@ -78,13 +72,9 @@ public class AntMoveEvent extends Event{
             ant.setCurrentNode( getNode(next_node_id) );
         }
 
-        System.out.println("\tCurrent Path edges: "+ant.getPathEdges());
-        System.out.println("\tCurrent Path nodes: "+ant.getPath());
-
         simulation.increaseTotalMoves();
-
         addEventTimeToSimulation();
-        // Add new Move Event for this Ant
+        // Choose a new node to visit and add new Move Event for this Ant
         Edge next_chosen_edge = ant.getNextChosenEdge();
         simulation.addNewEvent( new AntMoveEvent(ant, next_chosen_edge) );
     }
@@ -93,10 +83,10 @@ public class AntMoveEvent extends Event{
         Pheromones pheromones = Pheromones.getPheromones();
         double totalWeight = graph.getTotalWeight();
         double gamma = simulation.getGamma();
+        // Mathematical formula to increment the level of pheromones of the Edge
         double pheromoneIncrease = gamma * totalWeight / ant.getTotalPathWeight();
-        System.out.println("Pheromone increase: " + pheromoneIncrease);
-        for (Edge edge : ant.getPathEdges()){
 
+        for (Edge edge : ant.getPathEdges()){
             pheromones.addPheromone(edge, pheromoneIncrease);
         }
     }
@@ -108,10 +98,8 @@ public class AntMoveEvent extends Event{
 
     private void addNewHamiltoneanCycle(){
         ArrayList<Integer> hamiltoneanPath = new ArrayList<>(ant.getPath());
-
         HamiltoneanCycle hamiltoneanCycle = new HamiltoneanCycle(ant.getTotalPathWeight(), hamiltoneanPath);
         simulation.addHamiltoneanCycle(hamiltoneanCycle);
-
     }
 
 

@@ -1,5 +1,6 @@
 package simulation;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import aco.Ant;
@@ -38,8 +39,6 @@ public class Simulation {
         this.graph = graph;
         this.antColony = new ArrayList<>();
         this.pheromones = Pheromones.getPheromones(graph.getMaxEdges());
-
-
     }
 
 
@@ -57,38 +56,42 @@ public class Simulation {
     }
 
     public void initSimulation(){
-
+        // Create Ants according to the colony size
         for( int i = 0; i < parameters.getColonySize(); i++){
+            // For each new Ant choose an non visited Node to visit and create an Ant Move Event corresponding
+            // to the Ant and the next Edge going to transverse to get to the chosen non visited Node
             Ant ant = new Ant( graph.getNode( getNestNode() - 1 ));
             antColony.add( ant );
             Edge next_edge = ant.getNextChosenEdge();
             pec.addEvent(new AntMoveEvent(ant, next_edge));
         }
 
+
         double report_iteration_time = getMaxSimulationTime()/20;
         int iter = 1;
 
+        // Create 20 Simulation Reporting events
+        // Each splitted in equal intervals between each other
         while (report_iteration_time * iter < getMaxSimulationTime()) {
             pec.addEvent( new SimulationReportEvent( hamiltoneanCycleFound, report_iteration_time * iter ));
             iter++;
         }
+        pec.addEvent( new SimulationReportEvent( hamiltoneanCycleFound, getMaxSimulationTime() ));
     }
 
     public void runSimulation(){
         if (simulation == null) throw new RuntimeException("No instance of Simulation created");
 
+        // Print initial parameters
         parameters.printInputParameters();
         graph.printGraph();
 
+        // Until the current simulation time doesn't reach the final instant
+        // Execute the most recent event
         while (currentSimulationTime < getMaxSimulationTime() ){
             Event next_event = pec.getNextEvent();
-            System.out.println("\nNext event: " + next_event.getEventType());
-            //currentSimulationTime = next_event.getEventTime();
             next_event.executeEvent();
-            System.out.println("Current simulation time: " + currentSimulationTime);
         }
-        System.out.println("\n\tHamiltonean cycles found:\n");
-        System.out.println("\t\t" + hamiltoneanCycleFound);
     }
 
     public double getCurrentSimulationTime() {
@@ -166,6 +169,7 @@ public class Simulation {
         }
         if(!contains_cycle){
             hamiltoneanCycleFound.add(cycle);
+            Collections.sort(hamiltoneanCycleFound);
         }
     }
 
@@ -187,6 +191,17 @@ public class Simulation {
 
     public void addNewEvent( Event new_event ){
         pec.addEvent(new_event);
+    }
+
+    public HamiltoneanCycle getBestCycle(){
+        return hamiltoneanCycleFound.get(0);
+    }
+
+    public List<HamiltoneanCycle> getTopCandidateCycles(){
+        if(hamiltoneanCycleFound.size() < 5){
+            return hamiltoneanCycleFound.subList(1, hamiltoneanCycleFound.size());
+        }
+        return hamiltoneanCycleFound.subList(1,5);
     }
     
 }

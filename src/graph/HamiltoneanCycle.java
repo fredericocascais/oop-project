@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class HamiltoneanCycle {
+public class HamiltoneanCycle implements Comparable<HamiltoneanCycle>{
     private final int totalWeight;
     private final ArrayList<Integer> path;
 
@@ -15,6 +15,11 @@ public class HamiltoneanCycle {
     public ArrayList<Integer> getPath() {
         return path;
     }
+
+    public int getTotalWeight() {
+        return totalWeight;
+    }
+
 
 
     @Override
@@ -35,6 +40,11 @@ public class HamiltoneanCycle {
         }
         HamiltoneanCycle otherCycle = (HamiltoneanCycle) obj;
         return Objects.equals(path, otherCycle.getPath());
+    }
+
+    @Override
+    public int compareTo(HamiltoneanCycle o){
+        return Double.compare(this.totalWeight, o.getTotalWeight());
     }
 
 }

@@ -36,6 +36,7 @@ public class InputParameters {
         String first_line = scanner.nextLine();  //Get parameters from 1st line
         String[] aux = first_line.split(" ");
 
+        // Set properties according to the arguments
         totalNodes = Integer.parseInt(aux[0]);
         nestNode = Integer.parseInt(aux[1]);
         alpha = Double.parseDouble(aux[2]);
@@ -48,6 +49,7 @@ public class InputParameters {
         simulationMaxTime = Double.parseDouble(aux[9]);
         maxWeight = -1;
 
+        // Prepare an array of String to then create an weighted graph
         fileMatrix = new String[totalNodes];
         int nbr_lines=0;
 
@@ -75,16 +77,16 @@ public class InputParameters {
 
     public void printInputParameters(){
         System.out.println("Input Parameters:\n");
-        System.out.println("\t\t\t" + totalNodes + ": number of nodes in the graph");
-        System.out.println("\t\t\t" + nestNode + ": the nest node");
-        System.out.println("\t\t\t" + alpha + ": alpha, ant move event");
-        System.out.println("\t\t\t" + beta + ": beta, ant move event");
-        System.out.println("\t\t\t" + delta + ": delta, ant move event");
-        System.out.println("\t\t\t" + eta + ": eta, pheromone evaporation event");
-        System.out.println("\t\t\t" + rho + ": rho, pheromone evaporation event");
-        System.out.println("\t\t\t" + gamma + ": pheromone level");
-        System.out.println("\t\t\t" + colonySize + ": ant colony size");
-        System.out.println("\t\t\t" + simulationMaxTime + ": final instant");
+        System.out.println("\t\t\t\t" + totalNodes + ": number of nodes in the graph");
+        System.out.println("\t\t\t\t" + nestNode + ": the nest node");
+        System.out.println("\t\t\t\t" + alpha + ": alpha, ant move event");
+        System.out.println("\t\t\t\t" + beta + ": beta, ant move event");
+        System.out.println("\t\t\t\t" + delta + ": delta, ant move event");
+        System.out.println("\t\t\t\t" + eta + ": eta, pheromone evaporation event");
+        System.out.println("\t\t\t\t" + rho + ": rho, pheromone evaporation event");
+        System.out.println("\t\t\t\t" + gamma + ": pheromone level");
+        System.out.println("\t\t\t\t" + colonySize + ": ant colony size");
+        System.out.println("\t\t\t\t" + simulationMaxTime + ": final instant");
     }
 
     public double getAlpha() {

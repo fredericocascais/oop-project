@@ -69,6 +69,8 @@ public class Ant {
     public List<Edge> getNonVisitedNeighEdges(){
         List<Edge> non_visited_edges = new ArrayList<>();
 
+        // For each neighbouring edge check if the destination node has been visite
+        // if not then add to the list of non visited edges
         for ( Edge edge : getNeighEdges()){
             if (  !path.contains( edge.getDestination()) ) {
                 non_visited_edges.add(edge);
@@ -80,15 +82,16 @@ public class Ant {
 
     public Edge getNextChosenEdge(){
         List<Edge> edges = getNonVisitedNeighEdges();
-        System.out.println("\t\tNon Visited Edges: "+edges);
+
+        // if every neighbouring edge (node) has been visited
+        // list of edges to choose is going to be every neighbouring edges
         if( edges.size() == 0) edges = getNeighEdges();
 
         Edge next_edge = null;
-        double norm_const = 0.0;
-
+        double normalize_const = 0.0;
         Pheromones pheromones = Pheromones.getPheromones();
 
-
+        // Calculate the constant for normalization
         for (Edge edge : edges) {
             double edge_fav_outcome = edgeFavorableOutcomeProbability(
                     simulation.getAlpha(),
@@ -96,7 +99,7 @@ public class Ant {
                     pheromones.getPheromoneLevel(edge),
                     edge.getWeight()
             );
-            norm_const += edge_fav_outcome;
+            normalize_const += edge_fav_outcome;
         }
 
 
@@ -104,35 +107,36 @@ public class Ant {
         double p = Math.random();
         double cumulativeProbability = 0.0;
 
+        // Choose randomly an edge while taking consideration of the probability
+        // of choosing each edge randomly
         for (Edge edge : edges) {
-
             cumulativeProbability += edgeFavorableOutcomeProbability(
                     simulation.getAlpha(),
                     simulation.getBeta(),
                     pheromones.getPheromoneLevel(edge),
                     edge.getWeight()
-            ) / norm_const;
+            ) / normalize_const;
             if (p <= cumulativeProbability) {
                 next_edge = edge;
                 break;
             }
         }
-        System.out.println("\t\tNext " + next_edge);
-        return next_edge;
 
+        return next_edge;
     }
 
     private static double edgeFavorableOutcomeProbability(double alpha, double beta, double pheromone, double weight){
+        // Calculate the probability of choosing especific edge
         return  (alpha + pheromone) / (beta + weight);
     }
 
     public void removeCycle(int cycle_start_index){
+        // Remove a cycle that is not hamiltonean
+        // Removes nodes and edges included in the cycle
         for (int i = path.size()-1 ; i > cycle_start_index; i--){
             path.remove(i);
             path_edges.removeLast();
-            System.out.println("\t\tRemoving from index: "+i);
         }
-
     }
 
     public boolean pathIsHamiltonean(int tot_nodes){

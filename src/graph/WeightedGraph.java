@@ -46,9 +46,11 @@ public class WeightedGraph extends AbstractGraph{
 
         Random rand = new Random();
 
+        // Determine randomly the max amount of edges going to be added
         max_edges = rand.nextInt(max_edges - n_nodes) + n_nodes;
         ArrayList<Integer> hamiltonean_path = generateRandomHamiltoneanPath();
 
+        // Unite nodes to create an hamiltonean cycle in the graph
         for (int j = 0; j < hamiltonean_path.size(); j++) {
             if( j + 1 == hamiltonean_path.size()) break;
             int node1 = hamiltonean_path.get(j);
@@ -59,6 +61,7 @@ public class WeightedGraph extends AbstractGraph{
             addEdgeToList( node1, node2 , weight);
         }
 
+        // Unite nodes randomly
         int i = n_nodes;
         while (i <= max_edges) {
             int node1 = rand.nextInt(n_nodes);
@@ -70,8 +73,6 @@ public class WeightedGraph extends AbstractGraph{
             double weight = rand.nextInt(max_weight - 1) + 1;
 
             addEdgeToList( node1, node2 , weight);
-            //System.out.println(weight);
-
             i++;
         }
 
