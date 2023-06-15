@@ -2,6 +2,8 @@ package simulation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -19,7 +21,7 @@ public class InputParameters {
     private double gamma;
     private int colonySize;
     private double simulationMaxTime;
-    private String[] fileMatrix;
+    private List<int[]> fileMatrix;
 
     /**
      * Constructs an InputParameters object and initializes the parameters based on the command-line arguments.
@@ -67,14 +69,32 @@ public class InputParameters {
         maxWeight = -1;
 
         // Prepare an array of String to then create a weighted graph
-        fileMatrix = new String[totalNodes];
-        int nbrLines = 0;
-
+        fileMatrix = new ArrayList<>();
+        int diagonalIndex = 0;
         while (scanner.hasNextLine()) {
             String fileLine = scanner.nextLine();
-            fileMatrix[nbrLines] = fileLine;
-            nbrLines += 1;
+            String[] matrixFileLine = fileLine.split("\\s+");
+
+            if(matrixFileLine.length != totalNodes) throw new RuntimeException("Invalid matrix : invalid size");
+
+            int[] weights = new int[matrixFileLine.length];
+
+            for(int i = 0;i < weights.length;i++)
+            {
+                // Note that this is assuming valid input
+                // If you want to check then add a try/catch
+                // and another index for the numbers if to continue adding the others (see below)
+                weights[i] = Integer.parseInt(matrixFileLine[i]);
+                if (weights[i] < 0) throw new RuntimeException("Invalid matrix : negative weight");
+                if (weights[diagonalIndex] != 0) {
+                    throw new RuntimeException("Invalid matrix : node cannot have an edge connecting to itself");
+                }
+
+            }
+            fileMatrix.add(weights);
+            diagonalIndex++;
         }
+
     }
 
     /**
@@ -217,7 +237,7 @@ public class InputParameters {
      *
      * @return the file matrix
      */
-    public String[] getFileMatrix() {
+    public List<int[]> getFileMatrix() {
         return fileMatrix;
     }
 }

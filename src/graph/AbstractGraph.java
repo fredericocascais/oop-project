@@ -42,7 +42,7 @@ public abstract class AbstractGraph implements IGraph{
     }
 
     @Override
-    public void addEdgeToList(int n1, int n2, double weight) {
+    public void addEdgeToList(int n1, int n2, int weight) {
 
     }
 
