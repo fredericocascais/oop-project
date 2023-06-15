@@ -5,6 +5,7 @@ import java.util.List;
 import aco.Ant;
 import aco.AntMoveEvent;
 import aco.Pheromones;
+import aco.SimulationReportEvent;
 import graph.Edge;
 import graph.HamiltoneanCycle;
 import graph.WeightedGraph;
@@ -24,8 +25,10 @@ public class Simulation {
     
     int totalMoves = 0;
     int totalEvaporations = 0;
-    double currentTime = 0;
+    double currentSimulationTime = 0;
     List<HamiltoneanCycle> hamiltoneanCycleFound = new ArrayList<>();
+
+    private final PEC pec = PEC.getPEC();
 
     public Simulation(
         InputParameters parameters,
@@ -36,12 +39,7 @@ public class Simulation {
         this.antColony = new ArrayList<>();
         this.pheromones = Pheromones.getPheromones(graph.getMaxEdges());
 
-        for( int i = 0; i < parameters.getColonySize(); i++){
-            Ant ant = new Ant( graph.getNode( getNestNode() ));
-            antColony.add( new Ant( graph.getNode( getNestNode() )));
-            Edge next_edge = ant.getNextChosenEdge();
-            PEC.getPEC().addEvent(new AntMoveEvent(ant, next_edge));
-        }
+
     }
 
 
@@ -58,19 +56,43 @@ public class Simulation {
         } return simulation;
     }
 
-    public void runSimulation(){
-        PEC pec = PEC.getPEC();
-        while (currentTime < getSimulationTime() ){
-            Event next_event = pec.getNextEvent();
-            currentTime = next_event.getEventTime();
-            next_event.executeEvent();
+    public void initSimulation(){
 
-            checkHamiltonean()
+        for( int i = 0; i < parameters.getColonySize(); i++){
+            Ant ant = new Ant( graph.getNode( getNestNode() - 1 ));
+            antColony.add( ant );
+            Edge next_edge = ant.getNextChosenEdge();
+            pec.addEvent(new AntMoveEvent(ant, next_edge));
+        }
+
+        double report_iteration_time = getMaxSimulationTime()/20;
+        int iter = 1;
+
+        while (report_iteration_time * iter < getMaxSimulationTime()) {
+            pec.addEvent( new SimulationReportEvent( hamiltoneanCycleFound, report_iteration_time * iter ));
+            iter++;
         }
     }
 
-    public double getCurrentTime() {
-      return currentTime;
+    public void runSimulation(){
+        if (simulation == null) throw new RuntimeException("No instance of Simulation created");
+
+        parameters.printInputParameters();
+        graph.printGraph();
+
+        while (currentSimulationTime < getMaxSimulationTime() ){
+            Event next_event = pec.getNextEvent();
+            System.out.println("\nNext event: " + next_event.getEventType());
+            //currentSimulationTime = next_event.getEventTime();
+            next_event.executeEvent();
+            System.out.println("Current simulation time: " + currentSimulationTime);
+        }
+        System.out.println("\n\tHamiltonean cycles found:\n");
+        System.out.println("\t\t" + hamiltoneanCycleFound);
+    }
+
+    public double getCurrentSimulationTime() {
+      return currentSimulationTime;
     }
 
     public int getTotalNodes() {
@@ -101,16 +123,17 @@ public class Simulation {
         return parameters.getRho();
     }
 
-    public double getGamma() {
-        return parameters.getGamma();
-    }
+
+    public double getGamma() { return parameters.getGamma(); }
+
+    public double getMaxWeight() { return parameters.getMaxWeight(); }
 
     public int getColonySize() {
         return parameters.getColonySize();
     }
 
-    public double getSimulationTime() {
-        return parameters.getSimulationTime();
+    public double getMaxSimulationTime() {
+        return parameters.getMaxSimulationTime();
     }
 
     public WeightedGraph getGraph() {
@@ -134,7 +157,16 @@ public class Simulation {
     }
 
     public void addHamiltoneanCycle(HamiltoneanCycle cycle){
-        hamiltoneanCycleFound.add(cycle);
+        boolean contains_cycle = false;
+        for (HamiltoneanCycle hamiltonian_cycle : hamiltoneanCycleFound) {
+            if (hamiltonian_cycle.equals( cycle )) {
+                contains_cycle = true;
+                break;
+            }
+        }
+        if(!contains_cycle){
+            hamiltoneanCycleFound.add(cycle);
+        }
     }
 
     public void addAnt(Ant ant){
@@ -142,7 +174,7 @@ public class Simulation {
     }
 
     public void increaseCurrentTime(double increment){
-        currentTime+=increment;
+        currentSimulationTime = increment;
     }
 
     public void increaseTotalMoves(){
@@ -151,6 +183,10 @@ public class Simulation {
 
     public void increaseTotalEvaporations() {
         totalEvaporations+=1;
+    }
+
+    public void addNewEvent( Event new_event ){
+        pec.addEvent(new_event);
     }
     
 }

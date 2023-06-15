@@ -4,7 +4,7 @@ public class Edge implements IEdge{
     private final int destination;
 
     private final double weight;
-    private int id;
+    private final int id;
     private static int count = 0;
     public Edge(int dest, double weight){
         this.destination = dest;
@@ -28,17 +28,17 @@ public class Edge implements IEdge{
         return weight;
     }
 
+
     public Edge getReverseEdge(){
         int reverseEdgeId;
-        if(id%2==0){
-            reverseEdgeId = id +1;
+        if( (id % 2) == 0){
+            reverseEdgeId = id + 1;
         }else{
-            reverseEdgeId = id -1;
+            reverseEdgeId = id - 1;
         }
         WeightedGraph graph = WeightedGraph.getGraph();
         Node destNode = graph.getNode(destination);
-        Edge reverseEdge = destNode.getEdgeById(reverseEdgeId);
-        return reverseEdge;
+        return destNode.getEdgeById(reverseEdgeId);
     }
 
    /* @Override

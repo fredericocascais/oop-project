@@ -13,7 +13,12 @@ public abstract class Event implements IEvent, Comparable<Event>{
 
     private Random rand = new Random();
     public void setEventTime(double mean){
-        event_time = simulation.getCurrentTime() + expDistribution(mean);
+        event_time = simulation.getCurrentSimulationTime() + expDistribution(mean);
+    }
+
+    public void setEventTime(double time, String manual){
+        if(manual.equals("true")) event_time = time;
+
     }
     public double getEventTime(){
         return event_time;

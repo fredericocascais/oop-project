@@ -1,5 +1,7 @@
 package graph;
 
+import simulation.InputParameters;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,12 +17,13 @@ public class Graph extends AbstractGraph{
         this.adjList[ n2 ].addEdgeToNode( n1 );
     }
 
-    public void addEdgeToList(int n1, int n2, double weight){
+    @Override
+    public void addEdgeToList(int n1, int n2, double weight) {
         throw new RuntimeException("Error addEdgeToList(int n1, int n2, double weight): Cannot add a Weighted Edge to an Unweighted Graph.\n");
     }
 
     @Override
-    public void createGivenGraph(int tot_nodes, String[] line, WeightedGraph graph) {
+    public void createGivenGraph(InputParameters parameters) {
 
     }
 

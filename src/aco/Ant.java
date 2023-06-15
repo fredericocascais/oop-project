@@ -7,26 +7,27 @@ import simulation.Simulation;
 import java.util.*;
 
 public class Ant {
-    private Simulation simulation = Simulation.getSimulation();
+    private final Simulation simulation = Simulation.getSimulation();
 
+    private int id;
+    private static int id_increments = 0;
     private Node current_node;
-    private double path_cost;
-    private ArrayList<Integer> path;
-
+    private final ArrayList<Integer> path;
     private LinkedList<Edge> path_edges;
 
-    public Ant(){
-        path = new ArrayList<>();
-    }
 
     public Ant(Node node){
         this.current_node = node;
         path = new ArrayList<>();
+        path.add(current_node.getId());
         path_edges = new LinkedList<>();
-
+        this.id=id_increments;
+        id_increments++;
     }
 
-
+    public int getId() {
+        return id;
+    }
     public LinkedList<Edge> getPathEdges() {
         return path_edges;
     }
@@ -50,8 +51,19 @@ public class Ant {
     }
 
 
+
+
     public List<Edge> getNeighEdges(){
         return current_node.getEdges();
+    }
+
+    public int getTotalPathWeight(){
+        int sum = 0;
+        for (Edge edge : path_edges){
+            sum += edge.getWeight();
+        }
+
+        return sum;
     }
 
     public List<Edge> getNonVisitedNeighEdges(){
@@ -68,6 +80,7 @@ public class Ant {
 
     public Edge getNextChosenEdge(){
         List<Edge> edges = getNonVisitedNeighEdges();
+        System.out.println("\t\tNon Visited Edges: "+edges);
         if( edges.size() == 0) edges = getNeighEdges();
 
         Edge next_edge = null;
@@ -80,7 +93,7 @@ public class Ant {
             double edge_fav_outcome = edgeFavorableOutcomeProbability(
                     simulation.getAlpha(),
                     simulation.getBeta(),
-                    pheromones.getPheromone(edge),
+                    pheromones.getPheromoneLevel(edge),
                     edge.getWeight()
             );
             norm_const += edge_fav_outcome;
@@ -96,7 +109,7 @@ public class Ant {
             cumulativeProbability += edgeFavorableOutcomeProbability(
                     simulation.getAlpha(),
                     simulation.getBeta(),
-                    pheromones.getPheromone(edge),
+                    pheromones.getPheromoneLevel(edge),
                     edge.getWeight()
             ) / norm_const;
             if (p <= cumulativeProbability) {
@@ -104,6 +117,7 @@ public class Ant {
                 break;
             }
         }
+        System.out.println("\t\tNext " + next_edge);
         return next_edge;
 
     }
@@ -116,6 +130,7 @@ public class Ant {
         for (int i = path.size()-1 ; i > cycle_start_index; i--){
             path.remove(i);
             path_edges.removeLast();
+            System.out.println("\t\tRemoving from index: "+i);
         }
 
     }

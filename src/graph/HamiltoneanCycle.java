@@ -1,18 +1,22 @@
 package graph;
 import java.util.ArrayList;
-import java.util.Stack;
+import java.util.Objects;
+
 
 public class HamiltoneanCycle {
-    private int totalWeight;
-    private ArrayList<Integer> path;
+    private final int totalWeight;
+    private final ArrayList<Integer> path;
 
     private ArrayList<Edge> edges;
 
-    public HamiltoneanCycle(int totalWeight, ArrayList<Integer> path, ArrayList<Edge> edges){
+    public HamiltoneanCycle(int totalWeight, ArrayList<Integer> path){
         this.path = path;
         this.totalWeight = totalWeight;
-        this.edges = edges;
     }
+    public ArrayList<Integer> getPath() {
+        return path;
+    }
+
 
     @Override
     public String toString(){
@@ -21,4 +25,17 @@ public class HamiltoneanCycle {
 
         return pathString + ":" + totalWeight;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        HamiltoneanCycle otherCycle = (HamiltoneanCycle) obj;
+        return Objects.equals(path, otherCycle.getPath());
+    }
+
 }

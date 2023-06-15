@@ -2,21 +2,20 @@ package simulation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class InputParameters {
     private  int totalNodes;
     private int maxWeight;
     private int nestNode;
-    private int alpha;
-    private int beta;
-    private int delta;
-    private int eta;
-    private int rho;
-    private int gamma;
+    private double alpha;
+    private double beta;
+    private double delta;
+    private double eta;
+    private double rho;
+    private double gamma;
     private int colonySize;
-    private int simulationTime;
+    private double simulationMaxTime;
     private String[] fileMatrix;
 
 
@@ -39,14 +38,15 @@ public class InputParameters {
 
         totalNodes = Integer.parseInt(aux[0]);
         nestNode = Integer.parseInt(aux[1]);
-        alpha = Integer.parseInt(aux[2]);
-        beta = Integer.parseInt(aux[3]);
-        delta = Integer.parseInt(aux[4]);
-        eta = Integer.parseInt(aux[5]); //n, evaporation event
-        rho = Integer.parseInt(aux[6]); //p, evaporation event
-        gamma = Integer.parseInt(aux[7]); //y, pheromone level
+        alpha = Double.parseDouble(aux[2]);
+        beta = Double.parseDouble(aux[3]);
+        delta = Double.parseDouble(aux[4]);
+        eta = Double.parseDouble(aux[5]); //n, evaporation event
+        rho = Double.parseDouble(aux[6]); //p, evaporation event
+        gamma = Double.parseDouble(aux[7]); //y, pheromone level
         colonySize = Integer.parseInt(aux[8]);
-        simulationTime = Integer.parseInt(aux[9]);
+        simulationMaxTime = Double.parseDouble(aux[9]);
+        maxWeight = -1;
 
         fileMatrix = new String[totalNodes];
         int nbr_lines=0;
@@ -63,17 +63,31 @@ public class InputParameters {
          totalNodes = Integer.parseInt(args[1]);
          maxWeight = Integer.parseInt(args[2]);
          nestNode = Integer.parseInt(args[3]); //nest node
-         alpha = Integer.parseInt(args[4]);
-         beta = Integer.parseInt(args[5]);
-         delta = Integer.parseInt(args[6]);
-         eta = Integer.parseInt(args[7]); //n, evaporation event
-         rho = Integer.parseInt(args[8]); //p, evaporation event
-         gamma = Integer.parseInt(args[9]); //y, pheromone level
+         alpha = Double.parseDouble(args[4]);
+         beta = Double.parseDouble(args[5]);
+         delta = Double.parseDouble(args[6]);
+         eta = Double.parseDouble(args[7]); //n, evaporation event
+         rho = Double.parseDouble(args[8]); //p, evaporation event
+         gamma = Double.parseDouble(args[9]); //y, pheromone level
          colonySize = Integer.parseInt(args[10]);
-         simulationTime = Integer.parseInt(args[11]);
+         simulationMaxTime = Double.parseDouble(args[11]);
     }
 
-    public int getAlpha() {
+    public void printInputParameters(){
+        System.out.println("Input Parameters:\n");
+        System.out.println("\t\t\t" + totalNodes + ": number of nodes in the graph");
+        System.out.println("\t\t\t" + nestNode + ": the nest node");
+        System.out.println("\t\t\t" + alpha + ": alpha, ant move event");
+        System.out.println("\t\t\t" + beta + ": beta, ant move event");
+        System.out.println("\t\t\t" + delta + ": delta, ant move event");
+        System.out.println("\t\t\t" + eta + ": eta, pheromone evaporation event");
+        System.out.println("\t\t\t" + rho + ": rho, pheromone evaporation event");
+        System.out.println("\t\t\t" + gamma + ": pheromone level");
+        System.out.println("\t\t\t" + colonySize + ": ant colony size");
+        System.out.println("\t\t\t" + simulationMaxTime + ": final instant");
+    }
+
+    public double getAlpha() {
         return alpha;
     }
 
@@ -89,23 +103,23 @@ public class InputParameters {
         return nestNode;
     }
 
-    public int getBeta() {
+    public double getBeta() {
         return beta;
     }
 
-    public int getDelta() {
+    public double getDelta() {
         return delta;
     }
 
-    public int getEta() {
+    public double getEta() {
         return eta;
     }
 
-    public int getRho() {
+    public double getRho() {
         return rho;
     }
 
-    public int getGamma() {
+    public double getGamma() {
         return gamma;
     }
 
@@ -113,8 +127,8 @@ public class InputParameters {
         return colonySize;
     }
 
-    public int getSimulationTime() {
-        return simulationTime;
+    public double getMaxSimulationTime() {
+        return simulationMaxTime;
     }
 
     public String[] getFileMatrix() {

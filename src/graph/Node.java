@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Node {
     private final int id;
-    private List<Edge> edges = new ArrayList<>();
-    private List<Integer> linkedNodes = new ArrayList<>();
+    private final List<Edge> edges = new ArrayList<>();
+    private final List<Integer> linkedNodes = new ArrayList<>();
 
     public Node(int id){
         this.id = id;

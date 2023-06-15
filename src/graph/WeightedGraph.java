@@ -3,6 +3,8 @@ package graph;
 import simulation.InputParameters;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class WeightedGraph extends AbstractGraph{
@@ -44,7 +46,7 @@ public class WeightedGraph extends AbstractGraph{
 
         Random rand = new Random();
 
-        int num_edges = rand.nextInt(max_edges - n_nodes) + n_nodes;
+        max_edges = rand.nextInt(max_edges - n_nodes) + n_nodes;
         ArrayList<Integer> hamiltonean_path = generateRandomHamiltoneanPath();
 
         for (int j = 0; j < hamiltonean_path.size(); j++) {
@@ -58,7 +60,7 @@ public class WeightedGraph extends AbstractGraph{
         }
 
         int i = n_nodes;
-        while (i <= num_edges) {
+        while (i <= max_edges) {
             int node1 = rand.nextInt(n_nodes);
             int node2 = rand.nextInt(n_nodes);
 
@@ -73,6 +75,29 @@ public class WeightedGraph extends AbstractGraph{
             i++;
         }
 
+    }
+
+    public void printGraph(){
+        System.out.println("\t\t with graph:");
+
+        for (int i = 0; i <= getTotalNodes() - 1; i++){
+            List<Integer> linked_nodes = getNode(i).getLinkedNodes();
+            List<Edge> edges = getNode(i).getEdges();
+            double[] node_row;
+            node_row = new double[getTotalNodes()];
+
+            for(int node = 0; node <= getTotalNodes() - 1; node++) {
+                int flag=1;
+                for(int linked_node = 0; linked_node <= linked_nodes.size() - 1; linked_node++){
+                    if(linked_nodes.get(linked_node) == node){
+                        flag = 0;
+                        node_row[node] = edges.get(linked_node).getWeight();
+                    }
+                }
+                if(flag==1){node_row[node] = 0.0;}
+            }
+            System.out.println("\t\t\t" + Arrays.toString(node_row));
+        }
     }
     @Override
     public void createGivenGraph(InputParameters parameters){
@@ -96,6 +121,8 @@ public class WeightedGraph extends AbstractGraph{
     public void createRandomGraph(){
         throw new RuntimeException("Error createRandomGraph(): Cannot create a Random Weighted Graph without weights.\n");
     }
+
+
 
 
 }

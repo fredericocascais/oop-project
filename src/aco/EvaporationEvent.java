@@ -7,6 +7,7 @@ import simulation.Simulation;
 public class EvaporationEvent extends Event{
     private final Edge edge;
 
+
     Simulation simulation = Simulation.getSimulation();
 
     public EvaporationEvent(Edge edge){
@@ -16,21 +17,21 @@ public class EvaporationEvent extends Event{
         setEventTime(simulation.getEta());
     }
 
-    public Object executeEvent(){
+    public void executeEvent(){
         Pheromones pheromones = Pheromones.getPheromones();
         double decrease = simulation.getRho();
-        double edgePheromone = pheromones.getPheromone(edge);
+        double edgePheromone = pheromones.getPheromoneLevel(edge);
+        if (edgePheromone <= 0) return;
         if(edgePheromone > decrease){
             edgePheromone-=decrease;
         }else{
             edgePheromone=0;
         }
         pheromones.setPheromone(edge, edgePheromone);
+        pheromones.setPheromone(edge.getReverseEdge(), edgePheromone);
+        simulation.addNewEvent(  new EvaporationEvent(edge) );
         addEventTimeToSimulation();     
-        return edge;   
-    }        
-    public Edge getEdge(){
-        return edge;
     }
+
 
 }
