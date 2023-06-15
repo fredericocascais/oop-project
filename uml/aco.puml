@@ -1,0 +1,86 @@
+@startuml
+
+package "aco"{
+  class Ant {
+    - simulation: Simulation
+    - id: int
+    - id_increments: int
+    - current_node: Node
+    - path: ArrayList<Integer>
+    - path_edges: LinkedList<Edge>
+
+    + Ant(node: Node)
+    + getId(): int
+    + getPathEdges(): LinkedList<Edge>
+    + setCurrentNode(node: Node): void
+    + getCurrentNode(): Node
+    + addToPath(node_id: int): void
+    + addToPathEdges(edge: Edge): void
+    + getPath(): ArrayList<Integer>
+    + getNeighEdges(): List<Edge>
+    + getTotalPathWeight(): int
+    + getNonVisitedNeighEdges(): List<Edge>
+    + getNextChosenEdge(): Edge
+    + removeCycle(cycle_start_index: int): void
+    + pathIsHamiltonian(tot_nodes: int): boolean
+    + resetPath(): void
+  }
+
+  class AntMoveEvent {
+    - simulation: Simulation
+    - graph: WeightedGraph
+    - ant: Ant
+    - current_ant_path: ArrayList<Integer>
+    - nest_node_id: int
+    - next_edge: Edge
+
+    + AntMoveEvent(ant: Ant, next_edge: Edge)
+    + getAnt(): Ant
+    + executeEvent(): void
+    + addPheromonesToPathEdges(): void
+    + createEvaporationEvents(): void
+    - getNode(node_id: int): Node
+    + addNewHamiltonianCycle(): void
+  }
+
+  class EvaporationEvent {
+    - edge: Edge
+    - simulation: Simulation
+
+    + EvaporationEvent(edge: Edge)
+    + executeEvent(): void
+    + getEdge(): Edge
+  }
+
+  class Pheromones {
+    - tunnels: ArrayList<Double>
+    - pheromones: Pheromones
+
+    + Pheromones(max_edges: int)
+    + getPheromones(): Pheromones
+    + getPheromones(max_edges: int): Pheromones
+    + addPheromone(edge: Edge, add_pheromones: double): void
+    + setPheromone(edge: Edge, pheromoneLevel: double): void
+    + getPheromoneLevel(edge: Edge): double
+  }
+
+  class SimulationReportEvent {
+    - simulation: Simulation
+    - iteration: int
+    - increment: int
+
+    + SimulationReportEvent(eventTime: double)
+    + executeEvent(): void
+  }
+
+  Ant "1" *-- "1" Simulation
+  AntMoveEvent "1" *-- "1" Ant
+  AntMoveEvent "1" *-- "1" WeightedGraph
+  AntMoveEvent "1" *-- "1" Simulation
+  AntMoveEvent "1" *-- "1" Edge
+  EvaporationEvent "1" *-- "1" Edge
+  EvaporationEvent "1" *-- "1" Simulation
+  Pheromones "1" --* "n" Edge
+  SimulationReportEvent "1" *-- "1" Simulation
+}
+@enduml

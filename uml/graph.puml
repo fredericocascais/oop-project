@@ -1,0 +1,85 @@
+@startuml
+
+package graph {
+  class AbstractGraph {
+    -n_nodes: int
+    -max_edges: int
+    -adjList: Node[]
+
+    +AbstractGraph(n_nodes: int)
+    +getNode(id: int): Node
+    +getNodeList(): Node[]
+    +addEdgeToList(n1: int, n2: int)
+    +addEdgeToList(n1: int, n2: int, weight: double)
+    +generateRandomHamiltonianPath(): ArrayList<Integer>
+    +getMaxEdges(): int
+    +getTotalNodes(): int
+  }
+
+  interface IEdge {
+    +getDestination(): int
+    +getId(): int
+  }
+
+  class Edge {
+    -destination: int
+    -weight: double
+    -id: int
+    -count: int
+
+    +Edge(dest: int, weight: double)
+    +getDestination(): int
+    +getId(): int
+    +getWeight(): double
+    +getReverseEdge(): Edge
+    +toString(): String
+  }
+
+  class Node {
+    -id: int
+    -edges: List<Edge>
+    -linkedNodes: List<Integer>
+
+    +Node(id: int)
+    +addEdgeToNode(dest: int)
+    +addEdgeToNode(dest: int, weight: double)
+    +getEdges(): List<Edge>
+    +getEdgeById(edgeId: int): Edge
+    +getLinkedNodes(): List<Integer>
+    +getId(): int
+    +toString(): String
+  }
+
+  class HamiltonianCycle implements Comparable<HamiltonianCycle> {
+    -totalWeight: int
+    -path: ArrayList<Integer>
+
+    +HamiltonianCycle(totalWeight: int, path: ArrayList<Integer>)
+    +getPath(): ArrayList<Integer>
+    +getTotalWeight(): int
+    +toString(): String
+    +equals(obj: Object): boolean
+    +compareTo(o: HamiltonianCycle): int
+  }
+
+  class WeightedGraph extends AbstractGraph {
+    -totalWeight: double
+
+    +WeightedGraph(totalNodes: int)
+    +getTotalWeight(): double
+    +addEdgeToList(n1: int, n2: int, weight: double)
+    +createRandomGraph(max_weight: int)
+    +printGraph(): void
+    +createGivenGraph(parameters: InputParameters)
+  }
+
+  class Graph extends AbstractGraph {
+    +Graph(n_nodes: int)
+    +addEdgeToList(n1: int, n2: int)
+    +createRandomGraph(): void
+    +createGivenGraph(parameters: InputParameters)
+  }
+
+}
+
+@enduml

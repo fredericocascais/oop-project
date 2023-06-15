@@ -1,0 +1,46 @@
+@startuml
+
+package pec {
+    class Event {
+        -event_time: double
+        -event_type: String
+        +setEventTime(mean: double): void
+        +setEventTime(time: double, manual: String): void
+        +getEventTime(): double
+        +getEventType(): String
+        +setEventType(type: String): void
+        -expDistribution(mean: double): double
+        +addEventTimeToSimulation(): void
+        +compareTo(o: Event): int
+    }
+
+    interface IEvent {
+        +setEventTime(mean: double): void
+        +getEventTime(): double
+        +getEventType(): String
+        +setEventType(type: String): void
+        +addEventTimeToSimulation(): void
+        +executeEvent(): void
+    }
+
+    class PEC {
+        -eventList: List<Event>
+        -eventIndex: int
+        -instance: PEC
+        +getPEC(): PEC
+        +getNextEvent(): Event
+        +getCurrEvent(): Event
+        +addEvent(newEvent: Event): void
+        +hasEvent(edge: Edge): boolean
+        +toString(): String
+    }
+}
+
+Event <|.. IEvent
+PEC --> "1" Event: Manages
+PEC --> Edge: Uses
+PEC --> Simulation: Uses
+PEC --> Logger: Uses
+PEC --> WeightedGraph: Uses
+
+@enduml

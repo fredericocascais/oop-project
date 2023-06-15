@@ -1,0 +1,15 @@
+@startuml
+
+package logger {
+  class Logger {
+    - second: PrintStream
+    + Logger(main: OutputStream, second: PrintStream)
+    + close(): void
+    + flush(): void
+    + write(buf: byte[], off: int, len: int): void
+    + write(b: int): void
+    + write(b: byte[]): void
+  }
+}
+
+@enduml

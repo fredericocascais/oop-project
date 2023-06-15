@@ -1,0 +1,87 @@
+@startuml
+
+package simulation {
+    class InputParameters {
+        + InputParameters(String[]) throws FileNotFoundException
+        + addParametersFromFile(String[]) throws FileNotFoundException
+        + addParametersFromArguments(String[])
+        + printInputParameters() : void
+        + getAlpha() : double
+        + getTotalNodes() : int
+        + getMaxWeight() : int
+        + getNestNode() : int
+        + getBeta() : double
+        + getDelta() : double
+        + getEta() : double
+        + getRho() : double
+        + getGamma() : double
+        + getColonySize() : int
+        + getMaxSimulationTime() : double
+        + getFileMatrix() : String[]
+        - totalNodes : int
+        - maxWeight : int
+        - nestNode : int
+        - alpha : double
+        - beta : double
+        - delta : double
+        - eta : double
+        - rho : double
+        - gamma : double
+        - colonySize : int
+        - simulationMaxTime : double
+        - fileMatrix : String[]
+    }
+
+    class Simulation {
+        + getSimulation() : Simulation
+        + getSimulation(InputParameters, WeightedGraph) : Simulation
+        + initSimulation() : void
+        + runSimulation() : void
+        + getCurrentSimulationTime() : double
+        + getTotalNodes() : int
+        + getNestNode() : int
+        + getAlpha() : double
+        + getBeta() : double
+        + getDelta() : double
+        + getEta() : double
+        + getRho() : double
+        + getGamma() : double
+        + getMaxWeight() : double
+        + getColonySize() : int
+        + getMaxSimulationTime() : double
+        + getGraph() : WeightedGraph
+        + getAntColony() : List<Ant>
+        + getTotalMoves() : int
+        + getTotalEvaporations() : int
+        + getHamiltonianCycles() : List<HamiltonianCycle>
+        + addHamiltonianCycle(HamiltonianCycle) : void
+        + addAnt(Ant) : void
+        + increaseCurrentTime(double) : void
+        + increaseTotalMoves() : void
+        + increaseTotalEvaporations() : void
+        + addNewEvent(Event) : void
+        + getBestCycle() : HamiltonianCycle
+        + getTopCandidateCycles() : List<HamiltonianCycle>
+        - parameters : InputParameters
+        - graph : WeightedGraph
+        - pheromones : Pheromones
+        - antColony : List<Ant>
+        - totalMoves : int
+        - totalEvaporations : int
+        - currentSimulationTime : double
+        - hamiltonianCycleFound : List<HamiltonianCycle>
+        - pec : PEC
+        + Simulation(InputParameters, WeightedGraph)
+    }
+
+    InputParameters --> FileNotFoundException: Throws
+    InputParameters --> Simulation: Uses    
+    Simulation --> InputParameters: Uses
+    Simulation --> WeightedGraph: Uses
+    Simulation --> Pheromones: Uses
+    Simulation --> Ant: Association
+    Simulation --> HamiltonianCycle: Association
+    Simulation --> PEC: Uses
+}
+
+@enduml
