@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="print to file and terminal">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aco/InputParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/InputParameters.java" afterDir="false" />
-    </list>
+    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="print graph as int" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +59,7 @@
       <recent name="C:\Users\herri\IdeaProjects\oop-project\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Random">
+  <component name="RunManager" selected="Application.File">
     <configuration name="File" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="poo-project" />
@@ -114,7 +111,7 @@
       <workItem from="1686734135334" duration="8168000" />
       <workItem from="1686754828397" duration="21740000" />
       <workItem from="1686777204228" duration="1171000" />
-      <workItem from="1686814299729" duration="2011000" />
+      <workItem from="1686814299729" duration="2456000" />
     </task>
     <task id="LOCAL-00001" summary="1st commit">
       <created>1685443156891</created>
@@ -214,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686815691061</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="print graph as int">
+      <created>1686816342433</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686816342433</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,7 +242,8 @@
     <MESSAGE value="-r e -f funcionar com varias formigas" />
     <MESSAGE value="classe InputParameters" />
     <MESSAGE value="print to file and terminal" />
-    <option name="LAST_COMMIT_MESSAGE" value="print to file and terminal" />
+    <MESSAGE value="print graph as int" />
+    <option name="LAST_COMMIT_MESSAGE" value="print graph as int" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

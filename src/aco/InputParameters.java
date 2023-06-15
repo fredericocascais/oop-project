@@ -70,7 +70,7 @@ public class InputParameters {
                     node_row[node] = 0;
                 }
             }
-            output("                  " + Arrays.toString(node_row),System.out, ps);
+            output("                  " + Arrays.toString(node_row).replace("[","").replace("]","").replace(",",""),System.out, ps);
         }
     }
     public static void printSteps(int observation_number, double time_interval , int number_move_events , int number_evap_events, HamiltonianCycle hamiltonianCycle,
