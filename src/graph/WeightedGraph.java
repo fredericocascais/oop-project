@@ -127,7 +127,7 @@ public class WeightedGraph extends AbstractGraph {
      * Each row represents a node, and the entries in each row represent the weights of the edges.
      */
     public void printGraph() {
-        System.out.println("\t\t with graph:");
+        System.out.println("\t with graph:");
 
         for (int i = 0; i <= getTotalNodes() - 1; i++) {
             List<Integer> linked_nodes = getNode(i).getLinkedNodes();
@@ -147,7 +147,7 @@ public class WeightedGraph extends AbstractGraph {
                     node_row[node] = 0;
                 }
             }
-            System.out.println("\t\t\t" + Arrays.toString(node_row).replaceAll("[,\\[\\]]", ""));
+            System.out.println("\t\t\t\t" + Arrays.toString(node_row).replaceAll("[,\\[\\]]", ""));
         }
     }
     /**

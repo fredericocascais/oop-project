@@ -6,6 +6,8 @@ import simulation.Simulation;
 
 import java.util.List;
 
+import static java.lang.System.exit;
+
 /**
  * The SimulationReportEvent class represents an event that generates a simulation report.
  * It prints various statistics and information about the current state of the simulation.
@@ -33,7 +35,7 @@ public class SimulationReportEvent extends Event {
      */
     @Override
     public void executeEvent() {
-        System.out.println("Observation " + iteration + ":");
+        System.out.println("\n\nObservation " + iteration + ":");
         System.out.println("\t\t\t\t" + "Present instant:               " + simulation.getCurrentSimulationTime());
         System.out.println("\t\t\t\t" + "Number of move events:         " + simulation.getTotalMoves());
         System.out.println("\t\t\t\t" + "Number of evaporation events:  " + simulation.getTotalEvaporations());
@@ -44,9 +46,10 @@ public class SimulationReportEvent extends Event {
             }
         }
         if (simulation.getHamiltonianCycles().size() > 0) {
-            System.out.println("\t\t\t\t" + "Best Hamiltonian:              " + simulation.getBestCycle());
+            System.out.println("\n\t\t\t\t" + "Best Hamiltonian:              " + simulation.getBestCycle());
         } else {
-            System.out.println("\t\t\t\t" + "Best Hamiltonian:              " + "{}");
+            System.out.println("\n\t\t\t\t" + "Best Hamiltonian:              " + "{}");
         }
+        if (iteration == 20) exit(0);
     }
 }

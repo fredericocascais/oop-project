@@ -1,5 +1,4 @@
 Input Parameters:
-
 				5: number of nodes in the graph
 				1: the nest node
 				1.0: alpha, ant move event
@@ -8,99 +7,258 @@ Input Parameters:
 				2.0: eta, pheromone evaporation event
 				10.0: rho, pheromone evaporation event
 				0.5: pheromone level
-				200: ant colony size
+				100: ant colony size
 				300.0: final instant
-		 with graph:
-			0 3 6 6 2
-			3 0 3 2 5
-			6 3 0 0 0
-			6 2 0 0 1
-			2 5 0 1 0
+	 with graph:
+				0 3 6 6 2
+				3 0 3 2 5
+				6 3 0 0 0
+				6 2 0 0 1
+				2 5 0 1 0
+
+
 Observation 1:
-				Present instant:               14.994060641511279
-				Number of move events:         5677
-				Number of evaporation events:  62
+				Present instant:               14.996695707889515
+				Number of move events:         2780
+				Number of evaporation events:  118
 				Top candidate cycles:          
 				                               {1, 5, 4, 2, 3}:14
 				                               {1, 4, 5, 2, 3}:21
+
 				Best Hamiltonian:              {1, 3, 2, 4, 5}:14
+
+
 Observation 2:
-				Present instant:               29.997085963242093
-				Number of move events:         11302
-				Number of evaporation events:  133
+				Present instant:               29.996021016730143
+				Number of move events:         5344
+				Number of evaporation events:  300
 				Top candidate cycles:          
 				                               {1, 5, 4, 2, 3}:14
 				                               {1, 4, 5, 2, 3}:21
+
 				Best Hamiltonian:              {1, 3, 2, 4, 5}:14
+
+
 Observation 3:
-				Present instant:               44.99705213938563
-				Number of move events:         16930
-				Number of evaporation events:  194
+				Present instant:               44.99354367898251
+				Number of move events:         7928
+				Number of evaporation events:  472
 				Top candidate cycles:          
 				                               {1, 5, 4, 2, 3}:14
 				                               {1, 4, 5, 2, 3}:21
+
 				Best Hamiltonian:              {1, 3, 2, 4, 5}:14
+
+
 Observation 4:
-				Present instant:               59.99925693588767
-				Number of move events:         22421
-				Number of evaporation events:  273
+				Present instant:               59.99443584559879
+				Number of move events:         10455
+				Number of evaporation events:  641
 				Top candidate cycles:          
 				                               {1, 5, 4, 2, 3}:14
 				                               {1, 4, 5, 2, 3}:21
+
 				Best Hamiltonian:              {1, 3, 2, 4, 5}:14
+
+
 Observation 5:
-				Present instant:               74.99918694064213
-				Number of move events:         28047
-				Number of evaporation events:  351
+				Present instant:               74.99986493309096
+				Number of move events:         13129
+				Number of evaporation events:  822
 				Top candidate cycles:          
 				                               {1, 5, 4, 2, 3}:14
 				                               {1, 4, 5, 2, 3}:21
+
 				Best Hamiltonian:              {1, 3, 2, 4, 5}:14
+
+
 Observation 6:
-				Present instant:               89.99944008122749
-				Number of move events:         33670
-				Number of evaporation events:  423
+				Present instant:               89.98256518476757
+				Number of move events:         15729
+				Number of evaporation events:  998
 				Top candidate cycles:          
 				                               {1, 5, 4, 2, 3}:14
 				                               {1, 4, 5, 2, 3}:21
+
 				Best Hamiltonian:              {1, 3, 2, 4, 5}:14
+
+
 Observation 7:
-				Present instant:               104.99604134424574
-				Number of move events:         39051
-				Number of evaporation events:  503
+				Present instant:               104.99786523274275
+				Number of move events:         18418
+				Number of evaporation events:  1156
 				Top candidate cycles:          
 				                               {1, 5, 4, 2, 3}:14
+				                               {1, 5, 2, 4, 3}:15
 				                               {1, 4, 5, 2, 3}:21
+
 				Best Hamiltonian:              {1, 3, 2, 4, 5}:14
+
+
 Observation 8:
-				Present instant:               119.99975443207025
-				Number of move events:         44579
-				Number of evaporation events:  573
+				Present instant:               119.99760382079675
+				Number of move events:         20981
+				Number of evaporation events:  1320
 				Top candidate cycles:          
 				                               {1, 5, 4, 2, 3}:14
+				                               {1, 5, 2, 4, 3}:15
+				                               {1, 5, 2, 3, 4}:18
 				                               {1, 4, 5, 2, 3}:21
+
 				Best Hamiltonian:              {1, 3, 2, 4, 5}:14
+
+
 Observation 9:
-				Present instant:               134.99866194048056
-				Number of move events:         50006
-				Number of evaporation events:  645
+				Present instant:               134.9982263091104
+				Number of move events:         23523
+				Number of evaporation events:  1468
 				Top candidate cycles:          
 				                               {1, 5, 4, 2, 3}:14
-				                               {1, 4, 5, 2, 3}:21
+				                               {1, 2, 3, 4, 5}:14
+				                               {1, 5, 2, 4, 3}:15
+				                               {1, 5, 2, 3, 4}:18
+
 				Best Hamiltonian:              {1, 3, 2, 4, 5}:14
+
+
 Observation 10:
-				Present instant:               149.99832973158576
-				Number of move events:         55572
-				Number of evaporation events:  706
+				Present instant:               149.99992834478428
+				Number of move events:         26177
+				Number of evaporation events:  1633
 				Top candidate cycles:          
 				                               {1, 5, 4, 2, 3}:14
-				                               {1, 4, 5, 2, 3}:21
+				                               {1, 2, 3, 4, 5}:14
+				                               {1, 5, 2, 4, 3}:15
+				                               {1, 5, 2, 3, 4}:18
+
 				Best Hamiltonian:              {1, 3, 2, 4, 5}:14
+
+
 Observation 11:
-				Present instant:               164.99754514025565
-				Number of move events:         61140
-				Number of evaporation events:  765
+				Present instant:               164.9965893896874
+				Number of move events:         28969
+				Number of evaporation events:  1801
 				Top candidate cycles:          
 				                               {1, 5, 4, 2, 3}:14
-				                               {1, 4, 5, 2, 3}:21
+				                               {1, 2, 3, 4, 5}:14
+				                               {1, 5, 2, 4, 3}:15
+				                               {1, 5, 2, 3, 4}:18
+
 				Best Hamiltonian:              {1, 3, 2, 4, 5}:14
+
+
+Observation 12:
+				Present instant:               179.99948754769218
+				Number of move events:         31890
+				Number of evaporation events:  1981
+				Top candidate cycles:          
+				                               {1, 3, 2, 4, 5}:14
+				                               {1, 5, 4, 2, 3}:14
+				                               {1, 2, 3, 4, 5}:14
+				                               {1, 5, 2, 4, 3}:15
+
+				Best Hamiltonian:              {1, 4, 2, 3, 5}:11
+
+
+Observation 13:
+				Present instant:               194.99346093060157
+				Number of move events:         34720
+				Number of evaporation events:  2130
+				Top candidate cycles:          
+				                               {1, 3, 2, 4, 5}:14
+				                               {1, 5, 4, 2, 3}:14
+				                               {1, 2, 3, 4, 5}:14
+				                               {1, 5, 2, 4, 3}:15
+
+				Best Hamiltonian:              {1, 4, 2, 3, 5}:11
+
+
+Observation 14:
+				Present instant:               209.99702304347662
+				Number of move events:         37609
+				Number of evaporation events:  2284
+				Top candidate cycles:          
+				                               {1, 3, 2, 4, 5}:14
+				                               {1, 5, 4, 2, 3}:14
+				                               {1, 2, 3, 4, 5}:14
+				                               {1, 5, 2, 4, 3}:15
+
+				Best Hamiltonian:              {1, 4, 2, 3, 5}:11
+
+
+Observation 15:
+				Present instant:               224.99691058202896
+				Number of move events:         40492
+				Number of evaporation events:  2471
+				Top candidate cycles:          
+				                               {1, 2, 4, 3, 5}:11
+				                               {1, 3, 2, 4, 5}:14
+				                               {1, 5, 4, 2, 3}:14
+				                               {1, 2, 3, 4, 5}:14
+
+				Best Hamiltonian:              {1, 4, 2, 3, 5}:11
+
+
+Observation 16:
+				Present instant:               239.99182849451367
+				Number of move events:         43324
+				Number of evaporation events:  2647
+				Top candidate cycles:          
+				                               {1, 2, 4, 3, 5}:11
+				                               {1, 3, 2, 4, 5}:14
+				                               {1, 5, 4, 2, 3}:14
+				                               {1, 2, 3, 4, 5}:14
+
+				Best Hamiltonian:              {1, 4, 2, 3, 5}:11
+
+
+Observation 17:
+				Present instant:               254.99282747105798
+				Number of move events:         46203
+				Number of evaporation events:  2806
+				Top candidate cycles:          
+				                               {1, 2, 4, 3, 5}:11
+				                               {1, 3, 2, 4, 5}:14
+				                               {1, 5, 4, 2, 3}:14
+				                               {1, 2, 3, 4, 5}:14
+
+				Best Hamiltonian:              {1, 4, 2, 3, 5}:11
+
+
+Observation 18:
+				Present instant:               269.9964708508087
+				Number of move events:         49227
+				Number of evaporation events:  2955
+				Top candidate cycles:          
+				                               {1, 2, 4, 3, 5}:11
+				                               {1, 3, 2, 4, 5}:14
+				                               {1, 5, 4, 2, 3}:14
+				                               {1, 2, 3, 4, 5}:14
+
+				Best Hamiltonian:              {1, 4, 2, 3, 5}:11
+
+
+Observation 19:
+				Present instant:               284.9998268740151
+				Number of move events:         52233
+				Number of evaporation events:  3133
+				Top candidate cycles:          
+				                               {1, 2, 4, 3, 5}:11
+				                               {1, 3, 2, 4, 5}:14
+				                               {1, 5, 4, 2, 3}:14
+				                               {1, 2, 3, 4, 5}:14
+
+				Best Hamiltonian:              {1, 4, 2, 3, 5}:11
+
+
+Observation 20:
+				Present instant:               299.99699088464274
+				Number of move events:         55320
+				Number of evaporation events:  3304
+				Top candidate cycles:          
+				                               {1, 2, 4, 3, 5}:11
+				                               {1, 3, 2, 4, 5}:14
+				                               {1, 5, 4, 2, 3}:14
+				                               {1, 2, 3, 4, 5}:14
+
+				Best Hamiltonian:              {1, 4, 2, 3, 5}:11

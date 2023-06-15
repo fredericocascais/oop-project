@@ -57,24 +57,6 @@ public class PEC {
         Collections.sort(eventList);
     }
 
-    /**
-     * Checks if there is an event associated with the specified edge.
-     *
-     * @param edge the edge to check
-     * @return true if there is an event associated with the edge, false otherwise
-     */
-    public boolean hasEvent(Edge edge) {
-        for (Event event : eventList) {
-            if (event.getEventType().equals("evaporation")) {
-                EvaporationEvent evaporationEvent = (EvaporationEvent) event;
-                Edge eventEdge = evaporationEvent.getEdge();
-                if (eventEdge == edge) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
     @Override
     public String toString() {

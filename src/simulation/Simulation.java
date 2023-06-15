@@ -115,6 +115,11 @@ public class Simulation {
         }
     }
 
+
+    public Pheromones getPheromones() {
+        return pheromones;
+    }
+
     /**
      * Retrieves the current simulation time.
      *
@@ -350,5 +355,6 @@ public class Simulation {
         }
         return hamiltonianCycleFound.subList(1,5);
     }
-    
+
+
 }

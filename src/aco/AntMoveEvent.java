@@ -9,6 +9,7 @@ import pec.PEC;
 import simulation.Simulation;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * The AntMoveEvent class represents an event where an ant moves along an edge in the graph.
@@ -68,8 +69,8 @@ public class AntMoveEvent extends Event{
                 // Add pheromones to the edges that were traversed to perform a Hamiltonian Cycle
                 // Create Evaporation Events for each edge that were traversed to perform a Hamiltonian Cycle
                 // Add the Hamiltonian Cycle to the list of Hamiltonian Cycles found
-                addPheromonesToPathEdges();
                 createEvaporationEvents();
+                addPheromonesToPathEdges();
                 addNewHamiltonianCycle();
 
                 // Reset the Ant's path to the initial state
@@ -139,9 +140,11 @@ public class AntMoveEvent extends Event{
      * Evaporation events are responsible for reducing the pheromone level of the edges over time.
      */
     public void createEvaporationEvents(){
-        PEC pec = PEC.getPEC();
-        for ( Edge edge : ant.getPathEdges()){
-            if(!pec.hasEvent(edge)){
+        Pheromones pheromones = simulation.getPheromones();
+        LinkedList<Edge> path_edges = new LinkedList<>( ant.getPathEdges() );
+
+        for ( Edge edge : path_edges ){
+            if(pheromones.getPheromoneLevel(edge) <= 0){
                 simulation.addNewEvent( new EvaporationEvent(edge));
             }
         }
