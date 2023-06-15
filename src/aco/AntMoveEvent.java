@@ -55,7 +55,7 @@ public class AntMoveEvent extends Event{
             // so we add only the edge that leads to the nest node
             if ( next_node_id == nest_node_id && current_ant_path.size() == graph.getTotalNodes()) {
                 ant.addToPathEdges(next_edge);
-                ant.setCurrentNode( graph.getNode(next_node_id) );
+                ant.setCurrentNode( graph.getNode(nest_node_id) );
 
                 // Create Evaporation Events for each edge that were traversed to perform a Hamiltonian Cycle
                 // Add pheromones to the edges that were traversed to perform a Hamiltonian Cycle

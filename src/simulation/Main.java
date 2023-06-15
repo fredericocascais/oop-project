@@ -1,13 +1,12 @@
+package simulation;
+
 import graph.WeightedGraph;
 import logger.Logger;
-import simulation.InputParameters;
-import simulation.Simulation;
-
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 /**
- * The Main class is the entry point of the program.
+ * The simulation.Main class is the entry point of the program.
  * It parses command line arguments, initializes objects, and runs the simulation.
  */
 public class Main {

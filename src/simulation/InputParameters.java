@@ -42,7 +42,7 @@ public class InputParameters {
      * @throws FileNotFoundException if the input file specified in the arguments is not found
      */
     public void addParametersFromFile(String[] args) throws FileNotFoundException {
-        String current_directory = System.getProperty("user.dir") + "/src/";
+        String current_directory = System.getProperty("user.dir") + "/";
         File input_file;
 
         if (args[1].startsWith("./")) input_file = new File(current_directory + args[1].substring(2));

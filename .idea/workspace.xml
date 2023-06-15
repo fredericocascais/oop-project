@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="testado com random">
+    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="bugfix (ciclos eram biases)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TESTS/simulation.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/TESTS/simulation.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aco/Ant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/Ant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aco/AntMoveEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/AntMoveEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aco/SimulationReportEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/SimulationReportEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graph/AbstractGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/AbstractGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graph/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graph/WeightedGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/WeightedGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pec/PEC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pec/PEC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simulation/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulation/Simulation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,30 +70,30 @@
       <recent name="C:\Users\herri\IdeaProjects\oop-project\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
-    <configuration name="Main (1)" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+  <component name="RunManager" selected="Application.input file">
+    <configuration name="input file" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="simulation.Main" />
       <module name="poo-project" />
       <option name="PROGRAM_PARAMETERS" value="-f TESTS/simulation.txt" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="random graph" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="simulation.Main" />
       <module name="poo-project" />
-      <option name="PROGRAM_PARAMETERS" value="-r 5 10 2 1.0 1.0 0.2 2.0 10.0 0.5 1 200.0" />
+      <option name="PROGRAM_PARAMETERS" value="-r 5 10 2 1.0 1.0 0.2 2.0 10.0 0.5 2 100.0" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main (1)" />
-      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.input file" />
+      <item itemvalue="Application.random graph" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.random graph" />
       </list>
     </recent_temporary>
   </component>
@@ -185,7 +190,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686854583483</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="bugfix (ciclos eram biases)">
+      <created>1686854898520</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1686854898520</updated>
+    </task>
+    <task id="LOCAL-00012" summary="bugfix (ciclos eram biases)">
+      <created>1686854922144</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1686854922144</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,7 +227,8 @@
     <MESSAGE value="3rd commit" />
     <MESSAGE value="add HamiltonianCycle" />
     <MESSAGE value="testado com random" />
-    <option name="LAST_COMMIT_MESSAGE" value="testado com random" />
+    <MESSAGE value="bugfix (ciclos eram biases)" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix (ciclos eram biases)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

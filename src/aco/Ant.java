@@ -2,6 +2,7 @@ package aco;
 
 import graph.Edge;
 import graph.Node;
+import graph.WeightedGraph;
 import simulation.Simulation;
 
 import java.util.*;
@@ -180,7 +181,6 @@ public class Ant {
                 break;
             }
         }
-
         return next_edge;
     }
 
@@ -210,6 +210,10 @@ public class Ant {
             path.remove(i);
             path_edges.removeLast();
         }
+        int lastNodeId = path.get( path.size() - 1);
+        WeightedGraph graph = WeightedGraph.getGraph();
+
+        current_node = graph.getNode(lastNodeId);
     }
 
     /**

@@ -106,13 +106,14 @@ public class WeightedGraph extends AbstractGraph {
         }
 
         // Unite nodes randomly
-        int i = n_nodes;
+        int i = n_nodes + 1;
         while (i <= max_edges) {
             int node1 = rand.nextInt(n_nodes);
             int node2 = rand.nextInt(n_nodes);
 
             if (node1 == node2) continue;
             if (adjList[node1].getLinkedNodes().contains(node2)) continue;
+            if (adjList[node2].getLinkedNodes().contains(node1)) continue;
 
             double weight = rand.nextInt(max_weight - 1) + 1;
 
@@ -162,7 +163,7 @@ public class WeightedGraph extends AbstractGraph {
 
         for (int origin_node = 0; origin_node <= parameters.getTotalNodes() - 1; origin_node++) {
             weights_in_line = line[origin_node].split(" ");
-            for(int dest_node = origin_node + 1; dest_node <= weights_in_line.length - 1; dest_node++) {
+            for(int dest_node = origin_node + 1; dest_node <= parameters.getTotalNodes() - 1; dest_node++) {
                 if(!weights_in_line[dest_node].equals("0")) {
                     graph.addEdgeToList(origin_node,dest_node,Double.parseDouble(weights_in_line[dest_node]));
                 }

@@ -1,20 +1,20 @@
 package pec;
 
-import java.util.ArrayList;
+
 import java.util.Collections;
-import java.util.List;
+import java.util.LinkedList;
+
 
 /**
  * The PEC (Pseudo Event Control) class represents the event control system in the simulation.
  * It manages the list of events and provides methods for adding, retrieving, and checking events.
  */
 public class PEC {
-    private final List<Event> eventList;
-    private int eventIndex = 0;
+    private final LinkedList<Event> eventList;
     private static final PEC instance = new PEC();
 
     private PEC() {
-        eventList = new ArrayList<>();
+        eventList = new LinkedList<>();
     }
 
     /**
@@ -32,7 +32,7 @@ public class PEC {
      * @return the next event
      */
     public Event getNextEvent() {
-        return eventList.get(eventIndex++);
+        return eventList.remove();
     }
 
 
@@ -47,8 +47,8 @@ public class PEC {
     }
 
 
-    @Override
-    public String toString() {
-        return eventList.get(eventIndex).toString();
-    }
+//    @Override
+//    public String toString() {
+//        return eventList.get(eventIndex).toString();
+//    }
 }

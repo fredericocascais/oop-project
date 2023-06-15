@@ -1,1 +1,1 @@
-Main-Class: Main
+simulation.Main-Class: simulation.Main

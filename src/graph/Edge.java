@@ -74,6 +74,6 @@ public class Edge implements IEdge{
      */
     @Override
     public String toString(){
-        return "edge id: " + id + " with weight = " + weight;
+        return "edge id: " + id + " with weight = " + weight + " and destination = " + destination;
     }
 }
