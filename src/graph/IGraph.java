@@ -40,7 +40,7 @@ public interface IGraph {
      * @param n2 The ID of the second node.
      * @param weight The weight of the edge.
      */
-    void addEdgeToList(int n1, int n2, double weight);
+    void addEdgeToList(int n1, int n2, int weight);
 
     /**
      * Creates a random graph.

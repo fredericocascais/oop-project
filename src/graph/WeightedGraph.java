@@ -63,7 +63,7 @@ public class WeightedGraph extends AbstractGraph {
      * @param weight The weight of the edge.
      */
     @Override
-    public void addEdgeToList(int n1, int n2, double weight) {
+    public void addEdgeToList(int n1, int n2, int weight) {
         this.adjList[n1].addEdgeToNode(n2, weight);
         this.adjList[n2].addEdgeToNode(n1, weight);
         totalWeight += weight;
@@ -100,7 +100,7 @@ public class WeightedGraph extends AbstractGraph {
             int node1 = hamiltonian_path.get(j);
             int node2 = hamiltonian_path.get(j + 1);
 
-            double weight = rand.nextInt(max_weight - 1) + 1;
+            int weight = rand.nextInt(max_weight - 1) + 1;
 
             addEdgeToList(node1, node2, weight);
         }
@@ -115,7 +115,7 @@ public class WeightedGraph extends AbstractGraph {
             if (adjList[node1].getLinkedNodes().contains(node2)) continue;
             if (adjList[node2].getLinkedNodes().contains(node1)) continue;
 
-            double weight = rand.nextInt(max_weight - 1) + 1;
+            int weight = rand.nextInt(max_weight - 1) + 1;
 
             addEdgeToList(node1, node2, weight);
             i++;
@@ -158,14 +158,14 @@ public class WeightedGraph extends AbstractGraph {
      */
     @Override
     public void createGivenGraph(InputParameters parameters) {
-        String[] line = parameters.getFileMatrix();
-        String[] weights_in_line;
-
+        List<int[]> fileMatrix = parameters.getFileMatrix();
+        int[] weights_in_line;
         for (int origin_node = 0; origin_node <= parameters.getTotalNodes() - 1; origin_node++) {
-            weights_in_line = line[origin_node].split(" ");
+            weights_in_line = fileMatrix.get(origin_node);
+
             for(int dest_node = origin_node + 1; dest_node <= parameters.getTotalNodes() - 1; dest_node++) {
-                if(!weights_in_line[dest_node].equals("0")) {
-                    graph.addEdgeToList(origin_node,dest_node,Double.parseDouble(weights_in_line[dest_node]));
+                if(weights_in_line[dest_node] != 0) {
+                    graph.addEdgeToList(origin_node,dest_node, weights_in_line[dest_node]);
                 }
             }
 

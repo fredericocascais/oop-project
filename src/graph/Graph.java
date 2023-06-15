@@ -41,7 +41,7 @@ public class Graph extends AbstractGraph{
      * @param weight The weight of the edge.
      */
     @Override
-    public void addEdgeToList(int n1, int n2, double weight) {
+    public void addEdgeToList(int n1, int n2, int weight) {
         throw new RuntimeException("Error addEdgeToList(int n1, int n2, double weight): Cannot add a Weighted Edge to an Unweighted Graph.\n");
     }
 
