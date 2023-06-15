@@ -1,8 +1,5 @@
 package pec;
 
-import aco.EvaporationEvent;
-import graph.Edge;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +9,7 @@ import java.util.List;
  * It manages the list of events and provides methods for adding, retrieving, and checking events.
  */
 public class PEC {
-    private List<Event> eventList;
+    private final List<Event> eventList;
     private int eventIndex = 0;
     private static final PEC instance = new PEC();
 
@@ -38,14 +35,6 @@ public class PEC {
         return eventList.get(eventIndex++);
     }
 
-    /**
-     * Returns the current event in the event list.
-     *
-     * @return the current event
-     */
-    public Event getCurrEvent() {
-        return eventList.get(eventIndex);
-    }
 
     /**
      * Adds a new event to the event list and sorts the list based on event time.

@@ -4,7 +4,6 @@ import graph.HamiltonianCycle;
 import pec.Event;
 import simulation.Simulation;
 
-import java.util.List;
 
 import static java.lang.System.exit;
 

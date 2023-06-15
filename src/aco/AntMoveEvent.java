@@ -5,7 +5,6 @@ import graph.HamiltonianCycle;
 import graph.Node;
 import graph.WeightedGraph;
 import pec.Event;
-import pec.PEC;
 import simulation.Simulation;
 
 import java.util.ArrayList;
@@ -38,14 +37,6 @@ public class AntMoveEvent extends Event{
         setEventTime(simulation.getDelta() * next_edge.getWeight());
     }
 
-    /**
-     * Gets the ant associated with this event.
-     *
-     * @return The ant associated with this event.
-     */
-    public Ant getAnt() {
-        return ant;
-    }
 
     /**
      * Executes the ant move event by updating the ant's path, checking for cycles or completion of Hamiltonian path,
