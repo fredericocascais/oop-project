@@ -22,11 +22,6 @@ public class Graph extends AbstractGraph{
     }
 
     @Override
-    public void createGivenGraph(int tot_nodes, String[] line, WeightedGraph graph) {
-
-    }
-
-    @Override
     public void createRandomGraph(){
 
         Random rand = new Random();

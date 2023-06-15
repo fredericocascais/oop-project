@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="print graph as int" />
+    <list default="true" id="e09d383f-4b02-4138-961d-b328b88af1e6" name="Changes" comment="print graph as int">
+      <change afterPath="$PROJECT_DIR$/file2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aco/InputParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/InputParameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graph/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graph/WeightedGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/WeightedGraph.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +77,7 @@
     <configuration name="Random" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="poo-project" />
-      <option name="PROGRAM_PARAMETERS" value="-r 10 20 2 1.0 1.0 0.2 2.0 10.0 0.5 20 50.0" />
+      <option name="PROGRAM_PARAMETERS" value="-r 10 10 2 1.0 1.0 0.2 2.0 10.0 0.5 20 50.0" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -111,7 +117,9 @@
       <workItem from="1686734135334" duration="8168000" />
       <workItem from="1686754828397" duration="21740000" />
       <workItem from="1686777204228" duration="1171000" />
-      <workItem from="1686814299729" duration="2456000" />
+      <workItem from="1686814299729" duration="2738000" />
+      <workItem from="1686827914460" duration="2527000" />
+      <workItem from="1686830448493" duration="1992000" />
     </task>
     <task id="LOCAL-00001" summary="1st commit">
       <created>1685443156891</created>
@@ -218,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686816342433</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="print graph as int">
+      <created>1686816911272</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1686816911272</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
