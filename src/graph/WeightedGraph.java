@@ -157,15 +157,17 @@ public class WeightedGraph extends AbstractGraph {
      */
     @Override
     public void createGivenGraph(InputParameters parameters) {
-        String[] weight;
         String[] line = parameters.getFileMatrix();
-        for (int og_node = 0; og_node <= parameters.getTotalNodes() - 1; og_node++) {
-            weight = line[og_node].split(" ");
-            for (int dest_node = 0; dest_node <= weight.length - 1; dest_node++) {
-                if (!weight[dest_node].equals("0")) {
-                    graph.addEdgeToList(og_node, dest_node, Double.parseDouble(weight[dest_node]));
+        String[] weights_in_line;
+
+        for (int origin_node = 0; origin_node <= parameters.getTotalNodes() - 1; origin_node++) {
+            weights_in_line = line[origin_node].split(" ");
+            for(int dest_node = origin_node + 1; dest_node <= weights_in_line.length - 1; dest_node++) {
+                if(!weights_in_line[dest_node].equals("0")) {
+                    graph.addEdgeToList(origin_node,dest_node,Double.parseDouble(weights_in_line[dest_node]));
                 }
             }
+
         }
     }
      /**
