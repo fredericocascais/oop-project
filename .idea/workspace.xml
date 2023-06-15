@@ -12,7 +12,7 @@
       <change beforePath="$PROJECT_DIR$/src/aco/AntMoveEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/AntMoveEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aco/Pheromones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/Pheromones.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aco/SimulationReportEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aco/SimulationReportEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graph/HamiltoneanCycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/HamiltoneanCycle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graph/HamiltonianCycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/HamiltonianCycle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graph/WeightedGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph/WeightedGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/simulation/InputParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulation/InputParameters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/simulation/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulation/Simulation.java" afterDir="false" />
@@ -163,14 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686666538640</updated>
     </task>
-    <task id="LOCAL-00007" summary="add HamiltoneanCycle">
+    <task id="LOCAL-00007" summary="add HamiltonianCycle">
       <created>1686833242395</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
       <updated>1686833242395</updated>
     </task>
-    <task id="LOCAL-00008" summary="add HamiltoneanCycle">
+    <task id="LOCAL-00008" summary="add HamiltonianCycle">
       <created>1686833408449</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
@@ -205,7 +205,7 @@
     <MESSAGE value="1st commit" />
     <MESSAGE value="2nd commit" />
     <MESSAGE value="3rd commit" />
-    <MESSAGE value="add HamiltoneanCycle" />
+    <MESSAGE value="add HamiltonianCycle" />
     <MESSAGE value="testado com random" />
     <option name="LAST_COMMIT_MESSAGE" value="testado com random" />
   </component>

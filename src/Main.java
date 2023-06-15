@@ -2,13 +2,23 @@ import graph.WeightedGraph;
 import logger.Logger;
 import simulation.InputParameters;
 import simulation.Simulation;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-
-
+/**
+ * The Main class is the entry point of the program.
+ * It parses command line arguments, initializes objects, and runs the simulation.
+ */
 public class Main {
 
+    /**
+     * The main method is the entry point of the program.
+     * It parses command line arguments, initializes objects, and runs the simulation.
+     *
+     * @param args The command line arguments.
+     * @throws FileNotFoundException If the output file is not found.
+     */
     public static void main(String[] args) throws FileNotFoundException {
         // If there's less than 2 arguments the execution stops
         if(args.length<2){
@@ -33,9 +43,5 @@ public class Main {
         Simulation simulation = Simulation.getSimulation(parameters, graph);
         simulation.initSimulation();
         simulation.runSimulation();
-
-
     }
-
-
 }

@@ -1,7 +1,7 @@
 # Object Oriented Programming Project - Ant Colony Optimization for TSP
 
 ## How to Run 
-javac src/**/*.java
+javac src/**/*.java src/*.java
 
 jar -cmf manifest.txt simulation.jar -C src .
 

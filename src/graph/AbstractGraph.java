@@ -1,15 +1,22 @@
 package graph;
 
-import simulation.InputParameters;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * The AbstractGraph class provides a base implementation for common graph operations.
+ * It serves as an abstract class that can be extended by concrete graph implementations.
+ */
 public abstract class AbstractGraph implements IGraph{
     protected int n_nodes;
     protected int max_edges;
     protected Node[] adjList;
 
+    /**
+     * Constructs an AbstractGraph object with the specified number of nodes.
+     *
+     * @param n_nodes The number of nodes in the graph.
+     */
     public AbstractGraph(int n_nodes){
         this.n_nodes = n_nodes;
         this.max_edges = (n_nodes * (n_nodes - 1)) / 2;
@@ -39,41 +46,37 @@ public abstract class AbstractGraph implements IGraph{
 
     }
 
-
-    //public abstract void createGivenGraph(int tot_nodes, String[] line, WeightedGraph graph);
-
+    /**
+     * Generates a random Hamiltonian path in the graph.
+     *
+     * @return The randomly generated Hamiltonian path.
+     */
     @Override
-    public void createRandomGraph() {
-
-    }
-
-    @Override
-    public void createGivenGraph(InputParameters parameters) {
-
-    }
-
-    @Override
-    public void createRandomGraph(int max_weight) {
-
-    }
-
-
-    @Override
-    public ArrayList<Integer> generateRandomHamiltoneanPath() {
-        ArrayList<Integer> hamiltonean_path = new ArrayList<>(n_nodes);
+    public ArrayList<Integer> generateRandomHamiltonianPath() {
+        ArrayList<Integer> hamiltonian_path = new ArrayList<>(n_nodes);
 
         for (int i = 0; i < n_nodes; i++)
-            hamiltonean_path.add(i);
+            hamiltonian_path.add(i);
 
-        Collections.shuffle(hamiltonean_path);
+        Collections.shuffle(hamiltonian_path);
 
-        return hamiltonean_path;
+        return hamiltonian_path;
     }
 
+    /**
+     * Gets the maximum number of edges in the graph.
+     *
+     * @return The maximum number of edges.
+     */
     public int getMaxEdges() {
         return max_edges;
     }
 
+    /**
+     * Gets the total number of nodes in the graph.
+     *
+     * @return The total number of nodes.
+     */
     public int getTotalNodes() {
         return n_nodes;
     }
