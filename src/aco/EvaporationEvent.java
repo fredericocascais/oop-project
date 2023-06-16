@@ -9,9 +9,15 @@ import simulation.Simulation;
  * It handles the execution of the event and updates the pheromone level accordingly.
  */
 public class EvaporationEvent extends Event{
+    /**
+     * The Edge associated with the event.
+     */
     private final Edge edge;
 
-    Simulation simulation = Simulation.getSimulation();
+    /**
+     * The Simulation instance used in the context of the event.
+     */
+    private Simulation simulation = Simulation.getSimulation();
 
     /**
      * Constructs an EvaporationEvent object for the specified edge.

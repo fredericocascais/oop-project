@@ -9,7 +9,14 @@ import java.util.Objects;
  * It implements the Comparable interface to enable comparison between cycles based on their total weight.
  */
 public class HamiltonianCycle implements Comparable<HamiltonianCycle>{
+    /**
+     * The total weight of the path.
+     */
     private final int totalWeight;
+
+    /**
+     * The list of node IDs representing the path.
+     */
     private final ArrayList<Integer> path;
 
     /**

@@ -14,9 +14,9 @@ package graph {
   }
 
   abstract class AbstractGraph implements IGraph{
-    -n_nodes: int
-    -max_edges: int
-    -adjList: Node[]
+    # n_nodes: int
+    # max_edges: int
+    # adjList: Node[]
 
     + AbstractGraph(n_nodes: int)
     + getNode(id: int): Node

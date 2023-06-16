@@ -5,9 +5,24 @@ package graph;
  * It contains information such as the destination node, weight, and ID of the edge.
  */
 public class Edge implements IEdge{
+    /**
+     * The destination node of the edge.
+     */
     private final int destination;
+
+    /**
+     * The weight of the edge.
+     */
     private final double weight;
+
+    /**
+     * The unique identifier of the edge.
+     */
     private final int id;
+
+    /**
+     * The count used to assign unique identifiers to edges.
+     */
     private static int count = 0;
 
     /**

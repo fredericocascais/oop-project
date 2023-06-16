@@ -12,9 +12,19 @@ import static java.lang.System.exit;
  * It prints various statistics and information about the current state of the simulation.
  */
 public class SimulationReportEvent extends Event {
+    /**
+     * The Simulation instance used for accessing simulation-related functionality.
+     */
     private final Simulation simulation = Simulation.getSimulation();
 
+    /**
+     * The iteration number for the current object instance.
+     */
     private final int iteration;
+
+    /**
+     * The increment value used for iteration numbering.
+     */
     private static int increment = 1;
 
     /**

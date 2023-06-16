@@ -26,9 +26,10 @@ public class Main {
         }
 
         // Prepare logger to output an output file of what was printed in the terminal
-        FileOutputStream file = new FileOutputStream("output.txt");
-        Logger logger = new Logger(file, System.out);
-        System.setOut(logger);
+        FileOutputStream file = new FileOutputStream("output.txt", false);
+        Logger outLogger = new Logger(file, System.out);
+        System.setOut(outLogger);
+        System.setErr(outLogger);
 
         // Initialize necessary objects
         InputParameters parameters = new InputParameters(args);

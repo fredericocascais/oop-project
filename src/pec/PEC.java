@@ -6,13 +6,23 @@ import java.util.LinkedList;
 
 
 /**
- * The PEC (Pseudo Event Control) class represents the event control system in the simulation.
+ * The PEC (Pending Event Container) class represents the event control system in the simulation.
  * It manages the list of events and provides methods for adding, retrieving, and checking events.
  */
 public class PEC {
+    /**
+     * List of events in the PEC.
+     */
     private final LinkedList<Event> eventList;
+
+    /**
+     * Singleton instance of the PEC.
+     */
     private static final PEC instance = new PEC();
 
+    /**
+     * Constructs a PEC object.
+     */
     private PEC() {
         eventList = new LinkedList<>();
     }
@@ -45,10 +55,4 @@ public class PEC {
         eventList.add(newEvent);
         Collections.sort(eventList);
     }
-
-
-//    @Override
-//    public String toString() {
-//        return eventList.get(eventIndex).toString();
-//    }
 }

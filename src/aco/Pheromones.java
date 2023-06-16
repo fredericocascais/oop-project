@@ -9,7 +9,14 @@ import java.util.Collections;
  * It allows adding and retrieving the pheromone levels for specific edges.
  */
 public class Pheromones {
+    /**
+     * The list of tunnel weights associated with the node.
+     */
     private final ArrayList<Double> tunnels;
+
+    /**
+     * The Pheromones instance used for managing pheromone levels.
+     */
     private static Pheromones pheromones;
 
     /**

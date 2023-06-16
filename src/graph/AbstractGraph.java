@@ -8,9 +8,21 @@ import java.util.Collections;
  * It serves as an abstract class that can be extended by concrete graph implementations.
  */
 public abstract class AbstractGraph implements IGraph{
+    /**
+     * The number of nodes in the graph.
+     */
     protected int n_nodes;
+
+    /**
+     * The maximum number of edges allowed in the graph.
+     */
     protected int max_edges;
+
+    /**
+     * The adjacency list representation of the graph, where each index represents a node.
+     */
     protected Node[] adjList;
+
 
     /**
      * Constructs an AbstractGraph object with the specified number of nodes.

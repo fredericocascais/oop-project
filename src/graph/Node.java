@@ -8,8 +8,19 @@ import java.util.List;
  * It contains information such as the node ID, the edges connected to the node, and the linked nodes.
  */
 public class Node {
+    /**
+     * The ID of the node.
+     */
     private final int id;
+
+    /**
+     * The list of edges connected to the node.
+     */
     private final List<Edge> edges = new ArrayList<>();
+
+    /**
+     * The list of linked node IDs.
+     */
     private final List<Integer> linkedNodes = new ArrayList<>();
 
     /**

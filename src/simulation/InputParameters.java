@@ -11,17 +11,64 @@ import java.util.Scanner;
  * The InputParameters class represents the input parameters for the simulation.
  */
 public class InputParameters {
+    /**
+     * Total number of nodes in the graph.
+     */
     private int totalNodes;
+
+    /**
+     * Maximum weight value for edges in the graph.
+     */
     private int maxWeight;
+
+    /**
+     * Nest node ID.
+     */
     private int nestNode;
+
+    /**
+     * Alpha value for ant movement event.
+     */
     private double alpha;
+
+    /**
+     * Beta value for ant movement event.
+     */
     private double beta;
+
+    /**
+     * Delta value for ant movement event.
+     */
     private double delta;
+
+    /**
+     * Eta value for pheromone evaporation event.
+     */
     private double eta;
+
+    /**
+     * Rho value for pheromone evaporation event.
+     */
     private double rho;
+
+    /**
+     * Gamma value for pheromone level.
+     */
     private double gamma;
+
+    /**
+     * Size of the ant colony.
+     */
     private int colonySize;
+
+    /**
+     * Maximum simulation time.
+     */
     private double simulationMaxTime;
+
+    /**
+     * List representing the weights of the graph's edges.
+     */
     private List<int[]> fileMatrix;
 
     /**
@@ -59,11 +106,12 @@ public class InputParameters {
 
         for (int i=0; i<aux.length; i++){
             int paramIndex = i;
-            if(Integer.parseInt(aux[i])<0){
+            double param = Double.parseDouble(aux[i]);
+            if(param<0){
                 throw new RuntimeException("Invalid input: parameters can't be negative");
-            }else if(strictlyPositiveParameterIds.stream().anyMatch(num -> num == paramIndex) && Integer.parseInt(aux[i])<1){
+            }else if(strictlyPositiveParameterIds.stream().anyMatch(num -> num == paramIndex) && param<1){
                 throw new RuntimeException("Invalid input: nest node, ant colony size and final instant must be positive numbers");
-            }else if(paramIndex==2 && Integer.parseInt(aux[i])<2){
+            }else if(paramIndex==0 && param<2){
                 throw new RuntimeException("Invalid input: the number of nodes must be >= 2");
             }
         }
@@ -89,7 +137,7 @@ public class InputParameters {
 
             String[] matrixFileLine = fileLine.split("\\s+");
             
-            if(matrixFileLine.length != totalNodes) throw new RuntimeException("Invalid matrix : invalid size");
+            if(matrixFileLine.length != totalNodes) throw new RuntimeException("Invalid graph : invalid format");
             
             int[] weights = new int[matrixFileLine.length];
             
@@ -99,9 +147,9 @@ public class InputParameters {
                 // If you want to check then add a try/catch
                 // and another index for the numbers if to continue adding the others (see below)
                 weights[i] = Integer.parseInt(matrixFileLine[i]);
-                if (weights[i] < 0) throw new RuntimeException("Invalid matrix : negative weight");
+                if (weights[i] < 0) throw new RuntimeException("Invalid graph : negative weight");
                 if (weights[diagonalIndex] != 0) {
-                    throw new RuntimeException("Invalid matrix : node cannot have an edge connecting to itself");
+                    throw new RuntimeException("Invalid graph : node cannot have an edge connecting to itself");
                 }
                 
             }

@@ -103,9 +103,9 @@ package graph {
   }
 
   abstract class AbstractGraph implements IGraph{
-    -n_nodes: int
-    -max_edges: int
-    -adjList: Node[]
+    # n_nodes: int
+    # max_edges: int
+    # adjList: Node[]
 
     + AbstractGraph(n_nodes: int)
     + getNode(id: int): Node
@@ -208,19 +208,23 @@ package logger {
   }
 }
 
-package pec {
-  class Event {
-      -event_time: double
-      -event_type: String
-      +setEventTime(mean: double): void
-      +setEventTime(time: double, manual: String): void
-      +getEventTime(): double
-      +getEventType(): String
-      +setEventType(type: String): void
-      -expDistribution(mean: double): double
-      +addEventTimeToSimulation(): void
-      +compareTo(o: Event): int
-  }
+package pec{
+
+  abstract class Event {
+      # event_time: double
+      # event_type: String
+      # simulation: Simulation
+      # rand: Random
+
+      + setEventTime(mean: double): void
+      + setEventTime(time: double, manual: String): void
+      + getEventTime(): double
+      + getEventType(): String
+      + setEventType(type: String): void
+      - expDistribution(mean: double): double
+      + addEventTimeToSimulation(): void
+      + compareTo(o: Event): int
+    }
 
   interface IEvent {
       +setEventTime(mean: double): void

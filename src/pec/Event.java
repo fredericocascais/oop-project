@@ -10,12 +10,25 @@ import simulation.Simulation;
  * for managing event time and event type.
  */
 public abstract class Event implements IEvent, Comparable<Event> {
-    private double event_time;  // Time at which the event will occur
-    private String event_type;  // Type of the event
+    /**
+     * Time at which the event will occur.
+     */
+    protected double event_time;
 
-    private final Simulation simulation = Simulation.getSimulation();  // Reference to the simulation instance
+    /**
+     * Type of the event.
+     */
+    protected String event_type;
 
-    private final Random rand = new Random();  // Random number generator
+    /**
+     * Reference to the simulation instance.
+     */
+    protected final Simulation simulation = Simulation.getSimulation();
+
+    /**
+     * Random number generator.
+     */
+    protected final Random rand = new Random();
 
     /**
      * Sets the event time using an exponential distribution with the specified mean.

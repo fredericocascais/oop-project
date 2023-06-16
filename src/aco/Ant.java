@@ -14,12 +14,31 @@ import java.util.*;
 public class Ant {
     private final Simulation simulation = Simulation.getSimulation();
 
+    /**
+     * The unique identifier of the Ant.
+     */
     private final int id;
-    private static int id_increments = 0;
-    private Node current_node;
-    private final ArrayList<Integer> path;
-    private final LinkedList<Edge> path_edges;
 
+    /**
+     * The increment value for generating unique identifiers for Ants.
+     */
+    private static int id_increments = 0;
+
+    /**
+     * The current node the Ant is located at.
+     */
+    private Node current_node;
+
+    /**
+     * The path followed by the Ant, represented as a list of node identifiers.
+     */
+    private final ArrayList<Integer> path;
+
+    /**
+     * The edges traversed by the Ant in its path.
+     */
+    private final LinkedList<Edge> path_edges;
+    
     /**
      * Constructs an Ant object with the given starting node.
      *

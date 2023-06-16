@@ -12,7 +12,14 @@ import java.util.Random;
  * It extends the AbstractGraph class and provides additional methods for managing weighted edges.
  */
 public class WeightedGraph extends AbstractGraph {
+    /**
+     * The weighted graph Singleton instance.
+     */
     private static WeightedGraph graph;
+
+    /**
+     * The total weight of the graph.
+     */
     private double totalWeight = 0;
 
     /**

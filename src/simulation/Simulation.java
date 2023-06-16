@@ -18,22 +18,56 @@ import pec.PEC;
  * The Simulation class represents the simulation environment for the Ant Colony Optimization (ACO) algorithm.
  */
 public class Simulation {
+    /**
+     * Singleton Simulation instance.
+     */
     static private Simulation simulation;
 
+    /**
+     * Input parameters for the simulation.
+     */
     private final InputParameters parameters;
 
+    /**
+     * Weighted graph used in the simulation.
+     */
     private final WeightedGraph graph;
 
+    /**
+     * Pheromones used in the simulation.
+     */
     private final Pheromones pheromones;
 
+    /**
+     * List of ants in the colony.
+     */
     List<Ant> antColony;
 
+    /**
+     * Total number of ant move events executed in the simulation.
+     */
     int totalMoves = 0;
+
+    /**
+     * Total number of pheromone evaporation events executed in the simulation.
+     */
     int totalEvaporations = 0;
+
+    /**
+     * Current simulation time.
+     */
     double currentSimulationTime = 0;
+
+    /**
+     * List of Hamiltonian cycles found in the simulation.
+     */
     List<HamiltonianCycle> hamiltonianCycleFound = new ArrayList<>();
 
+    /**
+     * Priority Event Container used for event scheduling.
+     */
     private final PEC pec = PEC.getPEC();
+
 
     /**
      * Constructs a Simulation object with the specified parameters and weighted graph.

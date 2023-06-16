@@ -15,12 +15,36 @@ import java.util.LinkedList;
  * It handles the execution of the event and updates the ant's path and other relevant information.
  */
 public class AntMoveEvent extends Event{
+    /**
+     * The Simulation instance used in the context of the AntMovementEvent.
+     */
     private final Simulation simulation = Simulation.getSimulation();
+
+    /**
+     * The WeightedGraph instance used in the context of the AntMovementEvent.
+     */
     private final WeightedGraph graph = WeightedGraph.getGraph();
+
+    /**
+     * The Ant associated with the AntMovementEvent.
+     */
     private final Ant ant;
+
+    /**
+     * The current path followed by the Ant in the event.
+     */
     private final ArrayList<Integer> current_ant_path;
+
+    /**
+     * The identifier of the nest node in the graph.
+     */
     private final int nest_node_id;
+
+    /**
+     * The next edge to be traversed by the Ant in the event.
+     */
     private final Edge next_edge;
+
 
     /**
      * Constructs an AntMoveEvent object with the given ant and next edge.

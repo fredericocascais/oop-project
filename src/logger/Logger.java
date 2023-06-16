@@ -9,6 +9,9 @@ import java.io.PrintStream;
  * It allows logging of output to multiple destinations.
  */
 public class Logger extends PrintStream {
+    /**
+     * The second Stream instance (for the terminal log).
+     */
     private final PrintStream second;
 
     /**

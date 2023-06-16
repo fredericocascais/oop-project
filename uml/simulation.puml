@@ -1,4 +1,5 @@
 @startuml
+skinparam classAttributeIconSize 0
 
 package simulation {
     class InputParameters {
@@ -77,11 +78,11 @@ package simulation {
     }
   
     Simulation "1" --* "1" InputParameters
-    Simulation "1" --* "1" WeightedGraph
-    Simulation "1" --* "1" Pheromones
-    Simulation "1" --* "1..*" Ant
-    Simulation "1" --* "0..*" HamiltonianCycle
-    Simulation "1" --* "1" PEC
+    Simulation "1" --* "1" graph.WeightedGraph
+    Simulation "1" --* "1" aco.Pheromones
+    Simulation "1" --* "1..*" aco.Ant
+    Simulation "1" --* "0..*" graph.HamiltonianCycle
+    Simulation "1" --* "1" pec.PEC
 }
 
 @enduml

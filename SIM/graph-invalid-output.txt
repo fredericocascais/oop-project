@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.RuntimeException: Invalid graph : invalid format
+	at simulation.InputParameters.addParametersFromFile(InputParameters.java:140)
+	at simulation.InputParameters.<init>(InputParameters.java:84)
+	at simulation.Main.main(Main.java:36)

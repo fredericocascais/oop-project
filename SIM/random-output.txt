@@ -1,0 +1,246 @@
+Input Parameters:
+				8: number of nodes in the graph
+				2: the nest node
+				1.2: alpha, ant move event
+				0.8: beta, ant move event
+				0.3: delta, ant move event
+				1.5: eta, pheromone evaporation event
+				12.0: rho, pheromone evaporation event
+				0.6: pheromone level
+				13: ant colony size
+				24.0: final instant
+	 with graph:
+				0 2 4 3 6 1 5 7
+				2 0 3 5 1 4 7 6
+				4 3 0 2 5 7 6 1
+				3 5 2 0 4 6 1 7
+				6 1 5 4 0 3 7 2
+				1 4 7 6 3 0 2 5
+				5 7 6 1 7 2 0 4
+				7 6 1 7 2 5 4 0
+
+
+Observation 1:
+				Present instant:               1.1987804469535452
+				Number of move events:         23
+				Number of evaporation events:  0
+				Top candidate cycles:          
+
+				Best Hamiltonian:              {}
+
+
+Observation 2:
+				Present instant:               2.3330033381058177
+				Number of move events:         37
+				Number of evaporation events:  0
+				Top candidate cycles:          
+
+				Best Hamiltonian:              {}
+
+
+Observation 3:
+				Present instant:               3.5727023200388266
+				Number of move events:         55
+				Number of evaporation events:  0
+				Top candidate cycles:          
+
+				Best Hamiltonian:              {}
+
+
+Observation 4:
+				Present instant:               4.482539495352157
+				Number of move events:         67
+				Number of evaporation events:  0
+				Top candidate cycles:          
+
+				Best Hamiltonian:              {}
+
+
+Observation 5:
+				Present instant:               5.89848255155491
+				Number of move events:         86
+				Number of evaporation events:  4
+				Top candidate cycles:          
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+
+				Best Hamiltonian:              {2, 1, 3, 4, 8, 7, 6, 5}:25
+
+
+Observation 6:
+				Present instant:               7.164474069671946
+				Number of move events:         106
+				Number of evaporation events:  10
+				Top candidate cycles:          
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+
+				Best Hamiltonian:              {2, 1, 3, 4, 8, 7, 6, 5}:25
+
+
+Observation 7:
+				Present instant:               8.33952254285597
+				Number of move events:         116
+				Number of evaporation events:  11
+				Top candidate cycles:          
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+
+				Best Hamiltonian:              {2, 1, 3, 4, 8, 7, 6, 5}:25
+
+
+Observation 8:
+				Present instant:               9.567037032814577
+				Number of move events:         143
+				Number of evaporation events:  13
+				Top candidate cycles:          
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+
+				Best Hamiltonian:              {2, 1, 3, 4, 8, 7, 6, 5}:25
+
+
+Observation 9:
+				Present instant:               10.786789272754694
+				Number of move events:         155
+				Number of evaporation events:  14
+				Top candidate cycles:          
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+
+				Best Hamiltonian:              {2, 1, 3, 4, 8, 7, 6, 5}:25
+
+
+Observation 10:
+				Present instant:               11.904511356128417
+				Number of move events:         165
+				Number of evaporation events:  16
+				Top candidate cycles:          
+				                               {2, 1, 3, 4, 8, 7, 6, 5}:25
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+
+				Best Hamiltonian:              {2, 5, 8, 3, 7, 4, 6, 1}:20
+
+
+Observation 11:
+				Present instant:               13.149504023121565
+				Number of move events:         186
+				Number of evaporation events:  23
+				Top candidate cycles:          
+				                               {2, 1, 3, 4, 8, 7, 6, 5}:25
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+				                               {2, 3, 1, 4, 7, 5, 8, 6}:29
+
+				Best Hamiltonian:              {2, 5, 8, 3, 7, 4, 6, 1}:20
+
+
+Observation 12:
+				Present instant:               14.375783922885635
+				Number of move events:         201
+				Number of evaporation events:  28
+				Top candidate cycles:          
+				                               {2, 1, 3, 4, 8, 7, 6, 5}:25
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+				                               {2, 3, 1, 4, 7, 5, 8, 6}:29
+				                               {2, 6, 8, 5, 3, 1, 4, 7}:31
+
+				Best Hamiltonian:              {2, 5, 8, 3, 7, 4, 6, 1}:20
+
+
+Observation 13:
+				Present instant:               15.559406460920927
+				Number of move events:         215
+				Number of evaporation events:  34
+				Top candidate cycles:          
+				                               {2, 1, 3, 4, 8, 7, 6, 5}:25
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+				                               {2, 3, 1, 4, 7, 5, 8, 6}:29
+				                               {2, 6, 8, 5, 3, 1, 4, 7}:31
+
+				Best Hamiltonian:              {2, 5, 8, 3, 7, 4, 6, 1}:20
+
+
+Observation 14:
+				Present instant:               16.652537882922992
+				Number of move events:         228
+				Number of evaporation events:  36
+				Top candidate cycles:          
+				                               {2, 1, 3, 4, 8, 7, 6, 5}:25
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+				                               {2, 3, 1, 4, 7, 5, 8, 6}:29
+				                               {2, 6, 8, 5, 3, 1, 4, 7}:31
+
+				Best Hamiltonian:              {2, 5, 8, 3, 7, 4, 6, 1}:20
+
+
+Observation 15:
+				Present instant:               17.87854813535737
+				Number of move events:         240
+				Number of evaporation events:  36
+				Top candidate cycles:          
+				                               {2, 1, 3, 4, 8, 7, 6, 5}:25
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+				                               {2, 3, 1, 4, 7, 5, 8, 6}:29
+				                               {2, 6, 8, 5, 3, 1, 4, 7}:31
+
+				Best Hamiltonian:              {2, 5, 8, 3, 7, 4, 6, 1}:20
+
+
+Observation 16:
+				Present instant:               19.17725748315773
+				Number of move events:         255
+				Number of evaporation events:  37
+				Top candidate cycles:          
+				                               {2, 1, 3, 4, 8, 7, 6, 5}:25
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+				                               {2, 3, 1, 4, 7, 5, 8, 6}:29
+				                               {2, 6, 8, 5, 3, 1, 4, 7}:31
+
+				Best Hamiltonian:              {2, 5, 8, 3, 7, 4, 6, 1}:20
+
+
+Observation 17:
+				Present instant:               20.285728128202074
+				Number of move events:         273
+				Number of evaporation events:  37
+				Top candidate cycles:          
+				                               {2, 1, 3, 4, 8, 7, 6, 5}:25
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+				                               {2, 3, 1, 4, 7, 5, 8, 6}:29
+				                               {2, 6, 8, 5, 3, 1, 4, 7}:31
+
+				Best Hamiltonian:              {2, 5, 8, 3, 7, 4, 6, 1}:20
+
+
+Observation 18:
+				Present instant:               21.54109010655738
+				Number of move events:         294
+				Number of evaporation events:  37
+				Top candidate cycles:          
+				                               {2, 1, 3, 4, 8, 7, 6, 5}:25
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+				                               {2, 3, 1, 4, 7, 5, 8, 6}:29
+				                               {2, 6, 8, 5, 3, 1, 4, 7}:31
+
+				Best Hamiltonian:              {2, 5, 8, 3, 7, 4, 6, 1}:20
+
+
+Observation 19:
+				Present instant:               22.756446106875728
+				Number of move events:         316
+				Number of evaporation events:  39
+				Top candidate cycles:          
+				                               {2, 1, 6, 4, 3, 7, 8, 5}:24
+				                               {2, 1, 3, 4, 8, 7, 6, 5}:25
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+				                               {2, 5, 7, 4, 6, 1, 8, 3}:27
+
+				Best Hamiltonian:              {2, 5, 8, 3, 7, 4, 6, 1}:20
+
+
+Observation 20:
+				Present instant:               23.871413980304126
+				Number of move events:         330
+				Number of evaporation events:  46
+				Top candidate cycles:          
+				                               {2, 1, 6, 4, 3, 7, 8, 5}:24
+				                               {2, 1, 3, 4, 8, 7, 6, 5}:25
+				                               {2, 6, 7, 3, 4, 1, 8, 5}:27
+				                               {2, 5, 7, 4, 6, 1, 8, 3}:27
+
+				Best Hamiltonian:              {2, 5, 8, 3, 7, 4, 6, 1}:20

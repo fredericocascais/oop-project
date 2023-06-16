@@ -75,18 +75,18 @@ package "aco"{
     + executeEvent(): void
   }
 
-  Ant "1..*" *-- "1" Simulation
-  Ant "0..*" -- "0..*" Edge: Path >
-  Ant "0..*" -- "1" Node: Path >
-  Ant "0..*" -- "1" Node: Location >
+  Ant "1..*" *-- "1" simulation.Simulation
+  Ant "0..*" -- "0..*" graph.Edge: Path >
+  Ant "0..*" -- "1" graph.Node: Path >
+  Ant "0..*" -- "1" graph.Node: Location >
   AntMoveEvent "0..*" -- "1" Ant
-  AntMoveEvent "0..*" -- "1" WeightedGraph
-  AntMoveEvent "0..*" *-- "1" Simulation
-  AntMoveEvent "0..*" -- "1" Node: Nest >
-  AntMoveEvent "0..*" -- "1" Edge
-  EvaporationEvent "0..*" *-- "1" Edge
-  EvaporationEvent "0..*" *-- "1" Simulation
-  SimulationReportEvent "0..*" *-- "1" Simulation
-  Pheromones "1" -- "1..*" Edge
+  AntMoveEvent "0..*" -- "1" graph.WeightedGraph
+  AntMoveEvent "0..*" *-- "1" simulation.Simulation
+  AntMoveEvent "0..*" -- "1" graph.Node: Nest >
+  AntMoveEvent "0..*" -- "1" graph.Edge
+  EvaporationEvent "0..*" *-- "1" graph.Edge
+  EvaporationEvent "0..*" *-- "1" simulation.Simulation
+  SimulationReportEvent "0..*" *-- "1" simulation.Simulation
+  Pheromones "1" -- "1..*" graph.Edge
 }
 @enduml

@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.RuntimeException: Invalid input: parameters can't be negative
+	at simulation.InputParameters.addParametersFromFile(InputParameters.java:111)
+	at simulation.InputParameters.<init>(InputParameters.java:84)
+	at simulation.Main.main(Main.java:35)

@@ -18,8 +18,8 @@ Input Parameters:
 
 
 Observation 1:
-				Present instant:               2.407746567284463
-				Number of move events:         53
+				Present instant:               2.4425541058694726
+				Number of move events:         59
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -27,8 +27,8 @@ Observation 1:
 
 
 Observation 2:
-				Present instant:               4.968705241201083
-				Number of move events:         102
+				Present instant:               4.944461488719229
+				Number of move events:         110
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -36,8 +36,8 @@ Observation 2:
 
 
 Observation 3:
-				Present instant:               7.334145792407439
-				Number of move events:         150
+				Present instant:               7.487008309895663
+				Number of move events:         178
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -45,8 +45,8 @@ Observation 3:
 
 
 Observation 4:
-				Present instant:               9.973146211701293
-				Number of move events:         205
+				Present instant:               9.999660880987092
+				Number of move events:         231
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -54,8 +54,8 @@ Observation 4:
 
 
 Observation 5:
-				Present instant:               12.495059576443317
-				Number of move events:         245
+				Present instant:               12.392079263538339
+				Number of move events:         280
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -63,8 +63,8 @@ Observation 5:
 
 
 Observation 6:
-				Present instant:               14.995733456098858
-				Number of move events:         294
+				Present instant:               14.979494270867704
+				Number of move events:         335
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -72,8 +72,8 @@ Observation 6:
 
 
 Observation 7:
-				Present instant:               17.312444130656655
-				Number of move events:         348
+				Present instant:               17.495272288070815
+				Number of move events:         397
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -81,8 +81,8 @@ Observation 7:
 
 
 Observation 8:
-				Present instant:               19.985868898003666
-				Number of move events:         393
+				Present instant:               19.992351972102473
+				Number of move events:         450
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -90,8 +90,8 @@ Observation 8:
 
 
 Observation 9:
-				Present instant:               22.34298186395886
-				Number of move events:         437
+				Present instant:               22.487429470864367
+				Number of move events:         492
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -99,8 +99,8 @@ Observation 9:
 
 
 Observation 10:
-				Present instant:               24.988080534939705
-				Number of move events:         487
+				Present instant:               24.893775790083314
+				Number of move events:         545
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -108,8 +108,8 @@ Observation 10:
 
 
 Observation 11:
-				Present instant:               27.40415269849327
-				Number of move events:         542
+				Present instant:               27.441965856902872
+				Number of move events:         598
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -117,8 +117,8 @@ Observation 11:
 
 
 Observation 12:
-				Present instant:               29.947962959560737
-				Number of move events:         584
+				Present instant:               29.93970318717584
+				Number of move events:         648
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -126,8 +126,8 @@ Observation 12:
 
 
 Observation 13:
-				Present instant:               32.47918081679825
-				Number of move events:         630
+				Present instant:               32.420480110138605
+				Number of move events:         700
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -135,8 +135,8 @@ Observation 13:
 
 
 Observation 14:
-				Present instant:               34.93936896034207
-				Number of move events:         684
+				Present instant:               34.97243802858127
+				Number of move events:         766
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -144,8 +144,8 @@ Observation 14:
 
 
 Observation 15:
-				Present instant:               37.46742044043896
-				Number of move events:         729
+				Present instant:               37.49192691168801
+				Number of move events:         799
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -153,8 +153,8 @@ Observation 15:
 
 
 Observation 16:
-				Present instant:               39.97988820928276
-				Number of move events:         788
+				Present instant:               39.996333494661464
+				Number of move events:         850
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -162,8 +162,8 @@ Observation 16:
 
 
 Observation 17:
-				Present instant:               42.44655365007308
-				Number of move events:         830
+				Present instant:               42.44323654743904
+				Number of move events:         898
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -171,8 +171,8 @@ Observation 17:
 
 
 Observation 18:
-				Present instant:               44.99698630102488
-				Number of move events:         877
+				Present instant:               44.99155244910104
+				Number of move events:         951
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -180,8 +180,8 @@ Observation 18:
 
 
 Observation 19:
-				Present instant:               47.44756974058175
-				Number of move events:         921
+				Present instant:               47.48498712741588
+				Number of move events:         1005
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
@@ -189,8 +189,8 @@ Observation 19:
 
 
 Observation 20:
-				Present instant:               49.984998787593
-				Number of move events:         983
+				Present instant:               49.98020042197115
+				Number of move events:         1057
 				Number of evaporation events:  0
 				Top candidate cycles:          
 
