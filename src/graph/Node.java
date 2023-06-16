@@ -42,7 +42,7 @@ public class Node {
             return;
         }
         linkedNodes.add(dest);
-        this.edges.add( new Edge( dest , 0) );
+        this.edges.add( new Edge( dest , 1) );
     }
 
     /**
